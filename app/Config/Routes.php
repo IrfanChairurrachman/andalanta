@@ -22,7 +22,7 @@ $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
-$routes->setAutoRoute(true);
+$routes->setAutoRoute(false);
 
 /*
  * --------------------------------------------------------------------
@@ -34,6 +34,13 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
+// LOGIN ROUTE
+$routes->get('login', 'Login::index');
+$routes->post('login/proses', 'Login::proses');
+$routes->get('/logout', 'Login::logout', ['filter' => 'ceklogin']);
+
+// ADMIN ROUTE
+$routes->get('admin', 'Home::admin', ['filter' => 'ceklogin']);
 /*
  * --------------------------------------------------------------------
  * Additional Routing
