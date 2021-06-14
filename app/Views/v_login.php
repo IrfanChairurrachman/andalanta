@@ -23,6 +23,14 @@
                         <input type="text" name="password" class="form-control" placeholder="Password">
                     </div>
                     <div class="form-group">
+                      <label for="">Role</label>
+                      <select name="role" id="" class="form-control">
+                          <option value="">Pilih Role</option>
+                          <option value="Kurir">Kurir</option>
+                          <option value="Admin">Admin</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
                         <button type="submit" class="btn btn-block btn-primary">LOGIN</button>
                     </div>
                 </form>

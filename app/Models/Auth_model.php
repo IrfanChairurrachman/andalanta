@@ -9,9 +9,9 @@ class Auth_model extends Model{
     protected $table = "users";
     protected $primaryKey = "id";
   
-    public function getLogin($username, $password)
+    public function getLogin($username, $password, $role)
     {
-        return $this->db->table($this->table)->where(['username' => $username, 'password' => $password])->get()->getRowArray();
+        return $this->db->table($this->table)->where(['username' => $username, 'password' => $password, 'role' => $role])->get()->getRowArray();
     }
 
     public function getUser($id = false)
