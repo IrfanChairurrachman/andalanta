@@ -52,6 +52,10 @@ class Pesanan extends Migration
                 'type'              => 'VARCHAR',
                 'constraint'        => '100',
             ],
+            'pesanan_kurir'          => [
+                'type'              => 'VARCHAR',
+                'constraint'        => '100',
+            ],
 			'created_at DATETIME DEFAULT CURRENT_TIMESTAMP'
         ]);
         $this->forge->addKey('pesanan_id', TRUE);

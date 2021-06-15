@@ -38,12 +38,12 @@ class Barang extends Migration
                 'constraint'        => '100',
             ],
 			'barang_harga'          => [
-                'type'              => 'VARCHAR',
-                'constraint'        => '100',
+                'type'              => 'BIGINT',
+                'constraint'        => 10,
             ],
 			'barang_ongkir'          => [
-                'type'              => 'VARCHAR',
-                'constraint'        => '100',
+                'type'              => 'BIGINT',
+                'constraint'        => 10,
             ],
             'barang_status'        => [
                 'type'              => 'ENUM',
