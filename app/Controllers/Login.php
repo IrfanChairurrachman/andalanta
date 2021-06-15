@@ -21,14 +21,6 @@ class Login extends BaseController
  
         $cek_login = $this->auth->getLogin($username, $password, $role);
 
-        if($role == 'Admin' && !empty($cek_login)){
-            // dd($cek_login);
-            echo "Masuk admin";
-        }
-        elseif($role == 'Kurir' && !empty($cek_login)){
-            // dd($cek_login);
-            echo "Masuk Kurir";
-        }
         if(!empty($cek_login)){
  
             session()->set("id", $cek_login['id']);
