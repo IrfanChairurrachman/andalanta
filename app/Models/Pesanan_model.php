@@ -10,7 +10,7 @@ class Pesanan_model extends Model
         if($id === false){
             return $this->findAll();
         } else {
-            return $this->getWhere(['pesanan_resi' => $id]);
+            return $this->getWhere(['pesanan_id' => $id]);
         }   
     }
     public function insertPesanan($data)
@@ -19,11 +19,11 @@ class Pesanan_model extends Model
     }
     public function updatePesanan($data, $id)
     {
-        return $this->db->table($this->table)->update($data, ['pesanan_resi' => $id]);
+        return $this->db->table($this->table)->update($data, ['pesanan_id' => $id]);
     }
     public function deletePesanan($id)
     {
-        return $this->db->table($this->table)->delete(['pesanan_resi' => $id]);
+        return $this->db->table($this->table)->delete(['pesanan_id' => $id]);
     }
 }
 ?>
