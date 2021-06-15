@@ -54,6 +54,24 @@
                 </div>
                 <div class="card-content">
                     <div class="card-body">
+                    <?php
+                        if(!empty(session()->getFlashdata('success'))){ ?>
+                        <div class="alert alert-success">
+                            <?php echo session()->getFlashdata('success');?>
+                        </div>     
+                        <?php } ?>
+
+                        <?php if(!empty(session()->getFlashdata('info'))){ ?>
+                        <div class="alert alert-info">
+                            <?php echo session()->getFlashdata('info');?>
+                        </div>
+                        <?php } ?>
+
+                        <?php if(!empty(session()->getFlashdata('warning'))){ ?>
+                        <div class="alert alert-warning">
+                            <?php echo session()->getFlashdata('warning');?>
+                        </div>
+                    <?php } ?>
                         <form class="form form-vertical" method="POST" action="<?php echo base_url('pesanan/store'); ?>">
                             <div class="form-body">
                                 <div class="row">
@@ -115,8 +133,8 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label for="">Mata Kuliah</label>
-                                            <select class="choices form-select" name="matkul">
+                                            <label for="">Kecamatan</label>
+                                            <select class="choices form-select" name="kecamatan">
                                                 <?php foreach($kecamatan as $key => $row){ ?>
                                                     <option value="<?= $row['kecamatan_id']?>"><?= $row['kecamatan_name']?></option>
                                                 <?php } ?>

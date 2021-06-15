@@ -3,7 +3,7 @@ use CodeIgniter\Model;
   
 class Pesanan_model extends Model
 {
-    protected $table = 'kecamatan';
+    protected $table = 'pesanan';
       
     public function getPesanan($id = false)
     {
@@ -19,11 +19,11 @@ class Pesanan_model extends Model
     }
     public function updatePesanan($data, $id)
     {
-        return $this->db->table($this->table)->update($data, ['Pesanan_resi' => $id]);
+        return $this->db->table($this->table)->update($data, ['pesanan_resi' => $id]);
     }
     public function deletePesanan($id)
     {
-        return $this->db->table($this->table)->delete(['kecamatan_resi' => $id]);
+        return $this->db->table($this->table)->delete(['pesanan_resi' => $id]);
     }
 }
 ?>
