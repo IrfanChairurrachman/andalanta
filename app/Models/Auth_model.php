@@ -19,7 +19,10 @@ class Auth_model extends Model{
         if($id === false){
             return $this->findAll();
         } else {
-            return $this->getWhere(['id' => $id]);
+            return $this->table('users')
+                        ->where('users.id', $id)
+                        ->get()
+                        ->getRowArray();
         }   
     }
     public function updateUser($data, $id)

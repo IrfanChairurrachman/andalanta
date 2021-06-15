@@ -10,7 +10,10 @@ class Pesanan_model extends Model
         if($id === false){
             return $this->findAll();
         } else {
-            return $this->getWhere(['pesanan_id' => $id]);
+            return $this->table('pesanan')
+                        ->where('pesanan.pesanan_id', $id)
+                        ->get()
+                        ->getRowArray();
         }   
     }
     public function insertPesanan($data)

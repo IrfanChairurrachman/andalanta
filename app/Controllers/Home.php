@@ -40,7 +40,7 @@ class Home extends BaseController
 
         $data = array(
             'pesanan_name'     => $this->request->getPost('pesanan_name'),
-            'kecamatan_id'   => $this->request->getPost('kecamatan_id'),
+            'kecamatan_id'   => $this->request->getPost('kecamatan'),
 			'pesanan_toko'   => $this->request->getPost('pesanan_toko'),
 			'pesanan_kontak'   => $this->request->getPost('pesanan_kontak'),
 			'pesanan_alamat'   => $this->request->getPost('pesanan_alamat'),

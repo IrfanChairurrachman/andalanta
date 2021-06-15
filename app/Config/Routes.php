@@ -44,6 +44,8 @@ $routes->get('/logout', 'Login::logout', ['filter' => 'ceklogin']);
 $routes->get('admin', 'Home::admin', ['filter' => 'ceklogin']);
 $routes->get('kurir', 'Kurir::index', ['filter' => 'ceklogin']);
 $routes->post('kurir/jemput', 'Kurir::update', ['filter' => 'ceklogin']);
+$routes->get('kurir/pesanan/(:num)', 'Kurir::show/$1', ['filter' => 'ceklogin']);
+$routes->get('kurir/pesanan/proses/(:num)', 'Kurir::proses/$1', ['filter' => 'ceklogin']);
 /*
  * --------------------------------------------------------------------
  * Additional Routing
