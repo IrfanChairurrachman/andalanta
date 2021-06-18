@@ -19,6 +19,12 @@
     </div>
  
     <div class="content">
+            <?php
+            if(!empty(session()->getFlashdata('success'))){ ?>
+            <div class="alert alert-success">
+                <?php echo session()->getFlashdata('success');?>
+            </div>     
+            <?php } ?>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-6">

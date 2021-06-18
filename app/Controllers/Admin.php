@@ -57,7 +57,7 @@ class Admin extends BaseController
         echo view('kurir/pesanan_proses', $data);
     }
 
-    public function update()
+    public function update_pesanan()
     {
         $id = $this->request->getPost('pesanan_id');
     
@@ -66,11 +66,12 @@ class Admin extends BaseController
             'kecamatan_id' => $this->request->getPost('kecamatan_id'),
         );
         
+        // dd($data);
         if($data){
             $simpan = $this->pesanan_model->updatePesanan($data, $id);
             if($simpan){
-                session()->setFlashdata('success', 'Pesanan Dijemput');
-                return redirect()->to(base_url('/admin'));
+                session()->setFlashdata('success', 'Pesanan Terupdate');
+                return redirect()->to(base_url('/admin/pesanan'));
             } else{
                 session()->setFlashdata('errors', 'Tidak Terproses bung');
             }

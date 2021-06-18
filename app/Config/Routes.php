@@ -46,6 +46,8 @@ $routes->get('admin', 'Home::admin', ['filter' => 'ceklogin']);
 $routes->get('admin/pesanan', 'Admin::pesanan', ['filter' => 'ceklogin']);
 $routes->get('admin/pesanan/(:num)', 'Admin::show/$1', ['filter' => 'ceklogin']);
 $routes->get('admin/pesanan/edit/(:num)', 'Admin::edit_pesanan/$1', ['filter' => 'ceklogin']);
+$routes->post('admin/pesanan/update', 'Admin::update_pesanan', ['filter' => 'ceklogin']);
+
 $routes->get('admin/barang', 'Admin::barang', ['filter' => 'ceklogin']);
 
 // KURIR ROUTE

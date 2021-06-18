@@ -45,7 +45,7 @@
                   </div>
                   <div class="form-group">
                       <label for="">Status</label>
-                      <select name="pesanan_status" id="" class="form-control">
+                      <select name="kecamatan_id" class="form-control">
                         <option value="">Pilih Kategori</option>
                         <?php foreach($kecamatan as $key => $row){ ?>
                           <option value="<?= $row['kecamatan_id']?>" <?php echo $pesanan['kecamatan_id'] == $row['kecamatan_id'] ? 'selected' : '' ?>><?= $row['kecamatan_name']?></option>

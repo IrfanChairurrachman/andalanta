@@ -8,9 +8,13 @@ class Barang_model extends Model
     public function getBarang($id = false)
     {
         if($id === false){
-            return $this->findAll();
+            return $this->table('barang')
+                        ->join('pesanan', 'pesanan.pesanan_id = pesanan.pesanan_id')
+                        ->get()
+                        ->getResultArray();
         } else {
             return $this->table('barang')
+                        ->join('pesanan', 'pesanan.pesanan_id = pesanan.pesanan_id')
                         ->where('baran.barang_id', $id)
                         ->get()
                         ->getRowArray();
