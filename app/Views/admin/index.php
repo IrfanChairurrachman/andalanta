@@ -1,17 +1,17 @@
 <?php echo view('_partials/header'); ?>
-<?php echo view('_partials/sidebar_kurir'); ?>
+<?php echo view('_partials/sidebar'); ?>
  
 <div class="content-wrapper">
     <div class="content-header">
         <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">KURIR</h1>
+                <h1 class="m-0 text-dark">ADMIN</h1>
             </div>
             <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">KURIR</li>
+                <li class="breadcrumb-item active">ADMIN</li>
             </ol>
             </div>
         </div>
@@ -45,15 +45,15 @@
                                             <td><?= $row['pesanan_kontak']?></td>
                                             <td>
                                                 <div class="btn-group">
-                                                    <form action="<?php echo base_url('kurir/jemput'); ?>" method="POST" class="form" onclick="return confirm('Apakah Anda yakin menjemput pesanan ini?');">
-                                                        <input type="hidden" name="pesanan_id" value="<?php echo $row['pesanan_id']; ?>">
-                                                        <input type="hidden" name="pesanan_kurir" value="<?php echo $kurir['id']; ?>">
-                                                        <input type="hidden" name="pesanan_status" value="On Process">
-                                                        <button type="submit" class="btn btn-sm btn-success" ><?= $row['pesanan_status']?></button>
-                                                    </form>
-                                                    <form action="<?php echo base_url('kurir/pesanan/'.$row['pesanan_id']); ?>" method="GET" class="form">
-                                                        <button type="submit" class="btn btn-sm btn-info" ><i class="fa fa-eye"></i> Info</button>
-                                                    </form>
+                                                    <a href="<?php echo base_url('admin/pesanan/show/'.$row['pesanan_id']); ?>" class="btn btn-sm btn-info">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a>
+                                                    <a href="<?php echo base_url('admin/pesanan/edit/'.$row['pesanan_id']); ?>" class="btn btn-sm btn-success">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <a href="<?php echo base_url('admin/pesanan/delete/'.$row['pesanan_id']); ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?');">
+                                                        <i class="fa fa-trash-alt"></i>
+                                                    </a>
                                                 </div>
                                             </td>
                                         </tr>

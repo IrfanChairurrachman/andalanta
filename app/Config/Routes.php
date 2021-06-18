@@ -34,6 +34,7 @@ $routes->setAutoRoute(false);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 $routes->post('pesanan/store', 'Home::store');
+$routes->post('pesanan/resi', 'Home::cekResi');
 
 // LOGIN ROUTE
 $routes->get('login', 'Login::index');
@@ -42,10 +43,19 @@ $routes->get('/logout', 'Login::logout', ['filter' => 'ceklogin']);
 
 // ADMIN ROUTE
 $routes->get('admin', 'Home::admin', ['filter' => 'ceklogin']);
+$routes->get('admin/pesanan', 'Admin::pesanan', ['filter' => 'ceklogin']);
+$routes->get('admin/barang', 'Admin::barang', ['filter' => 'ceklogin']);
+
+// KURIR ROUTE
 $routes->get('kurir', 'Kurir::index', ['filter' => 'ceklogin']);
 $routes->post('kurir/jemput', 'Kurir::update', ['filter' => 'ceklogin']);
 $routes->get('kurir/pesanan/(:num)', 'Kurir::show/$1', ['filter' => 'ceklogin']);
 $routes->get('kurir/pesanan/proses/(:num)', 'Kurir::proses/$1', ['filter' => 'ceklogin']);
+
+$routes->post('kurir/barang/store', 'Kurir::store', ['filter' => 'ceklogin']);
+$routes->get('kurir/barang', 'Kurir::show_barang', ['filter' => 'ceklogin']);
+$routes->post('kurir/barang/update', 'Kurir::update_barang', ['filter' => 'ceklogin']);
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

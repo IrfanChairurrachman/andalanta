@@ -6,7 +6,7 @@ use App\Models\Pesanan_model;
 use App\Models\Auth_model;
 use App\Models\Barang_model;
 
-class Kurir extends BaseController
+class Admin extends BaseController
 {
 	protected $helpers = [];
  
@@ -19,20 +19,16 @@ class Kurir extends BaseController
         $this->barang_model = new Barang_model();
     }
 
-	public function index()
+	public function pesanan()
 	{
-        $id = $_SESSION['id'];
-
-        $data['kurir'] = $this->user_model->getUser($id);
 		$data['jemput'] = $this->pesanan_model
                                 ->join('kecamatan', 'kecamatan.kecamatan_id = pesanan.kecamatan_id')
                                 ->where('pesanan_status', 'Jemput')->findAll();
         $data['antar'] = $this->pesanan_model
                                 ->join('kecamatan', 'kecamatan.kecamatan_id = pesanan.kecamatan_id')
-                                ->where('pesanan_status', 'On Process')
-                                ->where('pesanan_kurir', $id)->findAll();
+                                ->where('pesanan_status', 'On Process')->findAll();
         // dd($data);
-		return view('kurir/index', $data);
+		return view('admin/index', $data);
 	}
 
     public function show($id)

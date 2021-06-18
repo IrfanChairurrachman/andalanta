@@ -36,8 +36,8 @@
                             <li>
                                 <h6 class="dropdown-header">Login</h6>
                             </li>
-                            <li><a class="dropdown-item" href="{{ route('login') }}">Admin</a></li>
-                            <li><a class="dropdown-item" href="{{ route('register') }}">Kurir</a></li>
+                            <li><a class="dropdown-item" href="<?php echo base_url('admin'); ?>">Admin</a></li>
+                            <li><a class="dropdown-item" href="<?php echo base_url('kurir'); ?>">Kurir</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -48,6 +48,52 @@
     <div class="container">
         <h1>ANDALANTA</h1>
         <div class="col-md-12 col-12">
+        <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">CEK CEK RESIII WUHUU</h4>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <form class="form form-vertical" method="POST" action="<?php echo base_url('pesanan/resi'); ?>">
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group has-icon-left">
+                                            <label for="first-name-icon">CEK RESI</label>
+                                            <div class="position-relative">
+                                                <input type="text" class="form-control"
+                                                    placeholder="Masukkan Resi"
+                                                    id="first-name-icon"
+                                                    name="pesanan_resi">
+                                                <div class="form-control-icon">
+                                                    <i class="bi bi-person"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <button type="submit"
+                                            class="btn btn-primary me-1 mb-1">Submit</button>
+                                        <button type="reset"
+                                            class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <?php $resi = session()->getFlashdata('resi');
+                        if(!empty($resi)){ ?>
+                        <div class="alert alert-info">
+                            <p>STATUS</p>
+                            <ul>
+                                <?php foreach ($resi as $row) : ?>
+                                    <li><?= $row['barang_name'] ?> <?= $row['barang_status'] ?></li>
+                                <?php endforeach ?>
+                            </ul>
+                        </div>
+                        <?php } ?>
+                    </div>
+                </div>
+            </div>
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Kurir Makassar Paling Mantap</h4>

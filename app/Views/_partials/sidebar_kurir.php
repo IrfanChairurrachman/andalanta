@@ -9,21 +9,15 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="<?php echo base_url('/admin'); ?>" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="<?php echo base_url('admin/category'); ?>" class="nav-link">
+                    <a href="<?php echo base_url('/kurir'); ?>" class="nav-link">
                         <i class="nav-icon fas fa-tags"></i>
-                        <p>Kategori</p>
+                        <p>Pesanan</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?php echo base_url('admin/product'); ?>" class="nav-link">
-                        <i class="nav-icon fas fa-cart-plus"></i>
-                        <p>Produk</p>
+                    <a href="<?php echo base_url('kurir/barang'); ?>" class="nav-link">
+                        <i class="nav-icon fas fa-cart-plus "></i>
+                        <p>Barang</p>
                     </a>
                 </li>
                 <li class="nav-header">ACCOUNT</li>

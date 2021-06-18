@@ -8,9 +8,13 @@ class Pesanan_model extends Model
     public function getPesanan($id = false)
     {
         if($id === false){
-            return $this->findAll();
+            return $this->table('pesanan')
+                        ->join('kecamatan', 'kecamatan.kecamatan_id = pesanan.kecamatan_id')
+                        ->get()
+                        ->getResultArray();
         } else {
             return $this->table('pesanan')
+                        ->join('kecamatan', 'kecamatan.kecamatan_id = pesanan.kecamatan_id')
                         ->where('pesanan.pesanan_id', $id)
                         ->get()
                         ->getRowArray();

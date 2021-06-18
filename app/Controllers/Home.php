@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use App\Models\Kecamatan_model;
 use App\Models\Pesanan_model;
+use App\Models\Barang_model;
 
 class Home extends BaseController
 {
@@ -13,12 +14,27 @@ class Home extends BaseController
         helper(['form']);
         $this->kecamatan_model = new Kecamatan_model();
         $this->pesanan_model = new Pesanan_model();
+        $this->barang_model = new Barang_model();
     }
 
 	public function index()
 	{
 		$data['kecamatan'] = $this->kecamatan_model->getKecamatan();
 		return view('index', $data);
+	}
+
+    public function cekResi()
+	{
+        $resi = $this->request->getPost('pesanan_resi');
+
+        $data['barang'] = $this->barang_model
+                                ->join('pesanan', 'pesanan.pesanan_id = barang.pesanan_id')
+                                ->where('pesanan.pesanan_resi', $resi)->findAll();
+        // dd($data);
+        session()->setFlashdata('resi', $data['barang']);
+        return redirect()->to(base_url('/'));
+		// $data['kecamatan'] = $this->kecamatan_model->getKecamatan();
+		// return view('index');
 	}
 
 	public function admin()

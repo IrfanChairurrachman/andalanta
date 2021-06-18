@@ -15,15 +15,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?php echo base_url('admin/category'); ?>" class="nav-link">
+                    <a href="<?php echo base_url('admin/pesanan'); ?>" class="nav-link">
                         <i class="nav-icon fas fa-tags"></i>
-                        <p>Kategori</p>
+                        <p>Pesanan</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?php echo base_url('admin/product'); ?>" class="nav-link">
+                    <a href="<?php echo base_url('admin/barang'); ?>" class="nav-link">
                         <i class="nav-icon fas fa-cart-plus"></i>
-                        <p>Produk</p>
+                        <p>Barang</p>
                     </a>
                 </li>
                 <li class="nav-item">
