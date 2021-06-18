@@ -1,5 +1,5 @@
 <?php echo view('_partials/header'); ?>
-<?php echo view('_partials/sidebar_kurir'); ?>
+<?php echo view('_partials/sidebar'); ?>
  
 <div class="content-wrapper">
   <div class="content-header">
@@ -40,7 +40,7 @@
               </div>
             </div>
             <div class="card-footer">
-              <a href="<?php echo base_url('kurir'); ?>" class="btn btn-outline-info float-right">Back</a>
+              <a href="<?php echo base_url('admin/pesanan'); ?>" class="btn btn-outline-info float-right">Back</a>
             </div>
           </div>
         </div>

@@ -45,7 +45,7 @@
                                             <td><?= $row['pesanan_kontak']?></td>
                                             <td>
                                                 <div class="btn-group">
-                                                    <a href="<?php echo base_url('admin/pesanan/show/'.$row['pesanan_id']); ?>" class="btn btn-sm btn-info">
+                                                    <a href="<?php echo base_url('admin/pesanan/'.$row['pesanan_id']); ?>" class="btn btn-sm btn-info">
                                                         <i class="fa fa-eye"></i>
                                                     </a>
                                                     <a href="<?php echo base_url('admin/pesanan/edit/'.$row['pesanan_id']); ?>" class="btn btn-sm btn-success">
