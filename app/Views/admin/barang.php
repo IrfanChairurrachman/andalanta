@@ -1,5 +1,5 @@
 <?php echo view('_partials/header'); ?>
-<?php echo view('_partials/sidebar_kurir'); ?>
+<?php echo view('_partials/sidebar'); ?>
  
 <div class="content-wrapper">
     <div class="content-header">
@@ -57,14 +57,18 @@
                                             <td><?= $row['barang_kode']?></td>
                                             <td><?= $row['barang_name']?></td>
                                             <td><?= $row['barang_harga']?></td>
-                                            <td><?= $row['barang_ongkir']?></td>
+                                            <td><?= $row['barang_status']?></td>
                                             <td>
                                                 <div class="btn-group">
-                                                    <form action="<?php echo base_url('kurir/barang/update'); ?>" method="POST" class="form" onclick="return confirm('Apakah Anda yakin ingin mengantar barang ini');">
-                                                        <input type="hidden" name="barang_status" value="Antar">
-                                                        <input type="hidden" name="barang_id" value="<?= $row['barang_id']?>">
-                                                        <button type="submit" class="btn btn-sm btn-success" >Antar</button>
-                                                    </form>
+                                                    <a href="<?php echo base_url('admin/barang/'.$row['barang_id']); ?>" class="btn btn-sm btn-info">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a>
+                                                    <a href="<?php echo base_url('admin/barang/edit/'.$row['barang_id']); ?>" class="btn btn-sm btn-success">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <a href="<?php echo base_url('admin/barang/delete/'.$row['barang_id']); ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?');">
+                                                        <i class="fa fa-trash-alt"></i>
+                                                    </a>
                                                 </div>
                                             </td>
                                         </tr>

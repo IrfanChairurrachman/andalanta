@@ -9,7 +9,7 @@ class Barang_model extends Model
     {
         if($id === false){
             return $this->table('barang')
-                        ->join('pesanan', 'pesanan.pesanan_id = pesanan.pesanan_id')
+                        ->join('pesanan', 'pesanan.pesanan_id = barang.pesanan_id')
                         ->get()
                         ->getResultArray();
         } else {

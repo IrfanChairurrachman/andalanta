@@ -28,7 +28,7 @@ class Admin extends BaseController
                                 ->join('kecamatan', 'kecamatan.kecamatan_id = pesanan.kecamatan_id')
                                 ->where('pesanan_status', 'On Process')->findAll();
         // dd($data);
-		return view('admin/index', $data);
+		return view('admin/pesanan', $data);
 	}
 
     public function show($id)
@@ -104,16 +104,21 @@ class Admin extends BaseController
         }
     }
 
-    public function show_barang()
+    public function barang()
     {
-        $data['barang'] = $this->barang_model
-                                ->join('pesanan', 'pesanan.pesanan_id = barang.pesanan_id')
-                                ->where('barang_status', '')->findAll();
+        $data['barang'] = $this->barang_model->getBarang();
         $data['antar'] = $this->barang_model
                                 ->join('pesanan', 'pesanan.pesanan_id = barang.pesanan_id')
                                 ->where('barang_status !=', '')->findAll();
         // dd($data['barang']);
-        echo view('kurir/barang', $data);
+        echo view('admin/barang', $data);
+    }
+
+    public function show_barang($id)
+    {  
+        $data['barang'] = $this->barang_model->getBarang($id);
+        // dd($data);
+        echo view('admin/pesanan_show', $data);
     }
 
     public function update_barang()

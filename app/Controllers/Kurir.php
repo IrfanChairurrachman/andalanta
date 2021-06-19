@@ -31,8 +31,12 @@ class Kurir extends BaseController
                                 ->join('kecamatan', 'kecamatan.kecamatan_id = pesanan.kecamatan_id')
                                 ->where('pesanan_status', 'On Process')
                                 ->where('pesanan_kurir', $id)->findAll();
+        
+        
+        $data['title'] = 'Dashboard';
         // dd($data);
-		return view('kurir/index', $data);
+
+		return view('kurir/new_index', $data);
 	}
 
     public function show($id)
@@ -49,8 +53,10 @@ class Kurir extends BaseController
         $data['kecamatan'] = $this->kecamatan_model->getKecamatan();
         $data['pesanan'] = $this->pesanan_model->getPesanan($id);
         $data['kurir'] = $this->user_model->getUser($kurir);
+
+        $data['title'] = 'Proses';
         // dd($data);
-        echo view('kurir/pesanan_proses', $data);
+        echo view('kurir/proses', $data);
     }
 
     public function update()
@@ -108,7 +114,8 @@ class Kurir extends BaseController
                                 ->join('pesanan', 'pesanan.pesanan_id = barang.pesanan_id')
                                 ->where('barang_status !=', '')->findAll();
         // dd($data['barang']);
-        echo view('kurir/barang', $data);
+        $data['title'] = 'Barang';
+        echo view('kurir/new_barang', $data);
     }
 
     public function update_barang()

@@ -39,12 +39,9 @@ class Home extends BaseController
 
 	public function admin()
 	{
-		return view('dashboard');
-	}
+        $title = 'Dashboard';
 
-	public function kurir()
-	{
-		return view('kurir/index');
+		return view('admin/new_index', compact('title'));
 	}
 
 	public function store()
