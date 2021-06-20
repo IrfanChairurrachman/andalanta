@@ -20,6 +20,12 @@
     </div>
     <section class="section">
         <div class="card">
+            <?php
+                if(!empty(session()->getFlashdata('success'))){ ?>
+                <div class="alert alert-success">
+                    <?php echo session()->getFlashdata('success');?>
+                </div>     
+            <?php } ?>
             <div class="card-header">
                 Barang
             </div>

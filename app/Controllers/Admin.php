@@ -81,11 +81,23 @@ class Admin extends BaseController
         echo view('admin/b_show', $data);
     }
 
+    public function edit_barang($id)
+    {  
+        $data['barang'] = $this->barang_model->getBarang($id);
+        $data['kecamatan'] = $this->kecamatan_model->getKecamatan();
+        $data['title'] = "Barang Edit";
+        // dd($data);
+        echo view('admin/b_edit', $data);
+    }
+
     public function update_barang()
     {
         $id = $this->request->getPost('barang_id');
     
         $data = array(
+            'barang_kode' => $this->request->getPost('barang_kode'),
+            'barang_name' => $this->request->getPost('barang_name'),
+            'kecamatan_id' => $this->request->getPost('kecamatan_id'),
             'barang_status' => $this->request->getPost('barang_status'),
         );
         // dd($data);
@@ -94,11 +106,19 @@ class Admin extends BaseController
             // dd($simpan);
             if($simpan){
                 session()->setFlashdata('success', 'Barang terupdate');
-                return redirect()->to(base_url('/kurir/barang'));
+                return redirect()->to(base_url('admin/barang'));
             } else{
                 session()->setFlashdata('errors', 'Tidak Terproses bung');
             }
         }
+    }
+
+    public function settings()
+    {
+        $data['kurir'] = $this->barang_model->getBarang();
+        $data['admin'] = "Barang";
+        // dd($data['barang']);
+        echo view('admin/barang', $data);
     }
 
 }
