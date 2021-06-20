@@ -33,20 +33,20 @@
                             <!-- Table with outer spacing -->
                             <div class="table-responsive">
                                 <dl class="dl-horizontal">
+                                    <dt>Kode</dt>
+                                    <dd><?php echo $barang['barang_kode'];?></dd>
                                     <dt>Nama</dt>
-                                    <dd><?php echo $pesanan['pesanan_name'];?></dd>
-                                    <dt>Toko</dt>
-                                    <dd><?php echo $pesanan['pesanan_toko'];?></dd>
-                                    <dt>Alamat</dt>
-                                    <dd><?php echo $pesanan['pesanan_alamat'];?></dd>       
-                                    <dt>Kecamatan</dt>
-                                    <dd><?php echo $pesanan['kecamatan_name'];?></dd>             
+                                    <dd><?php echo $barang['barang_name'];?></dd>
+                                    <dt>Resi</dt>
+                                    <dd><?php echo $barang['pesanan_resi'];?></dd>       
+                                    <dt>Status</dt>
+                                    <dd><?php echo $barang['barang_status'];?></dd>             
                                 </dl>
                             </div>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="<?php echo base_url('admin/pesanan'); ?>" class="btn btn-outline-info float-right">Back</a>
+                        <a href="<?php echo base_url('admin/barang'); ?>" class="btn btn-outline-info float-right">Back</a>
                     </div>
                 </div>
             </div>

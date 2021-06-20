@@ -14,8 +14,8 @@ class Barang_model extends Model
                         ->getResultArray();
         } else {
             return $this->table('barang')
-                        ->join('pesanan', 'pesanan.pesanan_id = pesanan.pesanan_id')
-                        ->where('baran.barang_id', $id)
+                        ->join('pesanan', 'pesanan.pesanan_id = barang.pesanan_id')
+                        ->where('barang.barang_id', $id)
                         ->get()
                         ->getRowArray();
         }   

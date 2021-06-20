@@ -44,9 +44,9 @@ $uri3 = $uri[3] ?? '';
                 </li>
 
                 <li class="sidebar-item <?= ($uri1 == 'datatable') ? 'active' : '' ?>">
-                    <a href="<?php echo base_url('admin/setiings'); ?>" class='sidebar-link'>
+                    <a href="<?php echo base_url('admin/settings'); ?>" class='sidebar-link'>
                         <i class="bi bi-file-earmark-spreadsheet-fill"></i>
-                        <span>Datatable</span>
+                        <span>Settings</span>
                     </a>
                 </li>
 

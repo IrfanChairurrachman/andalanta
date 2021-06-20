@@ -53,6 +53,8 @@ $routes->get('admin/barang/(:num)', 'Admin::show_barang/$1', ['filter' => 'ceklo
 $routes->get('admin/barang/edit/(:num)', 'Admin::edit_barang/$1', ['filter' => 'ceklogin']);
 $routes->post('admin/barang/update', 'Admin::update_barang', ['filter' => 'ceklogin']);
 
+$routes->get('admin/settings', 'Admin::barang', ['filter' => 'ceklogin']);
+
 // KURIR ROUTE
 $routes->get('kurir', 'Kurir::index', ['filter' => 'ceklogin']);
 $routes->post('kurir/jemput', 'Kurir::update', ['filter' => 'ceklogin']);

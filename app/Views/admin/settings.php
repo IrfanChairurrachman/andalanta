@@ -66,6 +66,38 @@
         </div>
 
     </section>
+
+    <!-- Basic Tables end -->
+    <section>
+            <div class="card">
+                <div class="card-header">
+                    Simple Datatable
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped" id="table1">
+                        <thead>
+                            <tr>
+                                <th>Kode</th>
+                                <th>Nama</th>
+                                <th>Ongkir</th>
+                                <th>Kecamatan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach($barang as $key => $row){ ?>
+                                <tr>
+                                    <td><?= $row['barang_kode']?></td>
+                                    <td><?= $row['barang_name']?></td>
+                                    <td><?= $row['barang_ongkir']?></td>
+                                    <td><?= $row['kecamatan_id']?></td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    </section>
+    
 </div>
 <?= $this->endSection() ?>
 

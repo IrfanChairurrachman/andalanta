@@ -39,19 +39,9 @@ class Admin extends BaseController
     {  
         $data['pesanan'] = $this->pesanan_model->getPesanan($id);
         $data['kecamatan'] = $this->kecamatan_model->getKecamatan();
+        $data['title'] = "Pesanan Detail";
         // dd($data);
-        echo view('admin/pesanan_edit', $data);
-    }
-
-    public function proses($id)
-    {
-        $kurir = $_SESSION['id'];  
-        $data['barang'] = $this->barang_model->where('pesanan_id', $id)->findAll();;
-        $data['kecamatan'] = $this->kecamatan_model->getKecamatan();
-        $data['pesanan'] = $this->pesanan_model->getPesanan($id);
-        $data['kurir'] = $this->user_model->getUser($kurir);
-        // dd($data);
-        echo view('kurir/pesanan_proses', $data);
+        echo view('admin/p_edit', $data);
     }
 
     public function update_pesanan()
@@ -75,32 +65,6 @@ class Admin extends BaseController
         }
     }
 
-    public function store()
-    {
-        $pesanan_id = $this->request->getPost('pesanan_id');
-
-        $data = array(
-            'pesanan_id' => $this->request->getPost('pesanan_id'),
-            'barang_kode' => $this->request->getPost('barang_kode'),
-            'barang_name' => $this->request->getPost('barang_name'),
-            'barang_harga' => $this->request->getPost('barang_harga'),
-            'barang_status' => '',
-            'barang_ongkir' => $this->request->getPost('barang_ongkir'),
-            'kecamatan_id' => $this->request->getPost('kecamatan_id'),
-        );
-        
-        // dd($pesanan_id);
-        if($data){
-            $simpan = $this->barang_model->insertBarang($data);
-            if($simpan){
-                session()->setFlashdata('success', 'Barang Masuk');
-                return redirect()->to(base_url('/kurir/pesanan/proses/'.$pesanan_id));
-            } else{
-                session()->setFlashdata('errors', 'Tidak Terproses bung');
-            }
-        }
-    }
-
     public function barang()
     {
         $data['barang'] = $this->barang_model->getBarang();
@@ -112,8 +76,9 @@ class Admin extends BaseController
     public function show_barang($id)
     {  
         $data['barang'] = $this->barang_model->getBarang($id);
+        $data['title'] = "Barang Detail";
         // dd($data);
-        echo view('admin/pesanan_show', $data);
+        echo view('admin/b_show', $data);
     }
 
     public function update_barang()
@@ -135,4 +100,5 @@ class Admin extends BaseController
             }
         }
     }
+
 }
