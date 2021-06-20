@@ -26,10 +26,11 @@
             <div class="col-12 col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Table with outer spacing</h4>
+                        <a href="<?php echo base_url('kurir'); ?>" class="btn btn-outline-info float-right">Back</a>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
+                            <h4 class="float-right">Daftar Barang</h4>
                             <!-- Table with outer spacing -->
                             <div class="table-responsive">
                                 <dl class="dl-horizontal">

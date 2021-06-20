@@ -21,21 +21,18 @@ class Admin extends BaseController
 
 	public function pesanan()
 	{
-		$data['jemput'] = $this->pesanan_model
-                                ->join('kecamatan', 'kecamatan.kecamatan_id = pesanan.kecamatan_id')
-                                ->where('pesanan_status', 'Jemput')->findAll();
-        $data['antar'] = $this->pesanan_model
-                                ->join('kecamatan', 'kecamatan.kecamatan_id = pesanan.kecamatan_id')
-                                ->where('pesanan_status', 'On Process')->findAll();
+		$data['jemput'] = $this->pesanan_model->getPesanan();
         // dd($data);
+        $data['title'] = "Pesanan";
 		return view('admin/pesanan', $data);
 	}
 
     public function show($id)
     {  
         $data['pesanan'] = $this->pesanan_model->getPesanan($id);
+        $data['title'] = "Pesanan Detail";
         // dd($data);
-        echo view('admin/pesanan_show', $data);
+        echo view('admin/p_show', $data);
     }
 
     public function edit_pesanan($id)
@@ -107,9 +104,7 @@ class Admin extends BaseController
     public function barang()
     {
         $data['barang'] = $this->barang_model->getBarang();
-        $data['antar'] = $this->barang_model
-                                ->join('pesanan', 'pesanan.pesanan_id = barang.pesanan_id')
-                                ->where('barang_status !=', '')->findAll();
+        $data['title'] = "Barang";
         // dd($data['barang']);
         echo view('admin/barang', $data);
     }

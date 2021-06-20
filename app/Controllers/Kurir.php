@@ -42,8 +42,9 @@ class Kurir extends BaseController
     public function show($id)
     {  
         $data['pesanan'] = $this->pesanan_model->getPesanan($id);
+        $data['title'] = "Pesanan Detail";
         // dd($data);
-        echo view('kurir/pesanan_show', $data);
+        echo view('kurir/p_show', $data);
     }
 
     public function proses($id)
