@@ -132,10 +132,41 @@ class Admin extends BaseController
 
     public function show_admin($id)
     {
-        $data['kurir'] = $this->user_model->getUser($id);
+        $data['admin'] = $this->user_model->getUser($id);
         $data['title'] = "Admin Show";
         // dd($data['barang']);
         echo view('admin/admin_show', $data);
+    }
+
+    public function edit_kurir($id)
+    {  
+        $data['kurir'] = $this->user_model->getUser($id);
+        $data['title'] = "Kurir Edit";
+        // dd($data);
+        echo view('admin/kurir_edit', $data);
+    }
+
+    public function update_kurir()
+    {
+        $id = $this->request->getPost('kurir_id');
+    
+        $data = array(
+            'kode' => $this->request->getPost('kode'),
+            'name' => $this->request->getPost('name'),
+            'username' => $this->request->getPost('username'),
+            'password' => $this->request->getPost('password'),
+        );
+        // dd($data);
+        if($data){
+            $simpan = $this->user_model->updateUser($data, $id);
+            // dd($simpan);
+            if($simpan){
+                session()->setFlashdata('success', 'Kurir terupdate');
+                return redirect()->to(base_url('admin/settings'));
+            } else{
+                session()->setFlashdata('errors', 'Tidak Terproses bung');
+            }
+        }
     }
 
 }

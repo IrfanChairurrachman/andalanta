@@ -6,14 +6,14 @@
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
                 <nav class="navbar navbar-light">
-                <a href="/kurir"><i class="bi bi-chevron-left"></i></a>
+                <a href="/admin"><i class="bi bi-chevron-left"></i></a>
                 <h3 class="navbar-brand ms-4">Form Layout</h3>
             </nav>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/kurir">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Form Layout</li>
                     </ol>
                 </nav>
@@ -34,11 +34,11 @@
                             <div class="table-responsive">
                                 <dl class="dl-horizontal">
                                     <dt>Nama</dt>
-                                    <dd><?php echo $kurir['name'];?></dd>
+                                    <dd><?php echo $admin['name'];?></dd>
                                     <dt>Username</dt>
-                                    <dd><?php echo $kurir['username'];?></dd>
+                                    <dd><?php echo $admin['username'];?></dd>
                                     <dt>Password</dt>
-                                    <dd><?php echo $kurir['password'];?></dd>       
+                                    <dd><?php echo $admin['password'];?></dd>       
                                 </dl>
                             </div>
                         </div>

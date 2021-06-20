@@ -47,31 +47,31 @@
                         <form class="form form-vertical" method="POST" action="<?php echo base_url('admin/kurir/update'); ?>">
                             <div class="card-body">
                                 <form class="form form-vertical">
-                                <input type="hidden" name="pesanan_id" value="<?php echo $pesanan['pesanan_id']; ?>">
+                                <input type="hidden" name="kurir_id" value="<?php echo $kurir['id']; ?>">
                                     <div class="form-body">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="form-group">
                                                 <label for="">Kode</label>
-                                                <input type="text" value="<?php echo $pesanan['kode']; ?>" class="form-control" name="barang_name" placeholder="Masukkan Nama Barang">
+                                                <input type="text" value="<?php echo $kurir['kode']; ?>" class="form-control" name="kode" placeholder="Masukkan Nama Barang">
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
                                                 <label for="">Name</label>
-                                                <input type="text" value="<?php echo $pesanan['name']; ?>" class="form-control" name="barang_name" placeholder="Masukkan Nama Barang">
+                                                <input type="text" value="<?php echo $kurir['name']; ?>" class="form-control" name="name" placeholder="Masukkan Nama Barang">
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
                                                 <label for="">Username</label>
-                                                <input type="text" value="<?php echo $pesanan['username']; ?>" class="form-control" name="barang_name" placeholder="Masukkan Nama Barang">
+                                                <input type="text" value="<?php echo $kurir['username']; ?>" class="form-control" name="username" placeholder="Masukkan Nama Barang">
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
                                                 <label for="">Password</label>
-                                                <input type="text" value="<?php echo $pesanan['password']; ?>" class="form-control" name="barang_name" placeholder="Masukkan Nama Barang">
+                                                <input type="text" value="<?php echo $kurir['password']; ?>" class="form-control" name="password" placeholder="Masukkan Nama Barang">
                                                 </div>
                                             </div>
                                             <div class="col-12 d-flex justify-content-end">

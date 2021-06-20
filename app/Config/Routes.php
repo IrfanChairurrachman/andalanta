@@ -56,7 +56,7 @@ $routes->post('admin/barang/update', 'Admin::update_barang', ['filter' => 'ceklo
 $routes->get('admin/settings', 'Admin::settings', ['filter' => 'ceklogin']);
 $routes->get('admin/kurir/(:num)', 'Admin::show_kurir/$1', ['filter' => 'ceklogin']);
 $routes->get('admin/kurir/edit/(:num)', 'Admin::edit_kurir/$1', ['filter' => 'ceklogin']);
-$routes->post('admin/barang/update', 'Admin::update_kurir', ['filter' => 'ceklogin']);
+$routes->post('admin/kurir/update', 'Admin::update_kurir', ['filter' => 'ceklogin']);
 $routes->get('admin/settings/(:num)', 'Admin::show_admin/$1', ['filter' => 'ceklogin']);
 $routes->get('admin/settings/edit/(:num)', 'Admin::edit_admin/$1', ['filter' => 'ceklogin']);
 
