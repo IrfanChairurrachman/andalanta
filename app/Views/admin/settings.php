@@ -33,27 +33,27 @@
                 <table class="table table-striped" id="table1">
                     <thead>
                         <tr>
-                            <th>Resi</th>
-                            <th>Kecamatan</th>
-                            <th>Kontak</th>
-                            <th>Status</th>
+                            <th>Kode</th>
+                            <th>Name</th>
+                            <th>Username</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach($jemput as $key => $row){ ?>
+                        <?php foreach($kurir as $key => $row){ ?>
                             <tr>
-                                <td><?= $row['pesanan_resi']?></td>
-                                <td><?= $row['kecamatan_name']?></td>
-                                <td><?= $row['pesanan_kontak']?></td>
+                                <td><?= $row['kode']?></td>
+                                <td><?= $row['name']?></td>
+                                <td><?= $row['username']?></td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="<?php echo base_url('admin/pesanan/'.$row['pesanan_id']); ?>" class="btn btn-sm btn-info">
+                                        <a href="<?php echo base_url('admin/kurir/'.$row['id']); ?>" class="btn btn-sm btn-info">
                                             <i class="fa fa-eye"></i>
                                         </a>
-                                        <a href="<?php echo base_url('admin/pesanan/edit/'.$row['pesanan_id']); ?>" class="btn btn-sm btn-success">
+                                        <a href="<?php echo base_url('admin/kurir/edit/'.$row['id']); ?>" class="btn btn-sm btn-success">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        <a href="<?php echo base_url('admin/pesanan/delete/'.$row['pesanan_id']); ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?');">
+                                        <a href="<?php echo base_url('admin/kurir/delete/'.$row['id']); ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?');">
                                             <i class="fa fa-trash-alt"></i>
                                         </a>
                                     </div>
@@ -77,19 +77,29 @@
                     <table class="table table-striped" id="table1">
                         <thead>
                             <tr>
-                                <th>Kode</th>
                                 <th>Nama</th>
-                                <th>Ongkir</th>
-                                <th>Kecamatan</th>
+                                <th>Username</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach($barang as $key => $row){ ?>
+                            <?php foreach($admin as $key => $row){ ?>
                                 <tr>
-                                    <td><?= $row['barang_kode']?></td>
-                                    <td><?= $row['barang_name']?></td>
-                                    <td><?= $row['barang_ongkir']?></td>
-                                    <td><?= $row['kecamatan_id']?></td>
+                                    <td><?= $row['name']?></td>
+                                    <td><?= $row['username']?></td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a href="<?php echo base_url('admin/settings/'.$row['id']); ?>" class="btn btn-sm btn-info">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                            <a href="<?php echo base_url('admin/settings/edit/'.$row['id']); ?>" class="btn btn-sm btn-success">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <a href="<?php echo base_url('admin/settings/delete/'.$row['id']); ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?');">
+                                                <i class="fa fa-trash-alt"></i>
+                                            </a>
+                                        </div>
+                                    </td>
                                 </tr>
                             <?php } ?>
                         </tbody>

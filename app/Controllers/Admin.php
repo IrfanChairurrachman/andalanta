@@ -115,10 +115,27 @@ class Admin extends BaseController
 
     public function settings()
     {
-        $data['kurir'] = $this->barang_model->getBarang();
-        $data['admin'] = "Barang";
+        $data['kurir'] = $this->user_model->where('role', 'Kurir')->findAll();
+        $data['admin'] = $this->user_model->where('role', 'Admin')->findAll();
+        $data['title'] = "Settings";
         // dd($data['barang']);
-        echo view('admin/barang', $data);
+        echo view('admin/settings', $data);
+    }
+
+    public function show_kurir($id)
+    {
+        $data['kurir'] = $this->user_model->getUser($id);
+        $data['title'] = "Kurir Show";
+        // dd($data['barang']);
+        echo view('admin/kurir_show', $data);
+    }
+
+    public function show_admin($id)
+    {
+        $data['kurir'] = $this->user_model->getUser($id);
+        $data['title'] = "Admin Show";
+        // dd($data['barang']);
+        echo view('admin/admin_show', $data);
     }
 
 }

@@ -50,7 +50,7 @@ class Kurir extends BaseController
     public function proses($id)
     {
         $kurir = $_SESSION['id'];  
-        $data['barang'] = $this->barang_model->where('pesanan_id', $id)->findAll();;
+        $data['barang'] = $this->barang_model->where('pesanan_id', $id)->findAll();
         $data['kecamatan'] = $this->kecamatan_model->getKecamatan();
         $data['pesanan'] = $this->pesanan_model->getPesanan($id);
         $data['kurir'] = $this->user_model->getUser($kurir);
