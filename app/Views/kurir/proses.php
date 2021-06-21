@@ -105,10 +105,17 @@
                         <form class="form form-vertical" method="POST" action="<?php echo base_url('kurir/barang/store'); ?>">
                             <div class="card-body">
                                 <form class="form form-vertical">
-                                <input type="hidden" name="barang_kode" value="<?php echo $kurir['kode']; ?>">
-                                <input type="hidden" name="pesanan_id" value="<?php echo $pesanan['pesanan_id']; ?>">
+                                <input type="hidden" name="barang_kode" value="<?php echo $kurir['kode'];?>-<?php echo $date;?>-">
+                                <input type="hidden" name="pesanan_id" value="<?php echo $pesanan['pesanan_id'];?>">
                                     <div class="form-body">
                                         <div class="row">
+                                            <div class="col-12">
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1"><?php echo $kurir['kode'];?>-<?php echo $date;?>-</span>
+                                                    <input type="number" class="form-control" name="kode" placeholder="Nomor Kode"
+                                                        aria-label="Username" aria-describedby="basic-addon1">
+                                                </div>
+                                            </div>
                                             <div class="col-12">
                                                 <div class="form-group">
                                                 <label for="">Name</label>

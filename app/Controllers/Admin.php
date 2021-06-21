@@ -148,7 +148,7 @@ class Admin extends BaseController
 
     public function update_kurir()
     {
-        $id = $this->request->getPost('kurir_id');
+        $id = $this->request->getPost('id');
     
         $data = array(
             'kode' => $this->request->getPost('kode'),
@@ -161,12 +161,20 @@ class Admin extends BaseController
             $simpan = $this->user_model->updateUser($data, $id);
             // dd($simpan);
             if($simpan){
-                session()->setFlashdata('success', 'Kurir terupdate');
+                session()->setFlashdata('success', 'User terupdate');
                 return redirect()->to(base_url('admin/settings'));
             } else{
                 session()->setFlashdata('errors', 'Tidak Terproses bung');
             }
         }
+    }
+
+    public function edit_admin($id)
+    {  
+        $data['admin'] = $this->user_model->getUser($id);
+        $data['title'] = "Admin Edit";
+        // dd($data);
+        echo view('admin/admin_edit', $data);
     }
 
 }

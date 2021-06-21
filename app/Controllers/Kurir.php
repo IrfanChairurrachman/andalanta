@@ -5,6 +5,7 @@ use App\Models\Kecamatan_model;
 use App\Models\Pesanan_model;
 use App\Models\Auth_model;
 use App\Models\Barang_model;
+use CodeIgniter\I18n\Time;
 
 class Kurir extends BaseController
 {
@@ -55,6 +56,8 @@ class Kurir extends BaseController
         $data['pesanan'] = $this->pesanan_model->getPesanan($id);
         $data['kurir'] = $this->user_model->getUser($kurir);
 
+        $data['date'] = Time::today('Asia/Makassar')->toLocalizedString('d/MMM/yyyy');
+
         $data['title'] = 'Proses';
         // dd($data);
         echo view('kurir/proses', $data);
@@ -83,18 +86,19 @@ class Kurir extends BaseController
     public function store()
     {
         $pesanan_id = $this->request->getPost('pesanan_id');
+        $barang_kode = $this->request->getPost('barang_kode') . $this->request->getPost('kode');
 
         $data = array(
             'pesanan_id' => $this->request->getPost('pesanan_id'),
-            'barang_kode' => $this->request->getPost('barang_kode'),
+            'barang_kode' => $barang_kode,
             'barang_name' => $this->request->getPost('barang_name'),
             'barang_harga' => $this->request->getPost('barang_harga'),
             'barang_status' => '',
             'barang_ongkir' => $this->request->getPost('barang_ongkir'),
             'kecamatan_id' => $this->request->getPost('kecamatan_id'),
         );
-        
-        // dd($pesanan_id);
+        // $kode = $this->request->getPost('kode');
+        // dd($data);
         if($data){
             $simpan = $this->barang_model->insertBarang($data);
             if($simpan){
