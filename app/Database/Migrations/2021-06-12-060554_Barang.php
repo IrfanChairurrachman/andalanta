@@ -29,6 +29,12 @@ class Barang extends Migration
                 'unsigned'          => TRUE,
                 'null'              => TRUE,
             ],
+            'kurir_id'          => [
+				'type'              => 'BIGINT',
+                'constraint'        => 20,
+                'unsigned'          => TRUE,
+                'null'              => TRUE,
+            ],
 			'barang_kode'          => [
 				'type'              => 'VARCHAR',
 				'constraint'        => '100',
@@ -39,21 +45,26 @@ class Barang extends Migration
             ],
 			'barang_harga'          => [
                 'type'              => 'BIGINT',
-                'constraint'        => 10,
+                'constraint'        => 12,
             ],
 			'barang_ongkir'          => [
                 'type'              => 'BIGINT',
-                'constraint'        => 10,
+                'constraint'        => 12,
             ],
             'barang_status'        => [
                 'type'              => 'ENUM',
                 'constraint'        => "'Antar','Sukses','Tunda','Cancel'",
+            ],
+            'barang_keterangan'          => [
+                'type'              => 'VARCHAR',
+                'constraint'        => '100',
             ],
 			'created_at DATETIME DEFAULT CURRENT_TIMESTAMP'
         ]);
         $this->forge->addKey('barang_id', TRUE);
         $this->forge->addForeignKey('kecamatan_id','kecamatan','kecamatan_id','CASCADE','CASCADE');
 		$this->forge->addForeignKey('pesanan_id','pesanan','pesanan_id','CASCADE','CASCADE');
+        $this->forge->addForeignKey('kurir_id','users','id','CASCADE','CASCADE');
         $this->forge->createTable('barang');
 	}
 
