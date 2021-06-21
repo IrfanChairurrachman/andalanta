@@ -53,7 +53,7 @@ class Barang extends Migration
             ],
             'barang_status'        => [
                 'type'              => 'ENUM',
-                'constraint'        => "'Antar','Sukses','Tunda','Cancel'",
+                'constraint'        => "'Terjemput','Antar','Sukses','Tunda','Cancel'",
             ],
             'barang_keterangan'          => [
                 'type'              => 'VARCHAR',
