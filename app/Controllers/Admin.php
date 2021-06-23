@@ -5,6 +5,7 @@ use App\Models\Kecamatan_model;
 use App\Models\Pesanan_model;
 use App\Models\Auth_model;
 use App\Models\Barang_model;
+use CodeIgniter\I18n\Time;
 
 class Admin extends BaseController
 {
@@ -29,7 +30,14 @@ class Admin extends BaseController
 
     public function show($id)
     {  
+        $kurir = $_SESSION['id'];  
+        $data['barang'] = $this->barang_model->where('pesanan_id', $id)->findAll();
+        $data['kecamatan'] = $this->kecamatan_model->getKecamatan();
         $data['pesanan'] = $this->pesanan_model->getPesanan($id);
+        $data['kurir'] = $this->user_model->getUser($kurir);
+
+        $data['date'] = Time::today('Asia/Makassar')->toLocalizedString('d/MMM/yyyy');
+
         $data['title'] = "Pesanan Detail";
         // dd($data);
         echo view('admin/p_show', $data);
@@ -42,6 +50,14 @@ class Admin extends BaseController
         $data['title'] = "Pesanan Detail";
         // dd($data);
         echo view('admin/p_edit', $data);
+    }
+
+    public function create_pesanan()
+    {  
+        $data['kecamatan'] = $this->kecamatan_model->getKecamatan();
+        $data['title'] = "Buat Pesanan";
+
+        echo view('admin/p_create', $data);
     }
 
     public function update_pesanan()

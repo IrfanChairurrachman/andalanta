@@ -21,38 +21,8 @@
         </div>
     </div>
 
-    <section class="section">
-        <div class="row" id="basic-table">
-            <div class="col-12 col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Table with outer spacing</h4>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-body">
-                            <!-- Table with outer spacing -->
-                            <div class="table-responsive">
-                                <dl class="dl-horizontal">
-                                    <dt>Nama</dt>
-                                    <dd><?php echo $pesanan['pesanan_name'];?></dd>
-                                    <dt>Toko</dt>
-                                    <dd><?php echo $pesanan['pesanan_toko'];?></dd>
-                                    <dt>Alamat</dt>
-                                    <dd><?php echo $pesanan['pesanan_alamat'];?></dd>       
-                                    <dt>Kecamatan</dt>
-                                    <dd><?php echo $pesanan['kecamatan_name'];?></dd>             
-                                </dl>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="<?php echo base_url('admin/pesanan'); ?>" class="btn btn-outline-info float-right">Back</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Basic Vertical form layout section start -->
+    
+
     <section id="basic-vertical-layouts">
         <div class="row match-height">
             <div class="col-md-12 col-12">
@@ -74,36 +44,15 @@
                         <h4 class="card-title">Vertical Form</h4>
                     </div>
                     <div class="card-content">
-                        <form class="form form-vertical" method="POST" action="<?php echo base_url('kurir/barang/store'); ?>">
+                        <form class="form form-vertical" method="POST" action="<?php echo base_url('admin/pesanan/store'); ?>">
                             <div class="card-body">
                                 <form class="form form-vertical">
-                                <input type="hidden" name="barang_kode" value="<?php echo $kurir['kode'];?>-<?php echo $date;?>-">
-                                <input type="hidden" name="pesanan_id" value="<?php echo $pesanan['pesanan_id'];?>">
                                     <div class="form-body">
                                         <div class="row">
                                             <div class="col-12">
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1"><?php echo $kurir['kode'];?>-<?php echo $date;?>-</span>
-                                                    <input type="number" class="form-control" name="kode" placeholder="Nomor Kode"
-                                                        aria-label="Username" aria-describedby="basic-addon1">
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
                                                 <div class="form-group">
                                                 <label for="">Name</label>
-                                                <input type="text" class="form-control" name="barang_name" placeholder="Masukkan Nama Barang">
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-group">
-                                                    <label for="">Harga Barang</label>
-                                                    <input type="text" class="form-control" name="barang_harga" placeholder="Masukkan Harga Barang">
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-group">
-                                                    <label for="">Ongkir</label>
-                                                    <input type="text" class="form-control" name="barang_ongkir" placeholder="Masukkan Ongkir Barang">
+                                                <input type="text" class="form-control" name="barang_name" placeholder="Masukkan Nama Pemesan">
                                                 </div>
                                             </div>
                                             <div class="col-12">
@@ -127,12 +76,15 @@
                                 </form>
                             </div>
                         </form>
+                        <div class="card-footer">
+                            <a href="<?php echo base_url('admin/pesanan'); ?>" class="btn btn-outline-info float-right">Back</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- // Basic Vertical form layout section end -->
+
 </div>
 <?= $this->endSection() ?>
 

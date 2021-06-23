@@ -27,8 +27,8 @@
                 </div>     
             <?php } ?>
             <div class="card-header">
-                Simple Datatable
-                <a href="<?php echo base_url('admin/category/create'); ?>" class="btn btn-primary float-lg-end">Tambah</a>
+                Kurir
+                <a href="<?php echo base_url('admin/kurir/create'); ?>" class="btn btn-primary float-lg-end">Tambah</a>
             </div>
             <div class="card-body">
                 <table class="table table-striped" id="table1">
@@ -72,8 +72,8 @@
     <section>
             <div class="card">
                 <div class="card-header">
-                    Simple Datatable
-                    <a href="<?php echo base_url('admin/category/create'); ?>" class="btn btn-primary float-lg-end">Tambah</a>
+                    Admin
+                    <a href="<?php echo base_url('admin/create'); ?>" class="btn btn-primary float-lg-end">Tambah</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-striped" id="table1">
