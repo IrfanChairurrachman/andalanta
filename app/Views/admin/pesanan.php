@@ -28,6 +28,7 @@
             <?php } ?>
             <div class="card-header">
                 Simple Datatable
+                <a href="<?php echo base_url('admin/category/create'); ?>" class="btn btn-primary float-lg-end">Tambah</a>
             </div>
             <div class="card-body">
                 <table class="table table-striped" id="table1">

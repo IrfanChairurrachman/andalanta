@@ -25,5 +25,16 @@ class Kecamatan_model extends Model
     {
         return $this->db->table($this->table)->delete(['kecamatan_id' => $id]);
     }
+    public function getGrafik()
+    {
+        $query = $this->db->query("SELECT MONTHNAME(created_at) as month, COUNT(barang_id) as total FROM barang GROUP BY MONTHNAME(created_at) ORDER BY MONTH(created_at)");
+        $hasil = [];
+        if(!empty($query)){
+            foreach($query->getResultArray() as $data) {
+                $hasil[] = $data;
+            }
+        }
+        return $hasil;
+    }
 }
 ?>

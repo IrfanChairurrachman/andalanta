@@ -33,14 +33,13 @@ class Home extends BaseController
         // dd($data);
         session()->setFlashdata('resi', $data['barang']);
         return redirect()->to(base_url('/'));
-		// $data['kecamatan'] = $this->kecamatan_model->getKecamatan();
-		// return view('index');
 	}
 
 	public function admin()
 	{
         
-        $data['grafik'] = $this->pesanan_model->getGrafik();
+        $data['grafik_pesanan'] = $this->pesanan_model->getGrafik();
+        $data['grafik_barang'] = $this->barang_model->getGrafik();
         $data['title'] = 'Dashboard';
         // dd($data['grafik']);
 		return view('admin/new_index', $data);
