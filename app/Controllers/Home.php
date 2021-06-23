@@ -39,9 +39,11 @@ class Home extends BaseController
 
 	public function admin()
 	{
-        $title = 'Dashboard';
-
-		return view('admin/new_index', compact('title'));
+        
+        $data['grafik'] = $this->pesanan_model->getGrafik();
+        $data['title'] = 'Dashboard';
+        // dd($data['grafik']);
+		return view('admin/new_index', $data);
 	}
 
 	public function store()

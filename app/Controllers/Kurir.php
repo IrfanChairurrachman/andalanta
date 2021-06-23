@@ -31,7 +31,7 @@ class Kurir extends BaseController
         $data['antar'] = $this->pesanan_model
                                 ->join('kecamatan', 'kecamatan.kecamatan_id = pesanan.kecamatan_id')
                                 ->where('pesanan_status', 'On Process')
-                                ->where('pesanan_kurir', $id)->findAll();
+                                ->where('kurir_id', $id)->findAll();
         
         
         $data['title'] = 'Dashboard';
@@ -69,7 +69,7 @@ class Kurir extends BaseController
     
         $data = array(
             'pesanan_status' => $this->request->getPost('pesanan_status'),
-            'pesanan_kurir' => $this->request->getPost('pesanan_kurir'),
+            'kurir_id' => $this->request->getPost('pesanan_kurir'),
         );
         
         if($data){
@@ -87,13 +87,12 @@ class Kurir extends BaseController
     {
         $pesanan_id = $this->request->getPost('pesanan_id');
         $barang_kode = $this->request->getPost('barang_kode') . $this->request->getPost('kode');
-
         $data = array(
             'pesanan_id' => $this->request->getPost('pesanan_id'),
             'barang_kode' => $barang_kode,
             'barang_name' => $this->request->getPost('barang_name'),
             'barang_harga' => $this->request->getPost('barang_harga'),
-            'barang_status' => '',
+            'barang_status' => 'Terjemput',
             'barang_ongkir' => $this->request->getPost('barang_ongkir'),
             'kecamatan_id' => $this->request->getPost('kecamatan_id'),
         );
@@ -112,12 +111,15 @@ class Kurir extends BaseController
 
     public function show_barang()
     {
+        $id = $_SESSION['id'];
+
         $data['barang'] = $this->barang_model
                                 ->join('pesanan', 'pesanan.pesanan_id = barang.pesanan_id')
-                                ->where('barang_status', '')->findAll();
+                                ->where('barang_status', 'Terjemput')->findAll();
         $data['antar'] = $this->barang_model
                                 ->join('pesanan', 'pesanan.pesanan_id = barang.pesanan_id')
-                                ->where('barang_status !=', '')->findAll();
+                                ->where('barang_status !=', 'Terjemput')
+                                ->where('barang.kurir_id', $id)->findAll();
         // dd($data['barang']);
         $data['title'] = 'Barang';
         echo view('kurir/new_barang', $data);
@@ -125,10 +127,12 @@ class Kurir extends BaseController
 
     public function update_barang()
     {
+        $kurir = $_SESSION['id'];
         $id = $this->request->getPost('barang_id');
     
         $data = array(
             'barang_status' => $this->request->getPost('barang_status'),
+            'kurir_id' => $kurir,
         );
         // dd($data);
         if($data){
