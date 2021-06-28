@@ -14,6 +14,11 @@ class Auth_model extends Model{
         return $this->db->table($this->table)->where(['username' => $username, 'password' => $password, 'role' => $role])->get()->getRowArray();
     }
 
+    public function insertUser($data)
+    {
+        return $this->db->table($this->table)->insert($data);
+    }
+
     public function getUser($id = false)
     {
         if($id === false){
@@ -29,5 +34,9 @@ class Auth_model extends Model{
     {
         return $this->db->table($this->table)->update($data, ['id' => $id]);
     }
-  
+
+    public function deleteUser($id)
+    {
+        return $this->db->table($this->table)->delete(['id' => $id]);
+    }
 }

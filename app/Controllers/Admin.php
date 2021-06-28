@@ -198,6 +198,28 @@ class Admin extends BaseController
         }
     }
 
+    public function store_user()
+    {
+        $data = array(
+            'kode' => $this->request->getPost('kode'),
+            'name' => $this->request->getPost('name'),
+            'username' => $this->request->getPost('username'),
+            'password' => $this->request->getPost('password'),
+            'role' => $this->request->getPost('role'),
+        );
+        // dd($data);
+        if($data){
+            $simpan = $this->user_model->insertUser($data);
+            // dd($simpan);
+            if($simpan){
+                session()->setFlashdata('success', 'User ditambahkan');
+                return redirect()->to(base_url('admin/settings'));
+            } else{
+                session()->setFlashdata('errors', 'Tidak Terproses bung');
+            }
+        }
+    }
+
     public function edit_admin($id)
     {  
         $data['admin'] = $this->user_model->getUser($id);
@@ -208,11 +230,36 @@ class Admin extends BaseController
 
     public function delete_pesanan($id)
     {
-        $hapus = $this->product_model->deleteProduct($id);
+        $hapus = $this->pesanan_model->deletePesanan($id);
         if($hapus)
         {
-            session()->setFlashdata('warning', 'Deleted Product successfully');
-            return redirect()->to(base_url('admin/product')); 
+            session()->setFlashdata('warning', 'Pesanan Sukses Terhapus');
+            return redirect()->to(base_url('admin/pesanan')); 
+        }
+    }
+
+    public function delete_barang($id)
+    {
+        $hapus = $this->barang_model->deleteBarang($id);
+        if($hapus)
+        {
+            session()->setFlashdata('warning', 'Barang Sukses Terhapus');
+            return redirect()->to(base_url('admin/barang')); 
+        }
+    }
+
+    public function delete_user($id)
+    {
+        if($id != 1){
+            $hapus = $this->user_model->deleteUser($id);
+            if($hapus)
+            {
+                session()->setFlashdata('warning', 'User Sukses Terhapus');
+                return redirect()->to(base_url('admin/settings')); 
+            }
+        } else{
+            session()->setFlashdata('warning', 'Tidak Bisa Menghapus User');
+            return redirect()->to(base_url('admin/settings')); 
         }
     }
 

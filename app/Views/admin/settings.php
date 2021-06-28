@@ -26,6 +26,11 @@
                     <?php echo session()->getFlashdata('success');?>
                 </div>     
             <?php } ?>
+            <?php if(!empty(session()->getFlashdata('warning'))){ ?>
+                <div class="alert alert-warning">
+                    <?php echo session()->getFlashdata('warning');?>
+                </div>
+            <?php } ?>
             <div class="card-header">
                 Kurir
                 <a href="<?php echo base_url('admin/kurir/create'); ?>" class="btn btn-primary float-lg-end">Tambah</a>
@@ -54,7 +59,7 @@
                                         <a href="<?php echo base_url('admin/kurir/edit/'.$row['id']); ?>" class="btn btn-sm btn-success">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        <a href="<?php echo base_url('admin/kurir/delete/'.$row['id']); ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?');">
+                                        <a href="<?php echo base_url('admin/settings/delete/'.$row['id']); ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus User ini?');">
                                             <i class="fa fa-trash-alt"></i>
                                         </a>
                                     </div>
@@ -97,7 +102,7 @@
                                             <a href="<?php echo base_url('admin/settings/edit/'.$row['id']); ?>" class="btn btn-sm btn-success">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <a href="<?php echo base_url('admin/settings/delete/'.$row['id']); ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?');">
+                                            <a href="<?php echo base_url('admin/settings/delete/'.$row['id']); ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus User ini?');">
                                                 <i class="fa fa-trash-alt"></i>
                                             </a>
                                         </div>

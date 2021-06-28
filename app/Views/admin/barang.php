@@ -26,9 +26,13 @@
                     <?php echo session()->getFlashdata('success');?>
                 </div>     
             <?php } ?>
+            <?php if(!empty(session()->getFlashdata('warning'))){ ?>
+                <div class="alert alert-warning">
+                    <?php echo session()->getFlashdata('warning');?>
+                </div>
+            <?php } ?>
             <div class="card-header">
                 Barang
-                <a href="<?php echo base_url('admin/category/create'); ?>" class="btn btn-primary float-lg-end">Tambah</a>
             </div>
             <div class="card-body">
                 <table class="table table-striped" id="table1">

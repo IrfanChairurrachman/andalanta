@@ -53,7 +53,7 @@
                                             <div class="col-12">
                                                 <div class="form-group">
                                                 <label for="">Name</label>
-                                                <input type="text" value="<?php echo $pesanan['pesanan_name']; ?>" class="form-control" name="barang_name" placeholder="Masukkan Nama Pemesan">
+                                                <input type="text" value="<?php echo $pesanan['pesanan_name']; ?>" class="form-control" name="pesanan_name" placeholder="Masukkan Nama Pemesan">
                                                 </div>
                                             </div>
                                             <div class="col-12">

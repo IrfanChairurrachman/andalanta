@@ -45,6 +45,8 @@
                     </div>
                     <div class="card-content">
                         <form class="form form-vertical" method="POST" action="<?php echo base_url('admin/store'); ?>">
+                        <input type="hidden" name="kode" value="">
+                        <input type="hidden" name="role" value="Admin">
                             <div class="card-body">
                                 <form class="form form-vertical">
                                     <div class="form-body">

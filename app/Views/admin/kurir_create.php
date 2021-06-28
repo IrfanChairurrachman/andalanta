@@ -44,7 +44,8 @@
                         <h4 class="card-title">Vertical Form</h4>
                     </div>
                     <div class="card-content">
-                        <form class="form form-vertical" method="POST" action="<?php echo base_url('admin/kurir/store'); ?>">
+                        <form class="form form-vertical" method="POST" action="<?php echo base_url('admin/store'); ?>">
+                        <input type="hidden" name="role" value="Kurir">
                             <div class="card-body">
                                 <form class="form form-vertical">
                                     <div class="form-body">
