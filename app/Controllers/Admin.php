@@ -34,8 +34,7 @@ class Admin extends BaseController
         $data['barang'] = $this->barang_model->where('pesanan_id', $id)->findAll();
         $data['kecamatan'] = $this->kecamatan_model->getKecamatan();
         $data['pesanan'] = $this->pesanan_model->getPesanan($id);
-        $data['kurir'] = $this->user_model->getUser($kurir);
-
+        $data['kurir'] = $this->user_model->where('role', 'Kurir')->findAll();
         $data['date'] = Time::today('Asia/Makassar')->toLocalizedString('d/MMM/yyyy');
 
         $data['title'] = "Pesanan Detail";
@@ -48,7 +47,7 @@ class Admin extends BaseController
         $data['pesanan'] = $this->pesanan_model->getPesanan($id);
         $data['kecamatan'] = $this->kecamatan_model->getKecamatan();
         $data['title'] = "Pesanan Detail";
-        // dd($data);
+        // dd($data['kurir']);
         echo view('admin/p_edit', $data);
     }
 
@@ -154,6 +153,20 @@ class Admin extends BaseController
         echo view('admin/admin_show', $data);
     }
 
+    public function create_kurir()
+    {  
+        $data['title'] = "Buat Kurir";
+
+        echo view('admin/kurir_create', $data);
+    }
+
+    public function create_admin()
+    {  
+        $data['title'] = "Buat Admin";
+
+        echo view('admin/admin_create', $data);
+    }
+
     public function edit_kurir($id)
     {  
         $data['kurir'] = $this->user_model->getUser($id);
@@ -191,6 +204,16 @@ class Admin extends BaseController
         $data['title'] = "Admin Edit";
         // dd($data);
         echo view('admin/admin_edit', $data);
+    }
+
+    public function delete_pesanan($id)
+    {
+        $hapus = $this->product_model->deleteProduct($id);
+        if($hapus)
+        {
+            session()->setFlashdata('warning', 'Deleted Product successfully');
+            return redirect()->to(base_url('admin/product')); 
+        }
     }
 
 }

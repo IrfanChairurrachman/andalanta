@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Landing Page - Start Bootstrap Theme</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- <link rel="stylesheet" href="assets/css/bootstrap.css"> -->
+
+        <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
+        <link rel="stylesheet" href="assets/css/app.css">
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="landing/css/styles.css" rel="stylesheet" />
+        <link rel="stylesheet" href="assets/vendors/choices.js/choices.min.css"/>
+
+        <link rel="stylesheet" href="assets/vendors/sweetalert2/sweetalert2.min.css">
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-light bg-light static-top">
+            <div class="container">
+                <a class="navbar-brand">Andalanta</a>
+                <a class="btn btn-primary" href="<?php echo base_url('login'); ?>">Masuk</a>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container position-relative">
+                    <?php
+                        if(!empty(session()->getFlashdata('success'))){ ?>
+                        <div class="alert alert-success">
+                            <?php echo session()->getFlashdata('success');?>
+                        </div>     
+                        <?php } ?>
+
+                        <?php if(!empty(session()->getFlashdata('info'))){ ?>
+                        <div class="alert alert-info">
+                            <?php echo session()->getFlashdata('info');?>
+                        </div>
+                        <?php } ?>
+
+                        <?php if(!empty(session()->getFlashdata('warning'))){ ?>
+                        <div class="alert alert-warning">
+                            <?php echo session()->getFlashdata('warning');?>
+                        </div>
+                    <?php } ?>
+                <div class="row justify-content-center">
+                    <div class="col-xl-6">
+                        <div class="text-center text-white">
+                            <!-- Page heading-->
+                            <h1 class="mb-5">Percayakan Pesanan Anda dengan Andalanta!</h1>
+                            <!-- Signup form-->
+                            <form method="POST" action="<?php echo base_url('pesanan/resi'); ?>">
+                            <div class="input-group input-group-lg">
+                                <input class="form-control" type="text" name="pesanan_resi" placeholder="Masukan resi Anda"/>
+                                <button class="btn btn-primary" type="submit">Cek Resi!</button>
+                            </div>
+                            </form>
+                            <?php $resi = session()->getFlashdata('resi');
+                                if(!empty($resi)){ ?>
+                                <div class="alert alert-info">
+                                    <p>STATUS</p>
+                                    <ul>
+                                        <?php foreach ($resi as $row) : ?>
+                                            <li><?= $row['barang_name'] ?> <?= $row['barang_status'] ?></li>
+                                        <?php endforeach ?>
+                                    </ul>
+                                </div>
+                            <?php } ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Icons Grid-->
+        <section class="features-icons bg-light text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                            <div class="features-icons-icon d-flex"><i class="bi-window m-auto text-primary"></i></div>
+                            <h3>Fully Responsive</h3>
+                            <p class="lead mb-0">This theme will look great on any device, no matter the size!</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                            <div class="features-icons-icon d-flex"><i class="bi-layers m-auto text-primary"></i></div>
+                            <h3>Bootstrap 5 Ready</h3>
+                            <p class="lead mb-0">Featuring the latest build of the new Bootstrap 5 framework!</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+                            <div class="features-icons-icon d-flex"><i class="bi-terminal m-auto text-primary"></i></div>
+                            <h3>Easy to Use</h3>
+                            <p class="lead mb-0">Ready to use with your own content, or customize the source files!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Form Input -->
+        <section class="testimonials text-center bg-light" id="contact">
+            <div class="container">
+                <!-- Contact Section Heading-->
+                <h2 class="mb-5">Ayo Pesan</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- Contact Section Form-->
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 col-xl-7">
+                        <!-- * * * * * * * * * * * * * * *-->
+                        <!-- * * SB Forms Contact Form * *-->
+                        <!-- * * * * * * * * * * * * * * *-->
+                        <!-- This form is pre-integrated with SB Forms.-->
+                        <!-- To make this form functional, sign up at-->
+                        <!-- https://startbootstrap.com/solution/contact-forms-->
+                        <!-- to get an API token!-->
+                        <form class="form form-vertical" method="POST" action="<?php echo base_url('pesanan/store'); ?>">
+                            <!-- Name input-->
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="pesanan_name" placeholder="Enter your name...">
+                                <label for="name">Nama</label>
+                            </div>
+                            <!-- Email address input-->
+                            <div class="form-floating mb-3">
+                                <input class="form-control" name="pesanan_toko" placeholder="Enter your name...">
+                                <label for="email">Toko</label>
+                            </div>
+                            <!-- Phone number input-->
+                            <div class="form-floating mb-3">
+                                <input class="form-control" name="pesanan_kontak" type="tel" placeholder="(123) 456-7890">
+                                <label for="phone">Kontak</label>
+                            </div>
+                            <!-- Message input-->
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" name="pesanan_alamat" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required" data-sb-can-submit="no"></textarea>
+                                <label for="message">Alamat</label>
+                                <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <select class="choices form-select" name="kecamatan">
+                                    <option value="">Kecamatan</option>    
+                                    <?php foreach($kecamatan as $key => $row){ ?>
+                                        <option value="<?= $row['kecamatan_id']?>"><?= $row['kecamatan_name']?></option>
+                                        <?php } ?>
+                                    </select>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" name="pesanan_sosmed" type="text" placeholder="fb/Ig">
+                                <label for="phone">Sosmed</label>
+                            </div>
+                            <!-- Submit success message-->
+                            <!---->
+                            <!-- This is what your users will see when the form-->
+                            <!-- has successfully submitted-->
+                            <div class="d-none" id="submitSuccessMessage">
+                                <div class="text-center mb-3">
+                                    <div class="fw-bolder">Form submission successful!</div>
+                                    To activate this form, sign up at
+                                    <br>
+                                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                                </div>
+                            </div>
+                            <!-- Submit error message-->
+                            <!---->
+                            <!-- This is what your users will see when there is-->
+                            <!-- an error submitting the form-->
+                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                            <!-- Submit Button-->
+                            <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                            <button class="btn btn-primary btn-xl" id="submitButton" type="submit">Pesan</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Image Showcases-->
+        <section class="showcase">
+            <div class="container-fluid p-0">
+                <div class="row g-0">
+                    <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/images/samples/origami.jpg')"></div>
+                    <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                        <h2>Fully Responsive Design</h2>
+                        <p class="lead mb-0">When you use a theme created by Start Bootstrap, you know that the theme will look great on any device, whether it's a phone, tablet, or desktop the page will behave responsively!</p>
+                    </div>
+                </div>
+                <div class="row g-0">
+                    <div class="col-lg-6 text-white showcase-img" style="background-image: url('assets/images/samples/building.jpg')"></div>
+                    <div class="col-lg-6 my-auto showcase-text">
+                        <h2>Updated For Bootstrap 5</h2>
+                        <p class="lead mb-0">Newly improved, and full of great utility classes, Bootstrap 5 is leading the way in mobile responsive web development! All of the themes on Start Bootstrap are now using Bootstrap 5!</p>
+                    </div>
+                </div>
+                <div class="row g-0">
+                    <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/images/samples/jump.jpg')"></div>
+                    <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                        <h2>Easy to Use & Customize</h2>
+                        <p class="lead mb-0">Landing Page is just HTML and CSS with a splash of SCSS for users who demand some deeper customization options. Out of the box, just add your content and images, and your new landing page will be ready to go!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Testimonials-->
+        <section class="testimonials text-center bg-light">
+            <div class="container">
+                <h2 class="mb-5">What people are saying...</h2>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                            <img class="img-fluid rounded-circle mb-3" src="assets/images/faces/1.jpg" alt="..." />
+                            <h5>Margaret E.</h5>
+                            <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                            <img class="img-fluid rounded-circle mb-3" src="assets/images/faces/2.jpg" alt="..." />
+                            <h5>Fred S.</h5>
+                            <p class="font-weight-light mb-0">"Bootstrap is amazing. I've been using it to create lots of super nice landing pages."</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                            <img class="img-fluid rounded-circle mb-3" src="assets/images/faces/3.jpg" alt="..." />
+                            <h5>Sarah W.</h5>
+                            <p class="font-weight-light mb-0">"Thanks so much for making these free resources available to us!"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Call to Action-->
+        <section class="call-to-action text-white text-center" id="signup">
+            <div class="container position-relative">
+                <div class="row justify-content-center">
+                    <div class="col-xl-6">
+                        <h2 class="mb-4">Ready to get started? Sign up now!</h2>
+                        <!-- Signup form-->
+                        <form>
+                            <div class="input-group input-group-lg">
+                                <input class="form-control" type="text" placeholder="Enter your email..." aria-label="Enter your email..." aria-describedby="button-submit" />
+                                <button class="btn btn-primary" id="button-submit" type="button">Sign up!</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="footer bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
+                        <ul class="list-inline mb-2">
+                            <li class="list-inline-item"><a href="#!">About</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!">Contact</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!">Terms of Use</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
+                        </ul>
+                        <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2021. All Rights Reserved.</p>
+                    </div>
+                    <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
+                        <ul class="list-inline mb-0">
+                            <li class="list-inline-item me-4">
+                                <a href="#!"><i class="bi-facebook fs-3"></i></a>
+                            </li>
+                            <li class="list-inline-item me-4">
+                                <a href="#!"><i class="bi-twitter fs-3"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#!"><i class="bi-instagram fs-3"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="assets/js/main.js"></script>
+        <script src="landing/js/scripts.js"></script>
+        <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+        <script src="assets/vendors/choices.js/choices.min.js"></script>
+        <script src="assets/js/extensions/sweetalert2.js"></script>
+        <script src="assets/vendors/sweetalert2/sweetalert2.all.min.js"></script>
+
+        <script src="assets/js/main.js"></script>
+    </body>
+</html>

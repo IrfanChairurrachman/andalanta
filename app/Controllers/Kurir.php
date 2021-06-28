@@ -85,6 +85,17 @@ class Kurir extends BaseController
 
     public function store()
     {
+        $id = $_SESSION['id'];
+        // echo $id;
+        $role = $this->user_model->getUser($id)['role'];
+
+        // if($role == 'Kurir'){
+        //     echo "YES";
+        // } else{
+        //     echo "NO";
+        // }
+        // echo $role;
+
         $pesanan_id = $this->request->getPost('pesanan_id');
         $barang_kode = $this->request->getPost('barang_kode') . $this->request->getPost('kode');
         $data = array(
@@ -97,12 +108,18 @@ class Kurir extends BaseController
             'kecamatan_id' => $this->request->getPost('kecamatan_id'),
         );
         // $kode = $this->request->getPost('kode');
-        // dd($data);
+        // dd($data['kurir']);
+
         if($data){
             $simpan = $this->barang_model->insertBarang($data);
             if($simpan){
-                session()->setFlashdata('success', 'Barang Masuk');
-                return redirect()->to(base_url('/kurir/pesanan/proses/'.$pesanan_id));
+                if($role == 'Kurir'){
+                    session()->setFlashdata('success', 'Barang Masuk');
+                    return redirect()->to(base_url('/kurir/pesanan/proses/'.$pesanan_id));
+                } else{
+                    session()->setFlashdata('success', 'Barang Masuk');
+                    return redirect()->to(base_url('/admin/pesanan/'.$pesanan_id));
+                }
             } else{
                 session()->setFlashdata('errors', 'Tidak Terproses bung');
             }

@@ -20,7 +20,7 @@ class Home extends BaseController
 	public function index()
 	{
 		$data['kecamatan'] = $this->kecamatan_model->getKecamatan();
-		return view('index', $data);
+		return view('alt_index', $data);
 	}
 
     public function cekResi()

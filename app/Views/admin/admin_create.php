@@ -44,52 +44,27 @@
                         <h4 class="card-title">Vertical Form</h4>
                     </div>
                     <div class="card-content">
-                        <form class="form form-vertical" method="POST" action="<?php echo base_url('admin/barang/update'); ?>">
+                        <form class="form form-vertical" method="POST" action="<?php echo base_url('admin/store'); ?>">
                             <div class="card-body">
                                 <form class="form form-vertical">
-                                <input type="hidden" name="barang_id" value="<?php echo $barang['barang_id']; ?>">
                                     <div class="form-body">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                <label for="">Kode</label>
-                                                <input type="text" value="<?php echo $barang['barang_kode']; ?>" class="form-control" name="barang_kode" placeholder="Masukkan Kode Barang">
+                                                <label for="">Name</label>
+                                                <input type="text" class="form-control" name="name" placeholder="Masukkan Nama Barang">
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                <label for="">Nama</label>
-                                                <input type="text" value="<?php echo $barang['barang_name']; ?>" class="form-control" name="barang_name" placeholder="Masukkan Nama Barang">
+                                                <label for="">Username</label>
+                                                <input type="text" class="form-control" name="username" placeholder="Masukkan Nama Barang">
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                <label for="">Resi</label>
-                                                <input type="text" value="<?php echo $barang['pesanan_resi']; ?>" class="form-control" name="pesanan_resi" placeholder="Masukkan Resi Barang">
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-group">
-                                                    <label for="">Kecamatan</label>
-                                                    <select name="kecamatan_id" id="" class="form-control">
-                                                        <option value="">Pilih Kecamatan Tujuan</option>
-                                                        <?php foreach($kecamatan as $key => $row){ ?>
-                                                            <option value="<?= $row['kecamatan_id']?>" <?php echo $barang['kecamatan_id'] == $row['kecamatan_id'] ? 'selected' : '' ?>><?= $row['kecamatan_id']?></option>
-                                                        <?php } ?>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-group">
-                                                    <label for="">Status</label>
-                                                    <select name="barang_status" id="" class="form-control">
-                                                        <option value="">Pilih Status Barang</option>
-                                                        <option value="Terjemput" <?php echo $barang['barang_status'] == "Terjemput" ? 'selected' : '' ?>>Terjemput</option>
-                                                        <option value="Antar" <?php echo $barang['barang_status'] == "Antar" ? 'selected' : '' ?>>Antar</option>
-                                                        <option value="Sukses" <?php echo $barang['barang_status'] == "Sukses" ? 'selected' : '' ?>>Sukses</option>
-                                                        <option value="Tunda" <?php echo $barang['barang_status'] == "Tunda" ? 'selected' : '' ?>>Tunda</option>
-                                                        <option value="Cancel" <?php echo $barang['barang_status'] == "Cancel" ? 'selected' : '' ?>>Cancel</option>
-                                                    </select>
+                                                <label for="">Password</label>
+                                                <input type="text" class="form-control" name="password" placeholder="Masukkan Nama Barang">
                                                 </div>
                                             </div>
                                             <div class="col-12 d-flex justify-content-end">
@@ -103,7 +78,7 @@
                             </div>
                         </form>
                         <div class="card-footer">
-                            <a href="<?php echo base_url('admin/barang'); ?>" class="btn btn-outline-info float-right">Back</a>
+                            <a href="<?php echo base_url('admin/settings'); ?>" class="btn btn-outline-info float-right">Back</a>
                         </div>
                     </div>
                 </div>

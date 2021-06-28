@@ -52,6 +52,37 @@
             </div>
         </div>
     </section>
+
+    <!-- Basic Tables end -->
+    <section>
+            <div class="card">
+                <div class="card-header">
+                    Simple Datatable
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped" id="table1">
+                        <thead>
+                            <tr>
+                                <th>Kode</th>
+                                <th>Nama</th>
+                                <th>Ongkir</th>
+                                <th>Kecamatan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach($barang as $key => $row){ ?>
+                                <tr>
+                                    <td><?= $row['barang_kode']?></td>
+                                    <td><?= $row['barang_name']?></td>
+                                    <td><?= $row['barang_ongkir']?></td>
+                                    <td><?= $row['kecamatan_id']?></td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    </section>
     <!-- Basic Vertical form layout section start -->
     <section id="basic-vertical-layouts">
         <div class="row match-height">
@@ -77,13 +108,18 @@
                         <form class="form form-vertical" method="POST" action="<?php echo base_url('kurir/barang/store'); ?>">
                             <div class="card-body">
                                 <form class="form form-vertical">
-                                <input type="hidden" name="barang_kode" value="<?php echo $kurir['kode'];?>-<?php echo $date;?>-">
                                 <input type="hidden" name="pesanan_id" value="<?php echo $pesanan['pesanan_id'];?>">
                                     <div class="form-body">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1"><?php echo $kurir['kode'];?>-<?php echo $date;?>-</span>
+                                                    <select name="barang_kode" id="" class="form-control">
+                                                        <option value="">Pilih Kurir</option>
+                                                        <?php foreach($kurir as $key => $row){ ?>
+                                                            <option value="<?= $row['kode']?>-<?php echo $date;?>-"><?= $row['kode']?></option>
+                                                        <?php } ?>
+                                                    </select>
+                                                    <span class="input-group-text" id="basic-addon1">-<?php echo $date;?>-</span>
                                                     <input type="number" class="form-control" name="kode" placeholder="Nomor Kode"
                                                         aria-label="Username" aria-describedby="basic-addon1">
                                                 </div>

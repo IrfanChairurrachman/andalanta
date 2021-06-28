@@ -81,10 +81,10 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Grafik Barang</h4>
+                            <h4>Grafik</h4>
                         </div>
                         <div class="card-body">
-                            <canvas id="barang"></canvas>
+                            <canvas id="grafik"></canvas>
                             <?php 
                                 if(isset($grafik_barang)){
                                     foreach($grafik_barang as $data){
@@ -93,18 +93,6 @@
                                     }
                                 }
                             ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Grafik Pesanan</h4>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="pesanan"></canvas>
                             <?php 
                                 if(isset($grafik_pesanan)){
                                     foreach($grafik_pesanan as $data){
@@ -284,14 +272,6 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-header">
-                    <h4>Visitors Profile</h4>
-                </div>
-                <div class="card-body">
-                    <div id="chart-visitors-profile"></div>
-                </div>
-            </div>
         </div>
     </section>
 </div>
@@ -302,78 +282,34 @@
 <script src="/assets/js/pages/dashboard.js"></script>
 <script src="/assets/vendors/chartjs/Chart.min.js"></script>
 <script src="/assets/js/pages/ui-chartjs.js"></script>
-<?php if(isset($grafik_pesanan)){?>
-<script>
-var chart = document.getElementById("pesanan").getContext('2d');
-var areaChart = new Chart(chart, {
-  type: 'bar',
-  data: {
-    labels: <?php echo json_encode($pmonth); ?>,
-    datasets: [
-      {
-        label: "Grafik Pesanan",
-        data: <?php echo json_encode($ptotal); ?>,
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 253, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 255, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)',
-        ],
-        borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 253, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 255, 255, 1)',
-          'rgba(255, 159, 64, 1)',
-        ],
-        borderWidth: 1
-      }
-    ]
-  },
-  options: {
-    scales: {
-      yAxes: [
-        {
-          ticks: {
-            beginZero: true
-          }
-        }
-      ]
-    }
-  }
-});
-</script>
-<?php } ?>
 
 <?php if(isset($grafik_barang)){?>
 <script>
-var chart2 = document.getElementById("barang").getContext('2d');
+var chart2 = document.getElementById("grafik").getContext('2d');
 var areaChart2 = new Chart(chart2, {
   type: 'bar',
   data: {
     labels: <?php echo json_encode($bmonth); ?>,
     datasets: [
       {
+        label: "Grafik Pesanan",
+        data: <?php echo json_encode($ptotal); ?>,
+        backgroundColor: [
+          'rgba(54, 162, 253, 0.2)',
+        ],
+        borderColor: [
+          'rgba(54, 162, 253, 1)',
+        ],
+        borderWidth: 1
+      },
+      {
         label: "Grafik Barang",
         data: <?php echo json_encode($btotal); ?>,
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 253, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 255, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)',
         ],
         borderColor: [
           'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 253, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 255, 255, 1)',
-          'rgba(255, 159, 64, 1)',
         ],
         borderWidth: 1
       }
@@ -381,13 +317,11 @@ var areaChart2 = new Chart(chart2, {
   },
   options: {
     scales: {
-      yAxes: [
-        {
-          ticks: {
-            beginZero: true
-          }
-        }
-      ]
+        yAxes: [{
+            ticks: {
+                beginAtZero: true
+            }
+        }]
     }
   }
 });

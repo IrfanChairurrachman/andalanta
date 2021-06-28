@@ -47,7 +47,6 @@
                         <form class="form form-vertical" method="POST" action="<?php echo base_url('admin/kurir/store'); ?>">
                             <div class="card-body">
                                 <form class="form form-vertical">
-                                <input type="hidden" name="kurir_id" value="<?php echo $kurir['id']; ?>">
                                     <div class="form-body">
                                         <div class="row">
                                             <div class="col-12">
