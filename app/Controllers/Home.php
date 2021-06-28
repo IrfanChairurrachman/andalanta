@@ -30,8 +30,9 @@ class Home extends BaseController
         $data['barang'] = $this->barang_model
                                 ->join('pesanan', 'pesanan.pesanan_id = barang.pesanan_id')
                                 ->where('pesanan.pesanan_resi', $resi)->findAll();
-        // dd($data);
-        session()->setFlashdata('resi', $data['barang']);
+        $data['pesanan'] = $this->pesanan_model->where('pesanan_resi', $resi)->get()->getRowArray();
+        
+        session()->setFlashdata('resi', $data);
         return redirect()->to(base_url('/'));
 	}
 

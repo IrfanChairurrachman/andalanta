@@ -5,16 +5,15 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <nav class="navbar navbar-light">
-                <a href="/kurir"><i class="bi bi-chevron-left"></i></a>
-                <h3 class="navbar-brand ms-4">Form Layout</h3>
+                <h3 class="navbar-brand ms-4">Edit Barang</h3>
             </nav>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/kurir">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Form Layout</li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('admin'); ?>">Admin</a></li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('admin/barang'); ?>">Barang</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit</li>
                     </ol>
                 </nav>
             </div>
@@ -40,9 +39,6 @@
                             </ul>
                         </div>
                     <?php } ?>
-                    <div class="card-header">
-                        <h4 class="card-title">Vertical Form</h4>
-                    </div>
                     <div class="card-content">
                         <form class="form form-vertical" method="POST" action="<?php echo base_url('admin/barang/update'); ?>">
                             <div class="card-body">
@@ -50,6 +46,12 @@
                                 <input type="hidden" name="barang_id" value="<?php echo $barang['barang_id']; ?>">
                                     <div class="form-body">
                                         <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                <label for="">Resi</label>
+                                                <input type="text" value="<?php echo $barang['pesanan_resi']; ?>" class="form-control" name="pesanan_resi" placeholder="Masukkan Resi Barang" disabled>
+                                                </div>
+                                            </div>
                                             <div class="col-12">
                                                 <div class="form-group">
                                                 <label for="">Kode</label>
@@ -64,8 +66,14 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                <label for="">Resi</label>
-                                                <input type="text" value="<?php echo $barang['pesanan_resi']; ?>" class="form-control" name="pesanan_resi" placeholder="Masukkan Resi Barang" disabled>
+                                                <label for="">Harga</label>
+                                                <input type="text" value="<?php echo $barang['barang_harga']; ?>" class="form-control" name="barang_harga" placeholder="Masukkan Harga Barang">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                <label for="">Ongkir</label>
+                                                <input type="text" value="<?php echo $barang['barang_ongkir']; ?>" class="form-control" name="barang_ongkir" placeholder="Masukkan Ongkir Barang">
                                                 </div>
                                             </div>
                                             <div class="col-12">
@@ -74,7 +82,7 @@
                                                     <select name="kecamatan_id" id="" class="form-control">
                                                         <option value="">Pilih Kecamatan Tujuan</option>
                                                         <?php foreach($kecamatan as $key => $row){ ?>
-                                                            <option value="<?= $row['kecamatan_id']?>" <?php echo $barang['kecamatan_id'] == $row['kecamatan_id'] ? 'selected' : '' ?>><?= $row['kecamatan_id']?></option>
+                                                            <option value="<?= $row['kecamatan_id']?>" <?php echo $barang['kecamatan_id'] == $row['kecamatan_id'] ? 'selected' : '' ?>><?= $row['kecamatan_name']?></option>
                                                         <?php } ?>
                                                     </select>
                                                 </div>
@@ -90,6 +98,12 @@
                                                         <option value="Tunda" <?php echo $barang['barang_status'] == "Tunda" ? 'selected' : '' ?>>Tunda</option>
                                                         <option value="Cancel" <?php echo $barang['barang_status'] == "Cancel" ? 'selected' : '' ?>>Cancel</option>
                                                     </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                <label for="">Keterangan</label>
+                                                <input type="text" value="<?php echo $barang['barang_keterangan']; ?>" class="form-control" name="barang_keterangan" placeholder="Masukkan Keterangan Barang">
                                                 </div>
                                             </div>
                                             <div class="col-12 d-flex justify-content-end">

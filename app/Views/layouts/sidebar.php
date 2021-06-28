@@ -10,7 +10,7 @@ $uri3 = $uri[3] ?? '';
         <div class="sidebar-header">
             <div class="d-flex justify-content-between">
                 <div class="logo">
-                    <a href="index.html"><img src="/assets/images/logo/logo.png" alt="Logo" srcset=""></a>
+                    <a href="index.html"><img src="/assets/images/logo/andalanta.png"></a>
                 </div>
                 <div class="toggler">
                     <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
@@ -50,10 +50,10 @@ $uri3 = $uri[3] ?? '';
                     </a>
                 </li>
 
-                <li class="sidebar-title">Raise Support</li>
+                <li class="sidebar-title">Bantuan</li>
 
                 <li class="sidebar-item  ">
-                    <a href="https://zuramai.github.io/mazer/docs" class='sidebar-link'>
+                    <a href="#" class='sidebar-link'>
                         <i class="bi bi-life-preserver"></i>
                         <span>Documentation</span>
                     </a>

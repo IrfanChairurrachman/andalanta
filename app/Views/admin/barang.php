@@ -5,14 +5,14 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>DataTable</h3>
-                <p class="text-subtitle text-muted">For user to check they list</p>
+                <h3>Daftar Barang</h3>
+                <p class="text-subtitle text-muted">Daftar Semua Barang</p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">DataTable</li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('admin'); ?>">Admin</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Barang</li>
                     </ol>
                 </nav>
             </div>
@@ -51,7 +51,25 @@
                                 <td><?= $row['barang_kode']?></td>
                                 <td><?= $row['barang_name']?></td>
                                 <td><?= $row['barang_harga']?></td>
-                                <td><?= $row['barang_status']?></td>
+                                <td>
+                                    <div class="btn-group">
+                                    <?php if($row['barang_status'] == "Sukses"){?>
+                                        <button type="submit" class="btn btn-sm btn-success" ><?= $row['barang_status']?></button>
+                                    <?php } ?>
+                                    <?php if($row['barang_status'] == "Antar"){?>
+                                        <button type="submit" class="btn btn-sm btn-info" ><?= $row['barang_status']?></button>
+                                    <?php } ?>
+                                    <?php if($row['barang_status'] == "Tunda"){?>
+                                        <button type="submit" class="btn btn-sm btn-warning" ><?= $row['barang_status']?></button>
+                                    <?php } ?>
+                                    <?php if($row['barang_status'] == "Cancel"){?>
+                                        <button type="submit" class="btn btn-sm btn-danger" ><?= $row['barang_status']?></button>
+                                    <?php } ?>
+                                    <?php if($row['barang_status'] == "Terjemput"){?>
+                                        <button type="submit" class="btn btn-sm btn-info" ><?= $row['barang_status']?></button>
+                                    <?php } ?>
+                                    </div>
+                                </td>
                                 <td>
                                     <div class="btn-group">
                                         <a href="<?php echo base_url('admin/barang/'.$row['barang_id']); ?>" class="btn btn-sm btn-info">

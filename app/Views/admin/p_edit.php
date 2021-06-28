@@ -13,8 +13,9 @@
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/kurir">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Form Layout</li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('admin'); ?>">Admin</a></li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('admin/pesanan'); ?>">Pesanan</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit</li>
                     </ol>
                 </nav>
             </div>
@@ -52,8 +53,38 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="form-group">
+                                                <label for="">Resi</label>
+                                                <input type="text" value="<?php echo $pesanan['pesanan_resi']; ?>" class="form-control" name="pesanan_resi" placeholder="Masukkan Resu Pemesan" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
                                                 <label for="">Name</label>
                                                 <input type="text" value="<?php echo $pesanan['pesanan_name']; ?>" class="form-control" name="pesanan_name" placeholder="Masukkan Nama Pemesan">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                <label for="">Toko</label>
+                                                <input type="text" value="<?php echo $pesanan['pesanan_toko']; ?>" class="form-control" name="pesanan_toko" placeholder="Masukkan Toko Pemesan">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                <label for="">Kontak</label>
+                                                <input type="text" value="<?php echo $pesanan['pesanan_kontak']; ?>" class="form-control" name="pesanan_kontak" placeholder="Masukkan Kontak Pemesan">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                <label for="">Alamat</label>
+                                                <input type="text" value="<?php echo $pesanan['pesanan_alamat']; ?>" class="form-control" name="pesanan_alamat" placeholder="Masukkan Alamat Pemesan">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                <label for="">Sosmed</label>
+                                                <input type="text" value="<?php echo $pesanan['pesanan_sosmed']; ?>" class="form-control" name="pesanan_sosmed" placeholder="Masukkan Sosmed Pemesan">
                                                 </div>
                                             </div>
                                             <div class="col-12">

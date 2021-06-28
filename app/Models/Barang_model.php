@@ -10,12 +10,14 @@ class Barang_model extends Model
         if($id === false){
             return $this->table('barang')
                         ->join('pesanan', 'pesanan.pesanan_id = barang.pesanan_id')
+                        ->join('kecamatan', 'kecamatan.kecamatan_id = barang.kecamatan_id')
                         ->get()
                         ->getResultArray();
         } else {
             return $this->table('barang')
                         ->join('pesanan', 'pesanan.pesanan_id = barang.pesanan_id')
                         ->join('kecamatan', 'kecamatan.kecamatan_id = barang.kecamatan_id')
+                        ->join('users', 'users.id = barang.kurir_id')
                         ->where('barang.barang_id', $id)
                         ->get()
                         ->getRowArray();

@@ -5,16 +5,15 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <nav class="navbar navbar-light">
-                <a href="/kurir"><i class="bi bi-chevron-left"></i></a>
-                <h3 class="navbar-brand ms-4">Form Layout</h3>
+                <h3 class="navbar-brand ms-4">Edit Kurir</h3>
             </nav>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/kurir">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Form Layout</li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('admin'); ?>">Admin</a></li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('admin/settings'); ?>">Settings</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Kurir</li>
                     </ol>
                 </nav>
             </div>
@@ -40,9 +39,6 @@
                             </ul>
                         </div>
                     <?php } ?>
-                    <div class="card-header">
-                        <h4 class="card-title">Vertical Form</h4>
-                    </div>
                     <div class="card-content">
                         <form class="form form-vertical" method="POST" action="<?php echo base_url('admin/kurir/update'); ?>">
                             <div class="card-body">

@@ -63,15 +63,19 @@
                                 <button class="btn btn-primary" type="submit">Cek Resi!</button>
                             </div>
                             </form>
-                            <?php $resi = session()->getFlashdata('resi');
-                                if(!empty($resi)){ ?>
+                            <?php $data = session()->getFlashdata('resi');
+                                if(!empty($data)){ ?>
                                 <div class="alert alert-info">
-                                    <p>STATUS</p>
+                                    <h5>Hi <?= $data['pesanan']['pesanan_name'] ?></h5>
+                                    <h6>Status Pesananmu: <?= $data['pesanan']['pesanan_status'] ?></h6>
+                                    <?php if(!empty($data['barang'])){ ?>
+                                    <p>Rincian Barang:</p>
                                     <ul>
-                                        <?php foreach ($resi as $row) : ?>
-                                            <li><?= $row['barang_name'] ?> <?= $row['barang_status'] ?></li>
+                                        <?php foreach ($data['barang'] as $row) : ?>
+                                            <li><b>[<?= $row['barang_status'] ?>]</b> <?= $row['barang_name'] ?></li>
                                         <?php endforeach ?>
                                     </ul>
+                                    <?php } ?>
                                 </div>
                             <?php } ?>
                         </div>
@@ -79,39 +83,103 @@
                 </div>
             </div>
         </header>
+        
+        <!-- Image Showcases-->
+        <section class="showcase">
+            <div class="container-fluid p-0">
+                <div class="row g-0">
+                    <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/images/samples/origami.jpg')"></div>
+                    <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                        <h2>Fully Responsive Design</h2>
+                        <p class="lead mb-0">When you use a theme created by Start Bootstrap, you know that the theme will look great on any device, whether it's a phone, tablet, or desktop the page will behave responsively!</p>
+                    </div>
+                </div>
+                <div class="row g-0">
+                    <div class="col-lg-6 text-white showcase-img" style="background-image: url('assets/images/samples/building.jpg')"></div>
+                    <div class="col-lg-6 my-auto showcase-text">
+                        <h2>Updated For Bootstrap 5</h2>
+                        <p class="lead mb-0">Newly improved, and full of great utility classes, Bootstrap 5 is leading the way in mobile responsive web development! All of the themes on Start Bootstrap are now using Bootstrap 5!</p>
+                    </div>
+                </div>
+                <div class="row g-0">
+                    <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/images/samples/jump.jpg')"></div>
+                    <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                        <h2>Easy to Use & Customize</h2>
+                        <p class="lead mb-0">Landing Page is just HTML and CSS with a splash of SCSS for users who demand some deeper customization options. Out of the box, just add your content and images, and your new landing page will be ready to go!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Testimonials-->
+        <section class="testimonials text-center bg-light">
+            <div class="container">
+                <h2 class="mb-5">Testimoni...</h2>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                            <img class="img-fluid rounded-circle mb-3" src="assets/images/faces/1.jpg" alt="..." />
+                            <h5>Margaret E.</h5>
+                            <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                            <img class="img-fluid rounded-circle mb-3" src="assets/images/faces/2.jpg" alt="..." />
+                            <h5>Fred S.</h5>
+                            <p class="font-weight-light mb-0">"Bootstrap is amazing. I've been using it to create lots of super nice landing pages."</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                            <img class="img-fluid rounded-circle mb-3" src="assets/images/faces/3.jpg" alt="..." />
+                            <h5>Sarah W.</h5>
+                            <p class="font-weight-light mb-0">"Thanks so much for making these free resources available to us!"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <!-- Icons Grid-->
         <section class="features-icons bg-light text-center">
             <div class="container">
+                <h2 class="mb-5">Pastikan</h2>
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                            <div class="features-icons-icon d-flex"><i class="bi-window m-auto text-primary"></i></div>
-                            <h3>Fully Responsive</h3>
-                            <p class="lead mb-0">This theme will look great on any device, no matter the size!</p>
+                            <div class="features-icons-icon d-flex"><i class="bi-exclamation-triangle m-auto text-primary"></i></div>
+                            <h3>Tidak Mudah Pecah dan Rusak</h3>
+                            <p class="lead mb-0">Paket anda bukan paket yang mudah pecah dan mudah rusak seperti makanan basah.!</p>
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                            <div class="features-icons-icon d-flex"><i class="bi-layers m-auto text-primary"></i></div>
-                            <h3>Bootstrap 5 Ready</h3>
-                            <p class="lead mb-0">Featuring the latest build of the new Bootstrap 5 framework!</p>
+                            <div class="features-icons-icon d-flex"><i class="bi-stopwatch m-auto text-primary"></i></div>
+                            <h3>Secepat Mungkin</h3>
+                            <p class="lead mb-0">Paket anda bukan paket yang buru-buru, akan tetapi paket Anda akan diantar secepat mungkin di hari yang sama!</p>
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <div class="features-icons-item mx-auto mb-0 mb-lg-3">
-                            <div class="features-icons-icon d-flex"><i class="bi-terminal m-auto text-primary"></i></div>
-                            <h3>Easy to Use</h3>
-                            <p class="lead mb-0">Ready to use with your own content, or customize the source files!</p>
+                            <div class="features-icons-icon d-flex"><i class="bi-cash-coin m-auto text-primary"></i></div>
+                            <h3>Cek Harga</h3>
+                            <p class="lead mb-0">Untuk pengiriman di luar kota Makassar, pastikan anda sudah mengecek ongkir dan wilayah yang dijangkau di sini [link]!</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+                            <div class="features-icons-icon d-flex"><i class="bi-list-check m-auto text-primary"></i></div>
+                            <h3>Cek Pesanan</h3>
+                            <p class="lead mb-0">Setelah dijemput, cek untuk memastikan bahwa kurir sdh menginput semua paket anda dengan menggunakan kode resi. ANDALANTA tidak bertanggung jawab terhadap paket yg tidak diinput ke sistem!</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         <!-- Form Input -->
-        <section class="testimonials text-center bg-light" id="contact">
+        <section class="testimonials text-center bg-light call-to-action2" id="contact">
             <div class="container">
                 <!-- Contact Section Heading-->
-                <h2 class="mb-5">Ayo Pesan</h2>
+                <h2 class="mb-4">Ayoo Pesann!</h2>
                 <!-- Icon Divider-->
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
@@ -186,75 +254,23 @@
                 </div>
             </div>
         </section>
-        <!-- Image Showcases-->
-        <section class="showcase">
-            <div class="container-fluid p-0">
-                <div class="row g-0">
-                    <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/images/samples/origami.jpg')"></div>
-                    <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-                        <h2>Fully Responsive Design</h2>
-                        <p class="lead mb-0">When you use a theme created by Start Bootstrap, you know that the theme will look great on any device, whether it's a phone, tablet, or desktop the page will behave responsively!</p>
-                    </div>
-                </div>
-                <div class="row g-0">
-                    <div class="col-lg-6 text-white showcase-img" style="background-image: url('assets/images/samples/building.jpg')"></div>
-                    <div class="col-lg-6 my-auto showcase-text">
-                        <h2>Updated For Bootstrap 5</h2>
-                        <p class="lead mb-0">Newly improved, and full of great utility classes, Bootstrap 5 is leading the way in mobile responsive web development! All of the themes on Start Bootstrap are now using Bootstrap 5!</p>
-                    </div>
-                </div>
-                <div class="row g-0">
-                    <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/images/samples/jump.jpg')"></div>
-                    <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-                        <h2>Easy to Use & Customize</h2>
-                        <p class="lead mb-0">Landing Page is just HTML and CSS with a splash of SCSS for users who demand some deeper customization options. Out of the box, just add your content and images, and your new landing page will be ready to go!</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Testimonials-->
-        <section class="testimonials text-center bg-light">
-            <div class="container">
-                <h2 class="mb-5">What people are saying...</h2>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                            <img class="img-fluid rounded-circle mb-3" src="assets/images/faces/1.jpg" alt="..." />
-                            <h5>Margaret E.</h5>
-                            <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                            <img class="img-fluid rounded-circle mb-3" src="assets/images/faces/2.jpg" alt="..." />
-                            <h5>Fred S.</h5>
-                            <p class="font-weight-light mb-0">"Bootstrap is amazing. I've been using it to create lots of super nice landing pages."</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                            <img class="img-fluid rounded-circle mb-3" src="assets/images/faces/3.jpg" alt="..." />
-                            <h5>Sarah W.</h5>
-                            <p class="font-weight-light mb-0">"Thanks so much for making these free resources available to us!"</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
         <!-- Call to Action-->
-        <section class="call-to-action text-white text-center" id="signup">
+        <section class="text-center bg-light features-icons">
             <div class="container position-relative">
                 <div class="row justify-content-center">
-                    <div class="col-xl-6">
-                        <h2 class="mb-4">Ready to get started? Sign up now!</h2>
+                    
+                        <h2 class="mb-4">Ada Pertanyaan?? Hubungi Kami!</h2>
                         <!-- Signup form-->
-                        <form>
-                            <div class="input-group input-group-lg">
-                                <input class="form-control" type="text" placeholder="Enter your email..." aria-label="Enter your email..." aria-describedby="button-submit" />
-                                <button class="btn btn-primary" id="button-submit" type="button">Sign up!</button>
-                            </div>
-                        </form>
+                        <div class="col-lg-3">
+                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                        <a href="#">
+                            <div class="features-icons-icon d-flex"><i class="bi-whatsapp m-auto text-primary"></i></div>
+                            <h3>WhatsApp</h3>
+                        </a>
+                        <p>lorem ipsum ajinamoto</p>
+                        </div>
                     </div>
+                    
                 </div>
             </div>
         </section>

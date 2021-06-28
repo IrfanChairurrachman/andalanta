@@ -31,7 +31,8 @@ class Admin extends BaseController
     public function show($id)
     {  
         $kurir = $_SESSION['id'];  
-        $data['barang'] = $this->barang_model->where('pesanan_id', $id)->findAll();
+        $data['barang'] = $this->barang_model->join('kecamatan', 'kecamatan.kecamatan_id = barang.kecamatan_id')
+                                            ->where('pesanan_id', $id)->findAll();
         $data['kecamatan'] = $this->kecamatan_model->getKecamatan();
         $data['pesanan'] = $this->pesanan_model->getPesanan($id);
         $data['kurir'] = $this->user_model->where('role', 'Kurir')->findAll();
@@ -65,6 +66,10 @@ class Admin extends BaseController
     
         $data = array(
             'pesanan_name' => $this->request->getPost('pesanan_name'),
+            'pesanan_alamat' => $this->request->getPost('pesanan_alamat'),
+            'pesanan_kontak' => $this->request->getPost('pesanan_kontak'),
+            'pesanan_toko' => $this->request->getPost('pesanan_toko'),
+            'pesanan_sosmed' => $this->request->getPost('pesanan_sosmed'),
             'kecamatan_id' => $this->request->getPost('kecamatan_id'),
         );
         

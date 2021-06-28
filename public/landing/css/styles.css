@@ -10911,6 +10911,14 @@ header.masthead h1, header.masthead .h1 {
   padding-top: 7rem;
   padding-bottom: 7rem;
 }
+.call-to-action2 {
+  position: relative;
+  background-color: #343a40;
+  background: url("../assets/img/bg-masthead.jpg") no-repeat center center;
+  background-size: cover;
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
 .call-to-action:before {
   content: "";
   position: absolute;

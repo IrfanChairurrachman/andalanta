@@ -5,14 +5,14 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>DataTable</h3>
-                <p class="text-subtitle text-muted">For user to check they list</p>
+                <h3>Daftar Pesanan</h3>
+                <p class="text-subtitle text-muted">Daftar Semua Pesanan</p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">DataTable</li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('admin'); ?>">Admin</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Pesanan</li>
                     </ol>
                 </nav>
             </div>
@@ -32,7 +32,7 @@
                 </div>
             <?php } ?>
             <div class="card-header">
-                Simple Datatable
+                Daftar Pesanan Masuk
                 <a href="<?php echo base_url('admin/pesanan/create'); ?>" class="btn btn-primary float-lg-end">Tambah</a>
             </div>
             <div class="card-body">
@@ -41,8 +41,10 @@
                         <tr>
                             <th>Resi</th>
                             <th>Kecamatan</th>
+                            <th>Toko</th>
                             <th>Kontak</th>
                             <th>Status</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,7 +52,21 @@
                             <tr>
                                 <td><?= $row['pesanan_resi']?></td>
                                 <td><?= $row['kecamatan_name']?></td>
+                                <td><?= $row['pesanan_toko']?></td>
                                 <td><?= $row['pesanan_kontak']?></td>
+                                <td>
+                                    <div class="btn-group">
+                                    <?php if($row['pesanan_status'] == "Sukses"){?>
+                                        <button type="submit" class="btn btn-sm btn-success" ><?= $row['pesanan_status']?></button>
+                                    <?php } ?>
+                                    <?php if($row['pesanan_status'] == "On Process"){?>
+                                        <button type="submit" class="btn btn-sm btn-info" ><?= $row['pesanan_status']?></button>
+                                    <?php } ?>
+                                    <?php if($row['pesanan_status'] == "Jemput"){?>
+                                        <button type="submit" class="btn btn-sm btn-warning" ><?= $row['pesanan_status']?></button>
+                                    <?php } ?>
+                                    </div>
+                                </td>
                                 <td>
                                     <div class="btn-group">
                                         <a href="<?php echo base_url('admin/pesanan/'.$row['pesanan_id']); ?>" class="btn btn-sm btn-info">
