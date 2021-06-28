@@ -77,8 +77,9 @@ $routes->get('kurir/pesanan/(:num)', 'Kurir::show/$1', ['filter' => 'ceklogin'])
 $routes->get('kurir/pesanan/proses/(:num)', 'Kurir::proses/$1', ['filter' => 'ceklogin']);
 
 $routes->post('kurir/barang/store', 'Kurir::store', ['filter' => 'ceklogin']);
-$routes->get('kurir/barang', 'Kurir::show_barang', ['filter' => 'ceklogin']);
+$routes->get('kurir/barang', 'Kurir::barang', ['filter' => 'ceklogin']);
 $routes->post('kurir/barang/update', 'Kurir::update_barang', ['filter' => 'ceklogin']);
+$routes->get('kurir/barang/show/(:num)', 'Kurir::show_barang/$1', ['filter' => 'ceklogin']);
 
 $routes->group('mazer', ['namespace' => 'App\Controllers\Mazer'], function($routes) {
 	$routes->get('/', 'Mazer::index');

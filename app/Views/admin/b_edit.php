@@ -65,7 +65,7 @@
                                             <div class="col-12">
                                                 <div class="form-group">
                                                 <label for="">Resi</label>
-                                                <input type="text" value="<?php echo $barang['pesanan_resi']; ?>" class="form-control" name="pesanan_resi" placeholder="Masukkan Resi Barang">
+                                                <input type="text" value="<?php echo $barang['pesanan_resi']; ?>" class="form-control" name="pesanan_resi" placeholder="Masukkan Resi Barang" disabled>
                                                 </div>
                                             </div>
                                             <div class="col-12">

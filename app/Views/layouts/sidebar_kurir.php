@@ -22,25 +22,25 @@ $uri3 = $uri[3] ?? '';
                 <li class="sidebar-title">Menu</li>
 
                 <li class="sidebar-item <?= ($uri1 == 'index') ? 'active' : '' ?> ">
-                    <a href="/kurir" class='sidebar-link'>
+                    <a href="<?php echo base_url('kurir'); ?>" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Pesanan</span>
                     </a>
                 </li>
 
-                <li class="sidebar-item <?= ($uri2 == 'layout') ? 'active' : '' ?>">
-                    <a href="/kurir/barang" class='sidebar-link'>
+                <li class="sidebar-item <?= ($uri1 == 'barang') ? 'active' : '' ?>">
+                    <a href="<?php echo base_url('kurir/barang'); ?>" class='sidebar-link'>
                         <i class="bi bi-file-earmark-medical-fill"></i>
                         <span>Barang</span>
                     </a>
                 </li>
 
-                <li class="sidebar-title">Raise Support</li>
+                <li class="sidebar-title">Bantuan</li>
 
                 <li class="sidebar-item ">
-                    <a href="https://zuramai.github.io/mazer/docs" class='sidebar-link'>
+                    <a href="#" class='sidebar-link'>
                         <i class="bi bi-life-preserver"></i>
-                        <span>Documentation</span>
+                        <span>Dokumentasi</span>
                     </a>
                 </li>
 

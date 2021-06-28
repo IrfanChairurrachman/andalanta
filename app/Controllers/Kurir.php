@@ -51,7 +51,8 @@ class Kurir extends BaseController
     public function proses($id)
     {
         $kurir = $_SESSION['id'];  
-        $data['barang'] = $this->barang_model->where('pesanan_id', $id)->findAll();
+        $data['barang'] = $this->barang_model->join('kecamatan', 'kecamatan.kecamatan_id = barang.kecamatan_id')
+                                ->where('pesanan_id', $id)->findAll();
         $data['kecamatan'] = $this->kecamatan_model->getKecamatan();
         $data['pesanan'] = $this->pesanan_model->getPesanan($id);
         $data['kurir'] = $this->user_model->getUser($kurir);
@@ -126,20 +127,30 @@ class Kurir extends BaseController
         }
     }
 
-    public function show_barang()
+    public function barang()
     {
         $id = $_SESSION['id'];
 
         $data['barang'] = $this->barang_model
                                 ->join('pesanan', 'pesanan.pesanan_id = barang.pesanan_id')
+                                ->join('kecamatan', 'kecamatan.kecamatan_id = barang.kecamatan_id')
                                 ->where('barang_status', 'Terjemput')->findAll();
         $data['antar'] = $this->barang_model
                                 ->join('pesanan', 'pesanan.pesanan_id = barang.pesanan_id')
+                                ->join('kecamatan', 'kecamatan.kecamatan_id = barang.kecamatan_id')
                                 ->where('barang_status !=', 'Terjemput')
                                 ->where('barang.kurir_id', $id)->findAll();
         // dd($data['barang']);
         $data['title'] = 'Barang';
         echo view('kurir/new_barang', $data);
+    }
+
+    public function show_barang($id)
+    {  
+        $data['barang'] = $this->barang_model->getBarang($id);
+        $data['title'] = "Barang Detail";
+        // dd($data);
+        echo view('kurir/barang_show', $data);
     }
 
     public function update_barang()
@@ -149,6 +160,7 @@ class Kurir extends BaseController
     
         $data = array(
             'barang_status' => $this->request->getPost('barang_status'),
+            'barang_keterangan' => $this->request->getPost('barang_keterangan'),
             'kurir_id' => $kurir,
         );
         // dd($data);

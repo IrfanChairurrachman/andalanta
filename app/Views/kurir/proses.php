@@ -5,16 +5,15 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <nav class="navbar navbar-light">
-                <a href="/kurir"><i class="bi bi-chevron-left"></i></a>
-                <h3 class="navbar-brand ms-4">Form Layout</h3>
+                <h3 class="navbar-brand ms-4">Pesanan Proses</h3>
             </nav>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/kurir">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Form Layout</li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('kurir'); ?>">Kurir</a></li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('kurir'); ?>">Pesanan</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Proses</li>
                     </ol>
                 </nav>
             </div>
@@ -30,18 +29,24 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <h4 class="float-right">Daftar Barang</h4>
+                            <h4 class="float-right">Pesanan</h4>
                             <!-- Table with outer spacing -->
                             <div class="table-responsive">
                                 <dl class="dl-horizontal">
+                                <dt>Resi</dt>
+                                    <dd><?php echo $pesanan['pesanan_resi'];?></dd>
                                     <dt>Nama</dt>
                                     <dd><?php echo $pesanan['pesanan_name'];?></dd>
                                     <dt>Toko</dt>
                                     <dd><?php echo $pesanan['pesanan_toko'];?></dd>
+                                    <dt>Kontak</dt>
+                                    <dd><?php echo $pesanan['pesanan_kontak'];?></dd>
                                     <dt>Alamat</dt>
                                     <dd><?php echo $pesanan['pesanan_alamat'];?></dd>       
                                     <dt>Kecamatan</dt>
-                                    <dd><?php echo $pesanan['kecamatan_name'];?></dd>             
+                                    <dd><?php echo $pesanan['kecamatan_name'];?></dd>
+                                    <dt>Sosmed</dt>
+                                    <dd><?php echo $pesanan['pesanan_sosmed'];?></dd>          
                                 </dl>
                             </div>
                         </div>
@@ -54,7 +59,7 @@
     <section>
             <div class="card">
                 <div class="card-header">
-                    Simple Datatable
+                    Daftar Barang Pesanan ini
                 </div>
                 <div class="card-body">
                     <table class="table table-striped" id="table1">
@@ -72,7 +77,7 @@
                                     <td><?= $row['barang_kode']?></td>
                                     <td><?= $row['barang_name']?></td>
                                     <td><?= $row['barang_ongkir']?></td>
-                                    <td><?= $row['kecamatan_id']?></td>
+                                    <td><?= $row['kecamatan_name']?></td>
                                 </tr>
                             <?php } ?>
                         </tbody>
@@ -99,7 +104,7 @@
                         </div>
                     <?php } ?>
                     <div class="card-header">
-                        <h4 class="card-title">Vertical Form</h4>
+                        <h4 class="card-title">Tambah Barang</h4>
                     </div>
                     <div class="card-content">
                         <form class="form form-vertical" method="POST" action="<?php echo base_url('kurir/barang/store'); ?>">
@@ -125,13 +130,13 @@
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label for="">Harga Barang</label>
-                                                    <input type="text" class="form-control" name="barang_harga" placeholder="Masukkan Harga Barang">
+                                                    <input type="number" class="form-control" name="barang_harga" placeholder="Masukkan Harga Barang">
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label for="">Ongkir</label>
-                                                    <input type="text" class="form-control" name="barang_ongkir" placeholder="Masukkan Ongkir Barang">
+                                                    <input type="number" class="form-control" name="barang_ongkir" placeholder="Masukkan Ongkir Barang">
                                                 </div>
                                             </div>
                                             <div class="col-12">
