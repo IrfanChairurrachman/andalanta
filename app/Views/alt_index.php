@@ -7,20 +7,20 @@
         <meta name="author" content="" />
         <title>Landing Page - Start Bootstrap Theme</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="<?= base_url('assets/images/logo/andalanta.png')?>"/>
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- <link rel="stylesheet" href="assets/css/bootstrap.css"> -->
 
-        <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
-        <link rel="stylesheet" href="assets/css/app.css">
+        <link rel="stylesheet" href="<?= base_url('assets/vendors/bootstrap-icons/bootstrap-icons.css')?>">
+        <link rel="stylesheet" href="<?= base_url('assets/css/app.css')?>">
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="landing/css/styles.css" rel="stylesheet" />
-        <link rel="stylesheet" href="assets/vendors/choices.js/choices.min.css"/>
+        <link href="<?= base_url('landing/css/styles.css')?>" rel="stylesheet" />
+        <link rel="stylesheet" href="<?= base_url('assets/vendors/choices.js/choices.min.css')?>"/>
 
-        <link rel="stylesheet" href="assets/vendors/sweetalert2/sweetalert2.min.css">
+        <link rel="stylesheet" href="<?= base_url('assets/vendors/sweetalert2/sweetalert2.min.css')?>">
     </head>
     <body>
         <!-- Navigation-->
@@ -117,21 +117,21 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                            <img class="img-fluid rounded-circle mb-3" src="assets/images/faces/1.jpg" alt="..." />
+                            <img class="img-fluid rounded-circle mb-3" src="<?= base_url('assets/images/faces/1.jpg')?>" alt="..." />
                             <h5>Margaret E.</h5>
                             <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                            <img class="img-fluid rounded-circle mb-3" src="assets/images/faces/2.jpg" alt="..." />
+                            <img class="img-fluid rounded-circle mb-3" src="<?= base_url('assets/images/faces/2.jpg')?>" alt="..." />
                             <h5>Fred S.</h5>
                             <p class="font-weight-light mb-0">"Bootstrap is amazing. I've been using it to create lots of super nice landing pages."</p>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                            <img class="img-fluid rounded-circle mb-3" src="assets/images/faces/3.jpg" alt="..." />
+                            <img class="img-fluid rounded-circle mb-3" src="<?= base_url('assets/images/faces/3.jpg')?>" alt="..." />
                             <h5>Sarah W.</h5>
                             <p class="font-weight-light mb-0">"Thanks so much for making these free resources available to us!"</p>
                         </div>
@@ -290,7 +290,7 @@
                             <li class="list-inline-item">⋅</li>
                             <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
                         </ul>
-                        <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2021. All Rights Reserved.</p>
+                        <p class="text-muted small mb-4 mb-lg-0">&copy; Andalanta Website 2021. All Rights Reserved.</p>
                     </div>
                     <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
                         <ul class="list-inline mb-0">
@@ -311,15 +311,15 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="assets/js/main.js"></script>
-        <script src="landing/js/scripts.js"></script>
-        <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="<?= base_url('assets/js/main.js')?>"></script>
+        <script src="<?= base_url('landing/js/scripts.js')?>"></script>
+        <script src="<?= base_url('assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js')?>"></script>
+        <script src="<?= base_url('assets/js/bootstrap.bundle.min.js')?>"></script>
 
-        <script src="assets/vendors/choices.js/choices.min.js"></script>
-        <script src="assets/js/extensions/sweetalert2.js"></script>
-        <script src="assets/vendors/sweetalert2/sweetalert2.all.min.js"></script>
+        <script src="<?= base_url('assets/vendors/choices.js/choices.min.js')?>"></script>
+        <script src="<?= base_url('assets/js/extensions/sweetalert2.js')?>"></script>
+        <script src="<?= base_url('assets/vendors/sweetalert2/sweetalert2.all.min.js')?>"></script>
 
-        <script src="assets/js/main.js"></script>
+        <script src="<?= base_url('assets/js/main.js')?>"></script>
     </body>
 </html>

@@ -126,10 +126,10 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('javascript') ?>
-<script src="/assets/vendors/apexcharts/apexcharts.js"></script>
-<script src="/assets/js/pages/dashboard.js"></script>
-<script src="/assets/vendors/chartjs/Chart.min.js"></script>
-<script src="/assets/js/pages/ui-chartjs.js"></script>
+<script src="<?= base_url('assets/vendors/apexcharts/apexcharts.js')?>"></script>
+<script src="<?= base_url('assets/js/pages/dashboard.js')?>"></script>
+<script src="<?= base_url('assets/vendors/chartjs/Chart.min.js')?>"></script>
+<script src="<?= base_url('assets/js/pages/ui-chartjs.js')?>"></script>
 
 <?php if(isset($grafik_barang)){?>
 <script>

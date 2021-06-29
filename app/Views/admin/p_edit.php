@@ -114,11 +114,11 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('styles') ?>
-<link rel="stylesheet" href="/assets/vendors/simple-datatables/style.css">
+<link rel="stylesheet" href="<?= base_url('assets/vendors/simple-datatables/style.css')?>">
 <?= $this->endSection() ?>
 
 <?= $this->section('javascript') ?>
-<script src="/assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script src="<?= base_url('assets/vendors/simple-datatables/simple-datatables.js')?>"></script>
 <script>
     // Simple Datatable
     let table1 = document.querySelector('#table1');

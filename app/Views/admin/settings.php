@@ -157,14 +157,14 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('styles') ?>
-<link rel="stylesheet" href="/assets/vendors/simple-datatables/style.css">
-<link rel="stylesheet" href="/assets/vendors/dripicons/webfont.css">
-<link rel="stylesheet" href="/assets/css/pages/dripicons.css">
+<link rel="stylesheet" href="<?= base_url('assets/vendors/simple-datatables/style.css')?>">
+<link rel="stylesheet" href="<?= base_url('assets/vendors/dripicons/webfont.css')?>">
+<link rel="stylesheet" href="<?= base_url('assets/css/pages/dripicons.css')?>">
 <?= $this->endSection() ?>
 
 <?= $this->section('javascript') ?>
-<script src="/assets/vendors/fontawesome/all.min.js"></script>
-<script src="/assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script src="<?= base_url('assets/vendors/fontawesome/all.min.js')?>"></script>
+<script src="<?= base_url('assets/vendors/simple-datatables/simple-datatables.js')?>"></script>
 <script>
     // Simple Datatable
     let table1 = document.querySelector('#table1');
