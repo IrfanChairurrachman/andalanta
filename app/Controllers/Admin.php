@@ -5,6 +5,7 @@ use App\Models\Kecamatan_model;
 use App\Models\Pesanan_model;
 use App\Models\Auth_model;
 use App\Models\Barang_model;
+use App\Models\Settings_model;
 use CodeIgniter\I18n\Time;
 
 class Admin extends BaseController
@@ -18,6 +19,7 @@ class Admin extends BaseController
         $this->pesanan_model = new Pesanan_model();
         $this->user_model = new Auth_model();
         $this->barang_model = new Barang_model();
+        $this->setting_model = new Settings_model();
     }
 
 	public function pesanan()
@@ -137,8 +139,9 @@ class Admin extends BaseController
     {
         $data['kurir'] = $this->user_model->where('role', 'Kurir')->findAll();
         $data['admin'] = $this->user_model->where('role', 'Admin')->findAll();
+        $data['setting'] = $this->setting_model->getSetting(1);
         $data['title'] = "Settings";
-        // dd($data['barang']);
+        // dd($data['setting']);
         echo view('admin/settings', $data);
     }
 
@@ -268,4 +271,34 @@ class Admin extends BaseController
         }
     }
 
+    public function edit_setting()
+    {  
+        $data['setting'] = $this->setting_model->getSetting(1);
+        $data['title'] = "Setting Update";
+        // dd($data);
+        echo view('admin/setting_edit', $data);
+    }
+
+    public function update_setting()
+    {
+        $id = 1;
+    
+        $data = array(
+            'setting_name' => $this->request->getPost('setting_name'),
+            'setting_contact' => $this->request->getPost('setting_contact'),
+            'setting_link' => $this->request->getPost('setting_link'),
+            'setting_status' => $this->request->getPost('setting_status'),
+        );
+        // dd($data);
+        if($data){
+            $simpan = $this->setting_model->updateSetting($data, $id);
+            // dd($simpan);
+            if($simpan){
+                session()->setFlashdata('success', 'Setting terupdate');
+                return redirect()->to(base_url('admin/settings'));
+            } else{
+                session()->setFlashdata('errors', 'Tidak Terproses bung');
+            }
+        }
+    }
 }

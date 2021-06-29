@@ -4,6 +4,7 @@ namespace App\Controllers;
 use App\Models\Kecamatan_model;
 use App\Models\Pesanan_model;
 use App\Models\Barang_model;
+use App\Models\Settings_model;
 
 class Home extends BaseController
 {
@@ -15,11 +16,13 @@ class Home extends BaseController
         $this->kecamatan_model = new Kecamatan_model();
         $this->pesanan_model = new Pesanan_model();
         $this->barang_model = new Barang_model();
+        $this->setting_model = new Settings_model();
     }
 
 	public function index()
 	{
 		$data['kecamatan'] = $this->kecamatan_model->getKecamatan();
+        $data['setting'] = $this->setting_model->getSetting(1);
 		return view('alt_index', $data);
 	}
 

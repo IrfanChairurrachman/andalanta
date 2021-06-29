@@ -5,9 +5,7 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <nav class="navbar navbar-light">
-                <a href="/kurir"><i class="bi bi-chevron-left"></i></a>
-                <h3 class="navbar-brand ms-4">Form Layout</h3>
+                <h3 class="navbar-brand ms-4">Pesanan Edit</h3>
             </nav>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
@@ -41,13 +39,9 @@
                             </ul>
                         </div>
                     <?php } ?>
-                    <div class="card-header">
-                        <h4 class="card-title">Vertical Form</h4>
-                    </div>
                     <div class="card-content">
                         <form class="form form-vertical" method="POST" action="<?php echo base_url('admin/pesanan/update'); ?>">
                             <div class="card-body">
-                                <form class="form form-vertical">
                                 <input type="hidden" name="pesanan_id" value="<?php echo $pesanan['pesanan_id']; ?>">
                                     <div class="form-body">
                                         <div class="row">
@@ -105,7 +99,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </form>
                             </div>
                         </form>
                         <div class="card-footer">

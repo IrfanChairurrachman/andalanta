@@ -68,6 +68,8 @@ $routes->get('admin/create', 'Admin::create_admin', ['filter' => 'ceklogin']);
 $routes->get('admin/settings/(:num)', 'Admin::show_admin/$1', ['filter' => 'ceklogin']);
 $routes->get('admin/settings/edit/(:num)', 'Admin::edit_admin/$1', ['filter' => 'ceklogin']);
 $routes->get('admin/settings/delete/(:num)', 'Admin::delete_user/$1', ['filter' => 'ceklogin']);
+$routes->get('admin/setting', 'Admin::edit_setting', ['filter' => 'ceklogin']);
+$routes->post('admin/setting/update', 'Admin::update_setting', ['filter' => 'ceklogin']);
 
 
 // KURIR ROUTE

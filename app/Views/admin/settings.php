@@ -19,20 +19,58 @@
         </div>
     </div>
     <section class="section">
-        <div class="card">
-            <?php
-                if(!empty(session()->getFlashdata('success'))){ ?>
-                <div class="alert alert-success">
-                    <?php echo session()->getFlashdata('success');?>
-                </div>     
-            <?php } ?>
-            <?php if(!empty(session()->getFlashdata('warning'))){ ?>
-                <div class="alert alert-warning">
-                    <?php echo session()->getFlashdata('warning');?>
+        <div class="row" id="basic-table">
+            <div class="col-12 col-md-12">
+                <div class="card">
+                <?php
+                    if(!empty(session()->getFlashdata('success'))){ ?>
+                    <div class="alert alert-success">
+                        <?php echo session()->getFlashdata('success');?>
+                    </div>     
+                <?php } ?>
+                <?php if(!empty(session()->getFlashdata('warning'))){ ?>
+                    <div class="alert alert-warning">
+                        <?php echo session()->getFlashdata('warning');?>
+                    </div>
+                <?php } ?>
+                    <div class="card-content">
+                        <div class="card-header">
+                        <h4>Setelan Umum</h4>
+                            <a href="<?php echo base_url('admin/setting'); ?>" class="btn btn-primary float-lg-end">Edit</a>
+                        </div>
+                        <div class="card-body">
+                            <!-- Table with outer spacing -->
+                            <div class="table-responsive">
+                                <dl class="dl-horizontal">
+                                    <dt>Nama</dt>
+                                    <dd><?php echo $setting['setting_name'];?></dd>
+                                    <dt>Kontak</dt>
+                                    <dd><?php echo $setting['setting_contact'];?></dd>
+                                    <dt>Kontak Link</dt>
+                                    <dd><?php echo $setting['setting_link'];?></dd>
+                                    <dt>Status</dt>
+                                    <dd>
+                                        <div class="btn-group">
+                                        <?php if($setting['setting_status'] == "Open"){?>
+                                            <button type="submit" class="btn btn-sm btn-success" ><?= $setting['setting_status']?></button>
+                                        <?php } ?>
+                                        <?php if($setting['setting_status'] == "Close"){?>
+                                            <button type="submit" class="btn btn-sm btn-danger" ><?= $setting['setting_status']?></button>
+                                        <?php } ?>
+                                        </div>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            <?php } ?>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="card">
             <div class="card-header">
-                Kurir
+                <h4>Kurir</h4>
                 <a href="<?php echo base_url('admin/kurir/create'); ?>" class="btn btn-primary float-lg-end">Tambah</a>
             </div>
             <div class="card-body">
@@ -77,7 +115,7 @@
     <section>
             <div class="card">
                 <div class="card-header">
-                    Admin
+                    <h4>Admin</h4>
                     <a href="<?php echo base_url('admin/create'); ?>" class="btn btn-primary float-lg-end">Tambah</a>
                 </div>
                 <div class="card-body">

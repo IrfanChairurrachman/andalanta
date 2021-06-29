@@ -20,7 +20,7 @@ class Settings extends Migration
                 'type'              => 'VARCHAR',
                 'constraint'        => '100',
             ],
-			'settinga_status'       => [
+			'setting_status'       => [
                 'type'              => 'ENUM',
                 'constraint'        => "'Open','Close'",
                 'default'           => 'Open'
@@ -30,6 +30,10 @@ class Settings extends Migration
                 'constraint'        => '100',
             ],
 			'setting_contact'       => [
+                'type'              => 'VARCHAR',
+                'constraint'        => '100',
+            ],
+			'setting_link'       => [
                 'type'              => 'VARCHAR',
                 'constraint'        => '100',
             ],

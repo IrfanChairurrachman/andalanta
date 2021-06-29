@@ -179,7 +179,8 @@
         <section class="testimonials text-center bg-light call-to-action2" id="contact">
             <div class="container">
                 <!-- Contact Section Heading-->
-                <h2 class="mb-4">Ayoo Pesann!</h2>
+                <h2 class="mb-4" <?php echo $setting['setting_status'] == 'Close' ? 'style="text-decoration: line-through;"' : '' ?>>Ayoo Pesann!</h2>
+                <?php echo $setting['setting_status'] == 'Close' ? '<h2 class="mb-4">Maaf, Kami Tutup Sementara</h2>' : '' ?>
                 <!-- Icon Divider-->
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
@@ -198,27 +199,27 @@
                         <form class="form form-vertical" method="POST" action="<?php echo base_url('pesanan/store'); ?>">
                             <!-- Name input-->
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="pesanan_name" placeholder="Enter your name...">
+                                <input type="text" class="form-control" name="pesanan_name" placeholder="Enter your name..." <?php echo $setting['setting_status'] == 'Close' ? 'disabled' : '' ?>>
                                 <label for="name">Nama</label>
                             </div>
                             <!-- Email address input-->
                             <div class="form-floating mb-3">
-                                <input class="form-control" name="pesanan_toko" placeholder="Enter your name...">
+                                <input class="form-control" name="pesanan_toko" placeholder="Enter your name..." <?php echo $setting['setting_status'] == 'Close' ? 'disabled' : '' ?>>
                                 <label for="email">Toko</label>
                             </div>
                             <!-- Phone number input-->
                             <div class="form-floating mb-3">
-                                <input class="form-control" name="pesanan_kontak" type="tel" placeholder="(123) 456-7890">
+                                <input class="form-control" name="pesanan_kontak" type="tel" placeholder="(123) 456-7890" <?php echo $setting['setting_status'] == 'Close' ? 'disabled' : '' ?>>
                                 <label for="phone">Kontak</label>
                             </div>
                             <!-- Message input-->
                             <div class="form-floating mb-3">
-                                <textarea class="form-control" name="pesanan_alamat" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required" data-sb-can-submit="no"></textarea>
+                                <textarea class="form-control" name="pesanan_alamat" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required" data-sb-can-submit="no" <?php echo $setting['setting_status'] == 'Close' ? 'disabled' : '' ?>></textarea>
                                 <label for="message">Alamat</label>
                                 <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
                             </div>
                             <div class="form-floating mb-3">
-                                <select class="choices form-select" name="kecamatan">
+                                <select class="choices form-select" name="kecamatan" <?php echo $setting['setting_status'] == 'Close' ? 'disabled' : '' ?>>
                                     <option value="">Kecamatan</option>    
                                     <?php foreach($kecamatan as $key => $row){ ?>
                                         <option value="<?= $row['kecamatan_id']?>"><?= $row['kecamatan_name']?></option>
@@ -226,7 +227,7 @@
                                     </select>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" name="pesanan_sosmed" type="text" placeholder="fb/Ig">
+                                <input class="form-control" name="pesanan_sosmed" type="text" placeholder="fb/Ig" <?php echo $setting['setting_status'] == 'Close' ? 'disabled' : '' ?>>
                                 <label for="phone">Sosmed</label>
                             </div>
                             <!-- Submit success message-->
@@ -248,7 +249,7 @@
                             <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
                             <!-- Submit Button-->
                             <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
-                            <button class="btn btn-primary btn-xl" id="submitButton" type="submit">Pesan</button>
+                            <button class="btn btn-primary btn-xl" id="submitButton" type="submit" <?php echo $setting['setting_status'] == 'Close' ? 'disabled' : '' ?>>Pesan</button>
                         </form>
                     </div>
                 </div>
@@ -263,11 +264,12 @@
                         <!-- Signup form-->
                         <div class="col-lg-3">
                         <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                        <a href="#">
+                        <a href="<?php echo $setting['setting_link']; ?>" target="_blank">
                             <div class="features-icons-icon d-flex"><i class="bi-whatsapp m-auto text-primary"></i></div>
                             <h3>WhatsApp</h3>
                         </a>
-                        <p>lorem ipsum ajinamoto</p>
+                        <h5><?php echo $setting['setting_contact']; ?></h5>
+                        <p>(atau tinggal klik icon WA di atas)</p>
                         </div>
                     </div>
                     
