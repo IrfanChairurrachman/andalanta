@@ -34,6 +34,7 @@
             <div class="card-header">
                 Daftar Pesanan Masuk
                 <a href="<?php echo base_url('admin/pesanan/create'); ?>" class="btn btn-primary float-lg-end">Tambah</a>
+                <a href="<?php echo base_url('admin/pesanan/export'); ?>" class="btn btn-dark float-lg-end">Export</a>
             </div>
             <div class="card-body">
                 <table class="table table-striped" id="table1">

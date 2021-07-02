@@ -33,6 +33,7 @@
             <?php } ?>
             <div class="card-header">
                 Barang
+                <a href="<?php echo base_url('admin/barang/export'); ?>" class="btn btn-dark float-lg-end">Export</a>
             </div>
             <div class="card-body">
                 <table class="table table-striped" id="table1">

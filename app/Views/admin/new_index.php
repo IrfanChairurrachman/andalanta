@@ -144,8 +144,12 @@ var areaChart2 = new Chart(chart2, {
         data: <?php echo json_encode($ptotal); ?>,
         backgroundColor: [
           'rgba(54, 162, 253, 0.2)',
+          'rgba(54, 162, 253, 0.2)',
+          'rgba(54, 162, 253, 0.2)',
         ],
         borderColor: [
+          'rgba(54, 162, 253, 1)',
+          'rgba(54, 162, 253, 1)',
           'rgba(54, 162, 253, 1)',
         ],
         borderWidth: 1
@@ -155,8 +159,12 @@ var areaChart2 = new Chart(chart2, {
         data: <?php echo json_encode($btotal); ?>,
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
         ],
         borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(255, 99, 132, 1)',
           'rgba(255, 99, 132, 1)',
         ],
         borderWidth: 1

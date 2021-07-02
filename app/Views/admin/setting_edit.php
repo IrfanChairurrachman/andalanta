@@ -80,7 +80,7 @@
                             </div>
                         </form>
                         <div class="card-footer">
-                            <a href="<?php echo base_url('admin/settins'); ?>" class="btn btn-outline-info float-right">Back</a>
+                            <a href="<?php echo base_url('admin/settings'); ?>" class="btn btn-outline-info float-right">Back</a>
                         </div>
                     </div>
                 </div>

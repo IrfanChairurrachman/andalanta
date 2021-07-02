@@ -7,6 +7,8 @@ use App\Models\Auth_model;
 use App\Models\Barang_model;
 use App\Models\Settings_model;
 use CodeIgniter\I18n\Time;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Admin extends BaseController
 {
@@ -60,6 +62,66 @@ class Admin extends BaseController
         $data['title'] = "Buat Pesanan";
 
         echo view('admin/p_create', $data);
+    }
+
+    public function export_pesanan()
+    {  
+        // ambil data transaction dari database
+        $pesanan = $this->pesanan_model
+                        ->join('kecamatan', 'kecamatan.kecamatan_id = pesanan.kecamatan_id')
+                        ->join('users', 'users.id = pesanan.kurir_id')
+                        ->get()
+                        ->getResultArray();
+
+        // dd($pesanan);
+        
+        // panggil class Sreadsheet baru
+        $spreadsheet = new Spreadsheet;
+        // Buat custom header pada file excel
+        $spreadsheet->setActiveSheetIndex(0)
+                    ->setCellValue('A1', 'No')
+                    ->setCellValue('B1', 'Resi')
+                    ->setCellValue('C1', 'Nama')
+                    ->setCellValue('D1', 'Toko')
+                    ->setCellValue('E1', 'Kecamatan')
+                    ->setCellValue('F1', 'Kontak')
+                    ->setCellValue('G1', 'Alamat')
+                    ->setCellValue('H1', 'Sosmed')
+                    ->setCellValue('I1', 'Nama Penjemput')
+                    ->setCellValue('J1', 'Kode Kurir')
+                    ->setCellValue('K1', 'Waktu');
+        // define kolom dan nomor
+        $kolom = 2;
+        $nomor = 1;
+        // tambahkan data transaction ke dalam file excel
+        foreach($pesanan as $data) {
+
+            $spreadsheet->setActiveSheetIndex(0)
+                        ->setCellValue('A' . $kolom, $nomor)
+                        ->setCellValue('B' . $kolom, $data['pesanan_resi'])
+                        ->setCellValue('C' . $kolom, $data['pesanan_name'])
+                        ->setCellValue('D' . $kolom, $data['pesanan_toko'])
+                        ->setCellValue('E' . $kolom, $data['kecamatan_name'])
+                        ->setCellValue('F' . $kolom, $data['pesanan_kontak'])
+                        ->setCellValue('G' . $kolom, $data['pesanan_alamat'])
+                        ->setCellValue('H' . $kolom, $data['pesanan_sosmed'])
+                        ->setCellValue('I' . $kolom, $data['name'])
+                        ->setCellValue('J' . $kolom, $data['kode'])
+                        ->setCellValue('K' . $kolom, date('j F Y', strtotime($data['created_at'])));
+    
+            $kolom++;
+            $nomor++;
+    
+        }
+        // download spreadsheet dalam bentuk excel .xlsx
+        $writer = new Xlsx($spreadsheet);
+    
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="Laporan_Pesanan.xlsx"');
+        header('Cache-Control: max-age=0');
+    
+        $writer->save('php://output');
+
     }
 
     public function update_pesanan()
@@ -133,6 +195,66 @@ class Admin extends BaseController
                 session()->setFlashdata('errors', 'Tidak Terproses bung');
             }
         }
+    }
+
+    public function export_barang()
+    {  
+        // ambil data transaction dari database
+        $barang = $this->barang_model
+                        ->join('kecamatan', 'kecamatan.kecamatan_id = barang.kecamatan_id')
+                        ->join('users', 'users.id = barang.kurir_id')
+                        ->get()
+                        ->getResultArray();
+
+        // dd($barang);
+        
+        // panggil class Sreadsheet baru
+        $spreadsheet = new Spreadsheet;
+        // Buat custom header pada file excel
+        $spreadsheet->setActiveSheetIndex(0)
+                    ->setCellValue('A1', 'No')
+                    ->setCellValue('B1', 'Kode')
+                    ->setCellValue('C1', 'Nama')
+                    ->setCellValue('D1', 'Harga')
+                    ->setCellValue('E1', 'Ongkir')
+                    ->setCellValue('F1', 'Kecamatan')
+                    ->setCellValue('G1', 'Status')
+                    ->setCellValue('H1', 'Keterangan')
+                    ->setCellValue('I1', 'Nama Pengantar')
+                    ->setCellValue('J1', 'Kode Kurir')
+                    ->setCellValue('K1', 'Waktu');
+        // define kolom dan nomor
+        $kolom = 2;
+        $nomor = 1;
+        // tambahkan data transaction ke dalam file excel
+        foreach($barang as $data) {
+
+            $spreadsheet->setActiveSheetIndex(0)
+                        ->setCellValue('A' . $kolom, $nomor)
+                        ->setCellValue('B' . $kolom, $data['barang_kode'])
+                        ->setCellValue('C' . $kolom, $data['barang_name'])
+                        ->setCellValue('D' . $kolom, "Rp. ".number_format($data['barang_harga']))
+                        ->setCellValue('E' . $kolom, "Rp. ".number_format($data['barang_ongkir']))
+                        ->setCellValue('F' . $kolom, $data['kecamatan_name'])
+                        ->setCellValue('G' . $kolom, $data['barang_status'])
+                        ->setCellValue('H' . $kolom, $data['barang_keterangan'])
+                        ->setCellValue('I' . $kolom, $data['name'])
+                        ->setCellValue('J' . $kolom, $data['kode'])
+                        ->setCellValue('K' . $kolom, date('j F Y', strtotime($data['created_at'])));
+    
+            $kolom++;
+            $nomor++;
+    
+        }
+        // download spreadsheet dalam bentuk excel .xlsx
+        $writer = new Xlsx($spreadsheet);
+    
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="Laporan_Barang.xlsx"');
+        header('Cache-Control: max-age=0');
+    
+        $writer->save('php://output');
+
     }
 
     public function settings()
