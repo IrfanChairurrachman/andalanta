@@ -19,7 +19,7 @@
                                 </div>
                                 <div class="col-md-8">
                                     <h6 class="text-muted font-semibold">Kurir</h6>
-                                    <h6 class="font-extrabold mb-0">18</h6>
+                                    <h6 class="font-extrabold mb-0"><?= $kurir ?></h6>
                                 </div>
                             </div>
                         </div>
@@ -35,8 +35,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Pemesan</h6>
-                                    <h6 class="font-extrabold mb-0">80</h6>
+                                    <h6 class="text-muted font-semibold">Pesanan</h6>
+                                    <h6 class="font-extrabold mb-0"><?= $pesanan ?></h6>
                                 </div>
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="col-md-8">
                                     <h6 class="text-muted font-semibold">Barang</h6>
-                                    <h6 class="font-extrabold mb-0">112</h6>
+                                    <h6 class="font-extrabold mb-0"><?= $barang ?></h6>
                                 </div>
                             </div>
                         </div>
@@ -97,8 +97,8 @@
                             <img src="/assets/images/faces/1.jpg" alt="Face 1">
                         </div>
                         <div class="ms-3 name">
-                            <h5 class="font-bold">John Duck</h5>
-                            <h6 class="text-muted mb-0">@johnducky</h6>
+                            <h5 class="font-bold"><?= $user['name'] ?></h5>
+                            <h6 class="text-muted mb-0"><?= $user['username'] ?></h6>
                         </div>
                     </div>
                 </div>

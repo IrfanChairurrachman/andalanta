@@ -70,6 +70,7 @@ class Admin extends BaseController
         $pesanan = $this->pesanan_model
                         ->join('kecamatan', 'kecamatan.kecamatan_id = pesanan.kecamatan_id')
                         ->join('users', 'users.id = pesanan.kurir_id')
+                        ->orderBy('pesanan.created_at', 'DESC')
                         ->get()
                         ->getResultArray();
 
@@ -218,6 +219,7 @@ class Admin extends BaseController
         $barang = $this->barang_model
                         ->join('kecamatan', 'kecamatan.kecamatan_id = barang.kecamatan_id')
                         ->join('users', 'users.id = barang.kurir_id')
+                        ->orderBy('barang.created_at', 'DESC')
                         ->get()
                         ->getResultArray();
 

@@ -50,6 +50,10 @@ class Home extends BaseController
         $data['pesanan'] = $this->pesanan_model->where('pesanan_status', 'Sukses')->countAllResults();
         $data['barang'] = $this->barang_model->where('barang_status', 'Sukses')->countAllResults();
 
+        $id = $_SESSION['id'];
+
+        $data['user'] = $this->user_model->where('id', $id)->get()->getRowArray();
+
         $data['title'] = 'Dashboard';
         // dd($data);
 		return view('admin/new_index', $data);
