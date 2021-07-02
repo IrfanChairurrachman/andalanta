@@ -44,6 +44,7 @@
                             </div>
                             <form action="<?php echo base_url('kurir/barang/update'); ?>" method="POST" class="form">
                             <input type="hidden" name="barang_id" value="<?= $barang['barang_id']?>">
+                            <input type="hidden" name="pesanan_id" value="<?= $barang['pesanan_id']?>">
                             <div class="form-body">
                                 <div class="col-12">
                                     <div class="form-group">

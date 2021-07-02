@@ -5,6 +5,7 @@ use App\Models\Kecamatan_model;
 use App\Models\Pesanan_model;
 use App\Models\Barang_model;
 use App\Models\Settings_model;
+use App\Models\Auth_model;
 
 class Home extends BaseController
 {
@@ -17,6 +18,7 @@ class Home extends BaseController
         $this->pesanan_model = new Pesanan_model();
         $this->barang_model = new Barang_model();
         $this->setting_model = new Settings_model();
+        $this->user_model = new Auth_model();
     }
 
 	public function index()
@@ -44,8 +46,12 @@ class Home extends BaseController
         
         $data['grafik_pesanan'] = $this->pesanan_model->getGrafik();
         $data['grafik_barang'] = $this->barang_model->getGrafik();
+        $data['kurir'] = $this->user_model->where('role', 'Kurir')->countAllResults();
+        $data['pesanan'] = $this->pesanan_model->where('pesanan_status', 'Sukses')->countAllResults();
+        $data['barang'] = $this->barang_model->where('barang_status', 'Sukses')->countAllResults();
+
         $data['title'] = 'Dashboard';
-        // dd($data['grafik']);
+        // dd($data);
 		return view('admin/new_index', $data);
 	}
 

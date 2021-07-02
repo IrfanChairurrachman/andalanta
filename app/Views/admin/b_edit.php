@@ -44,6 +44,7 @@
                             <div class="card-body">
                                 <form class="form form-vertical">
                                 <input type="hidden" name="barang_id" value="<?php echo $barang['barang_id']; ?>">
+                                <input type="hidden" name="pesanan_id" value="<?= $barang['pesanan_id']?>">
                                     <div class="form-body">
                                         <div class="row">
                                             <div class="col-12">

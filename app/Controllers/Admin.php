@@ -177,6 +177,7 @@ class Admin extends BaseController
     public function update_barang()
     {
         $id = $this->request->getPost('barang_id');
+        $pesanan_id = $this->request->getPost('pesanan_id');
     
         $data = array(
             'barang_kode' => $this->request->getPost('barang_kode'),
@@ -188,6 +189,20 @@ class Admin extends BaseController
         if($data){
             $simpan = $this->barang_model->updateBarang($data, $id);
             // dd($simpan);
+            $pesanan = $this->barang_model->where('pesanan_id', $pesanan_id)
+                                    ->countAllResults();
+
+            $sukses = $this->barang_model->where('pesanan_id', $pesanan_id)
+                                    ->where('barang_status', 'Sukses')->countAllResults();
+
+            if($pesanan == $sukses){
+                $data = array(
+                        'pesanan_status' => 'Sukses',
+                );
+
+                $simpan_pesanan = $this->pesanan_model->updatePesanan($data, $pesanan_id);
+            }
+
             if($simpan){
                 session()->setFlashdata('success', 'Barang terupdate');
                 return redirect()->to(base_url('admin/barang'));

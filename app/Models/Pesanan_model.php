@@ -10,6 +10,7 @@ class Pesanan_model extends Model
         if($id === false){
             return $this->table('pesanan')
                         ->join('kecamatan', 'kecamatan.kecamatan_id = pesanan.kecamatan_id')
+                        ->orderBy('pesanan.created_at', 'DESC')
                         ->get()
                         ->getResultArray();
         } else {

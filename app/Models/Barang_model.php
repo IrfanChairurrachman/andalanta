@@ -11,6 +11,7 @@ class Barang_model extends Model
             return $this->table('barang')
                         ->join('pesanan', 'pesanan.pesanan_id = barang.pesanan_id')
                         ->join('kecamatan', 'kecamatan.kecamatan_id = barang.kecamatan_id')
+                        ->orderBy('barang.created_at', 'DESC')
                         ->get()
                         ->getResultArray();
         } else {

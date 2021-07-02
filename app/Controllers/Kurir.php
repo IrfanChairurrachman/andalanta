@@ -24,13 +24,20 @@ class Kurir extends BaseController
 	{
         $id = $_SESSION['id'];
 
+        // $curr_date = Time::today('Asia/Makassar')->toLocalizedString('Y-m-d');
+        $myTime = Time::today('Asia/Makassar');
+
+        // $curr_date = $date->format('Y-m-d');
+
         $data['kurir'] = $this->user_model->getUser($id);
 		$data['jemput'] = $this->pesanan_model
                                 ->join('kecamatan', 'kecamatan.kecamatan_id = pesanan.kecamatan_id')
-                                ->where('pesanan_status', 'Jemput')->findAll();
+                                ->where('pesanan_status', 'Jemput')
+                                ->where('DATE(created_at)', $myTime)->findAll();
         $data['antar'] = $this->pesanan_model
                                 ->join('kecamatan', 'kecamatan.kecamatan_id = pesanan.kecamatan_id')
-                                ->where('pesanan_status', 'On Process')
+                                ->where('pesanan_status !=', 'Jemput')
+                                ->where('DATE(created_at)', $myTime)
                                 ->where('kurir_id', $id)->findAll();
         
         
@@ -90,13 +97,6 @@ class Kurir extends BaseController
         // echo $id;
         $role = $this->user_model->getUser($id)['role'];
 
-        // if($role == 'Kurir'){
-        //     echo "YES";
-        // } else{
-        //     echo "NO";
-        // }
-        // echo $role;
-
         $pesanan_id = $this->request->getPost('pesanan_id');
         $barang_kode = $this->request->getPost('barang_kode') . $this->request->getPost('kode');
         $data = array(
@@ -108,8 +108,6 @@ class Kurir extends BaseController
             'barang_ongkir' => $this->request->getPost('barang_ongkir'),
             'kecamatan_id' => $this->request->getPost('kecamatan_id'),
         );
-        // $kode = $this->request->getPost('kode');
-        // dd($data['kurir']);
 
         if($data){
             $simpan = $this->barang_model->insertBarang($data);
@@ -131,15 +129,34 @@ class Kurir extends BaseController
     {
         $id = $_SESSION['id'];
 
+        $myTime = Time::today('Asia/Makassar');
+
         $data['barang'] = $this->barang_model
                                 ->join('pesanan', 'pesanan.pesanan_id = barang.pesanan_id')
                                 ->join('kecamatan', 'kecamatan.kecamatan_id = barang.kecamatan_id')
                                 ->where('barang_status', 'Terjemput')->findAll();
+        // $data['antar'] = $this->barang_model
+        //                         ->join('pesanan', 'pesanan.pesanan_id = barang.pesanan_id')
+        //                         ->join('kecamatan', 'kecamatan.kecamatan_id = barang.kecamatan_id')
+        //                         ->where('barang_status !=', 'Terjemput')
+        //                         ->where('barang.kurir_id', $id)->findAll();
+        
         $data['antar'] = $this->barang_model
-                                ->join('pesanan', 'pesanan.pesanan_id = barang.pesanan_id')
-                                ->join('kecamatan', 'kecamatan.kecamatan_id = barang.kecamatan_id')
+                        ->join('pesanan', 'pesanan.pesanan_id = barang.pesanan_id')
+                        ->join('kecamatan', 'kecamatan.kecamatan_id = barang.kecamatan_id')
+                        ->groupStart()
+                            ->where('barang_status !=', 'Antar')
+                            ->where('barang_status !=', 'Terjemput')
+                            ->where('barang_status !=', 'Tunda')
+                            ->where('DATE(barang.created_at)', $myTime)
+                            ->orGroupStart()
+                                ->where('barang_status !=', 'Sukses')
+                                ->where('barang_status !=', 'Cancel')
                                 ->where('barang_status !=', 'Terjemput')
-                                ->where('barang.kurir_id', $id)->findAll();
+                            ->groupEnd()
+                        ->groupEnd()
+                        ->where('barang.kurir_id', $id)
+                        ->findAll();
         // dd($data['barang']);
         $data['title'] = 'Barang';
         echo view('kurir/new_barang', $data);
@@ -157,22 +174,38 @@ class Kurir extends BaseController
     {
         $kurir = $_SESSION['id'];
         $id = $this->request->getPost('barang_id');
+        $pesanan_id = $this->request->getPost('pesanan_id');
     
         $data = array(
             'barang_status' => $this->request->getPost('barang_status'),
             'barang_keterangan' => $this->request->getPost('barang_keterangan'),
             'kurir_id' => $kurir,
         );
-        // dd($data);
+
         if($data){
             $simpan = $this->barang_model->updateBarang($data, $id);
-            // dd($simpan);
+
+            $pesanan = $this->barang_model->where('pesanan_id', $pesanan_id)
+                                    ->countAllResults();
+
+            $sukses = $this->barang_model->where('pesanan_id', $pesanan_id)
+                                    ->where('barang_status', 'Sukses')->countAllResults();
+
+            if($pesanan == $sukses){
+                $data = array(
+                        'pesanan_status' => 'Sukses',
+                );
+
+                $simpan_pesanan = $this->pesanan_model->updatePesanan($data, $pesanan_id);
+            }
+
             if($simpan){
                 session()->setFlashdata('success', 'Barang terupdate');
-                return redirect()->to(base_url('/kurir/barang'));
+                return redirect()->to(base_url('kurir/barang'));
             } else{
                 session()->setFlashdata('errors', 'Tidak Terproses bung');
             }
         }
+
     }
 }
