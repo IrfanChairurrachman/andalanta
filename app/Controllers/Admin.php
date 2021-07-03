@@ -17,22 +17,24 @@ class Admin extends BaseController
     public function __construct()
     {
         helper(['form']);
+
+        if(session()->get('role') != 'Admin'){
+            $data['title'] = "Error";
+            echo view('error-403', $data);
+            // echo "Akses Ditolak";
+            exit;
+        }
         $this->kecamatan_model = new Kecamatan_model();
         $this->pesanan_model = new Pesanan_model();
         $this->user_model = new Auth_model();
         $this->barang_model = new Barang_model();
         $this->setting_model = new Settings_model();
         
-        if(session()->get('role') != 'Admin'){
-            echo "Akses Dilarang";
-            exit;
-        }
     }
 
 	public function pesanan()
 	{
 		$data['jemput'] = $this->pesanan_model->getPesanan();
-        // dd($data);
         $data['title'] = "Pesanan";
 		return view('admin/pesanan', $data);
 	}

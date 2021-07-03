@@ -44,7 +44,8 @@ class Home extends BaseController
 	public function admin()
 	{
         if(session()->get('role') != 'Admin'){
-            echo "Akses Dilarang";
+            $data['title'] = "Error";
+            echo view('error-403', $data);
             exit;
         }
         $data['grafik_pesanan'] = $this->pesanan_model->getGrafik();

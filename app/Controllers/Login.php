@@ -10,7 +10,8 @@ class Login extends BaseController
  
     public function index()
     {
-        return view('v_login');
+        $data['title'] = "Login Andalanta";
+        return view('login', $data);
     }
      
     public function proses()
