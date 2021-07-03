@@ -17,20 +17,20 @@ class Login extends BaseController
     {
         $username = htmlspecialchars($this->request->getPost('username'));
         $password = htmlspecialchars($this->request->getPost('password'));
-        $role = htmlspecialchars($this->request->getPost('role'));
  
-        $cek_login = $this->auth->getLogin($username, $password, $role);
+        $cek_login = $this->auth->getLogin($username, $password);
 
         if(!empty($cek_login)){
  
             session()->set("id", $cek_login['id']);
             session()->set("username", $cek_login['username']);
             session()->set("password", $cek_login['password']);
+            session()->set("role", $cek_login['role']);
 
-            if($role == 'Admin'){
-                return redirect()->to('/admin');
-            } elseif($role == 'Kurir'){
-                return redirect()->to('/kurir');
+            if($cek_login['role'] == 'Admin'){
+                return redirect()->to('admin');
+            } elseif($cek_login['role'] == 'Kurir'){
+                return redirect()->to('kurir');
             }
  
         } else {

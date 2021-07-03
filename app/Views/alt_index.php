@@ -33,6 +33,19 @@
         <!-- Masthead-->
         <header class="masthead">
             <div class="container position-relative">
+                <?php
+                    $inputs = session()->getFlashdata('inputs');
+                    $errors = session()->getFlashdata('errors');
+                    if(!empty($errors)){ ?>
+                    <div class="alert alert-danger" role="alert">
+                        Whoops! Ada kesalahan saat input data, yaitu:
+                        <ul>
+                        <?php foreach ($errors as $error) : ?>
+                            <li><?= esc($error) ?></li>
+                        <?php endforeach ?>
+                        </ul>
+                    </div>
+                <?php } ?>
                     <?php
                         if(!empty(session()->getFlashdata('success'))){ ?>
                         <div class="alert alert-success">

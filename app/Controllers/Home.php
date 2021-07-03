@@ -43,7 +43,10 @@ class Home extends BaseController
 
 	public function admin()
 	{
-        
+        if(session()->get('role') != 'Admin'){
+            echo "Akses Dilarang";
+            exit;
+        }
         $data['grafik_pesanan'] = $this->pesanan_model->getGrafik();
         $data['grafik_barang'] = $this->barang_model->getGrafik();
         $data['kurir'] = $this->user_model->where('role', 'Kurir')->countAllResults();
@@ -78,7 +81,11 @@ class Home extends BaseController
 
         // dd($data);
 
-        if($data){
+        if($validation->run($data, 'pesanan') == FALSE){
+            session()->setFlashdata('inputs', $this->request->getPost());
+            session()->setFlashdata('errors', $validation->getErrors());
+            return redirect()->to(base_url('/'));
+        } else {
             $simpan = $this->pesanan_model->insertPesanan($data);
             if($simpan){
                 session()->setFlashdata('success', 'Pesanan Telah Tercatat');
@@ -88,19 +95,5 @@ class Home extends BaseController
                 session()->setFlashdata('errors', 'Tidak tersimpan bung');
             }
         }
-
-        // if($validation->run($data, 'pesanan') == FALSE){
-        //     session()->setFlashdata('inputs', $this->request->getPost());
-        //     session()->setFlashdata('errors', $validation->getErrors());
-        //     return redirect()->to(base_url('admin/pesanan/create'));
-        // } else {
-        //     $model = new pesanan_model();
-        //     $simpan = $model->insertpesanan($data);
-        //     if($simpan)
-        //     {
-        //         session()->setFlashdata('success', 'Created pesanan successfully');
-        //         return redirect()->to(base_url('admin/pesanan')); 
-        //     }
-        // }
     }
 }

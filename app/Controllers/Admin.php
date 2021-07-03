@@ -22,6 +22,11 @@ class Admin extends BaseController
         $this->user_model = new Auth_model();
         $this->barang_model = new Barang_model();
         $this->setting_model = new Settings_model();
+        
+        if(session()->get('role') != 'Admin'){
+            echo "Akses Dilarang";
+            exit;
+        }
     }
 
 	public function pesanan()

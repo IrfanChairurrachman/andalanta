@@ -61,28 +61,27 @@ class Validation
 		'pesanan_kontak'  => 'required',
 		'pesanan_alamat'  => 'required',
 		'kecamatan_id'    => 'required',
-		'pesanan_resi'    => 'required',
 		'pesanan_sosmed'  => 'required',
 	];
 
 	public $pesanan_errors = [
-		'username'  => [
-			'required'  => 'Username wajib diisi.'
+		'pesanan_nama'  => [
+			'required'  => 'Nama wajib diisi.'
 		],
-		'password' => [
-			'required'  => 'Password wajib diisi.'
+		'pesanan_toko' => [
+			'required'  => 'Toko wajib diisi.'
 		],
-		'username'  => [
-			'required'  => 'Username wajib diisi.'
+		'pesanan_kontak'  => [
+			'required'  => 'Kontak wajib diisi.'
 		],
-		'password' => [
-			'required'  => 'Password wajib diisi.'
+		'pesanan_alamat' => [
+			'required'  => 'Alamat wajib diisi.'
 		],
-		'username'  => [
-			'required'  => 'Username wajib diisi.'
+		'kecamatan_id'  => [
+			'required'  => 'Kecamatan wajib diisi.'
 		],
-		'password' => [
-			'required'  => 'Password wajib diisi.'
+		'pesanan_sosmed' => [
+			'required'  => 'Sosmed wajib diisi.'
 		],
 	];
 }

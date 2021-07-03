@@ -8,7 +8,7 @@ class LoginFilter implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {
-        if (!session('id')) // saya hanya membuat sederhana saja. silahkan kembangkan di kemudian hari
+        if (!session('id'))
         {
             return redirect()->to('/login');
         }
