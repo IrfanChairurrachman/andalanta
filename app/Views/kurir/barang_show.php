@@ -23,6 +23,19 @@
         <div class="row" id="basic-table">
             <div class="col-12 col-md-12">
                 <div class="card">
+                    <?php
+                        $inputs = session()->getFlashdata('inputs');
+                        $errors = session()->getFlashdata('errors');
+                        if(!empty($errors)){ ?>
+                        <div class="alert alert-danger" role="alert">
+                            Whoops! Ada kesalahan saat input data, yaitu:
+                            <ul>
+                                <?php foreach ($errors as $error) : ?>
+                                <li><?= esc($error) ?></li>
+                                <?php endforeach ?>
+                            </ul>
+                        </div>
+                    <?php } ?>
                     <div class="card-content">
                         <div class="card-body">
                             <!-- Table with outer spacing -->

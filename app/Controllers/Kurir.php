@@ -109,7 +109,12 @@ class Kurir extends BaseController
             'kecamatan_id' => $this->request->getPost('kecamatan_id'),
         );
 
-        if($data){
+        $validation =  \Config\Services::validation();
+        if($validation->run($data, 'barang') == FALSE){
+            session()->setFlashdata('inputs', $this->request->getPost());
+            session()->setFlashdata('errors', $validation->getErrors());
+            return redirect()->to(base_url('kurir/pesanan/proses')."/".$pesanan_id);
+        } else{
             $simpan = $this->barang_model->insertBarang($data);
             if($simpan){
                 if($role == 'Kurir'){
@@ -182,7 +187,12 @@ class Kurir extends BaseController
             'kurir_id' => $kurir,
         );
 
-        if($data){
+        $validation =  \Config\Services::validation();
+        if($validation->run($data, 'barang_update') == FALSE){
+            session()->setFlashdata('inputs', $this->request->getPost());
+            session()->setFlashdata('errors', $validation->getErrors());
+            return redirect()->to(base_url('kurir/barang/show')."/".$id);
+        } else{
             $simpan = $this->barang_model->updateBarang($data, $id);
 
             $pesanan = $this->barang_model->where('pesanan_id', $pesanan_id)

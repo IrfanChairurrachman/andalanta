@@ -29,14 +29,14 @@ class Login extends BaseController
             session()->set("role", $cek_login['role']);
 
             if($cek_login['role'] == 'Admin'){
-                return redirect()->to('admin');
+                return redirect()->to(base_url('admin'));
             } elseif($cek_login['role'] == 'Kurir'){
-                return redirect()->to('kurir');
+                return redirect()->to(base_url('kurir'));
             }
  
         } else {
  
-            return redirect()->to('/login');
+            return redirect()->to(base_url('login'));
          
         }
          
@@ -45,7 +45,7 @@ class Login extends BaseController
     public function logout()
     {
         session()->destroy();
-        return redirect()->to('/login');
+        return redirect()->to(base_url('login'));
     }
  
 }

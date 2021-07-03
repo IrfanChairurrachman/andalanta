@@ -29,6 +29,12 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
+                        <?php
+                        if(!empty(session()->getFlashdata('success'))){ ?>
+                        <div class="alert alert-success">
+                            <?php echo session()->getFlashdata('success');?>
+                        </div>     
+                        <?php } ?>
                             <h4 class="float-right">Pesanan</h4>
                             <!-- Table with outer spacing -->
                             <div class="table-responsive">
