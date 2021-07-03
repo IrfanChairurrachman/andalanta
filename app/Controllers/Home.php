@@ -85,13 +85,21 @@ class Home extends BaseController
         if($validation->run($data, 'pesanan') == FALSE){
             session()->setFlashdata('inputs', $this->request->getPost());
             session()->setFlashdata('errors', $validation->getErrors());
-            return redirect()->to(base_url('/'));
+            if(session()->get('role') == 'Admin'){
+                return redirect()->to(base_url('admin/pesanan/create'));
+            } else{
+                return redirect()->to(base_url('/'));
+            }
         } else {
             $simpan = $this->pesanan_model->insertPesanan($data);
             if($simpan){
                 session()->setFlashdata('success', 'Pesanan Telah Tercatat');
                 session()->setFlashdata('info', 'Resi Anda '.$resi);
-                return redirect()->to(base_url('/'));
+                if(session()->get('role') == 'Admin'){
+                    return redirect()->to(base_url('admin/pesanan'));
+                } else{
+                    return redirect()->to(base_url('/'));
+                }
             } else{
                 session()->setFlashdata('errors', 'Tidak tersimpan bung');
             }

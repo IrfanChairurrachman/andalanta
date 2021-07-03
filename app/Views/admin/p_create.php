@@ -5,16 +5,15 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <nav class="navbar navbar-light">
-                <a href="/kurir"><i class="bi bi-chevron-left"></i></a>
-                <h3 class="navbar-brand ms-4">Form Layout</h3>
+                <h3 class="navbar-brand ms-4">Tambah Pesanan</h3>
             </nav>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/kurir">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Form Layout</li>
+                    <li class="breadcrumb-item"><a href="<?php echo base_url('admin'); ?>">Admin</a></li>
+                    <li class="breadcrumb-item"><a href="<?php echo base_url('admin/pesanan'); ?>">Pesanan</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Tambah</li>
                     </ol>
                 </nav>
             </div>
@@ -40,25 +39,45 @@
                             </ul>
                         </div>
                     <?php } ?>
-                    <div class="card-header">
-                        <h4 class="card-title">Vertical Form</h4>
-                    </div>
                     <div class="card-content">
-                        <form class="form form-vertical" method="POST" action="<?php echo base_url('admin/pesanan/store'); ?>">
+                        <form class="form form-vertical" method="POST" action="<?php echo base_url('pesanan/store'); ?>">
                             <div class="card-body">
-                                <form class="form form-vertical">
                                     <div class="form-body">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="form-group">
                                                 <label for="">Name</label>
-                                                <input type="text" class="form-control" name="barang_name" placeholder="Masukkan Nama Pemesan">
+                                                <input type="text" class="form-control" name="pesanan_name" placeholder="Masukkan Nama Pemesan">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                <label for="">Toko</label>
+                                                <input type="text" class="form-control" name="pesanan_toko" placeholder="Masukkan Toko Pemesan">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                <label for="">Kontak</label>
+                                                <input type="text" class="form-control" name="pesanan_kontak" placeholder="Masukkan Kontak Pemesan">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                <label for="">Alamat</label>
+                                                <input type="text" class="form-control" name="pesanan_alamat" placeholder="Masukkan Alamat Pemesan">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                <label for="">Sosmed</label>
+                                                <input type="text" class="form-control" name="pesanan_sosmed" placeholder="Masukkan Sosmed Pemesan">
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label for="">Kecamatan</label>
-                                                    <select name="kecamatan_id" id="" class="form-control">
+                                                    <select name="kecamatan" id="" class="form-control">
                                                         <option value="">Pilih Kecamatan Tujuan</option>
                                                         <?php foreach($kecamatan as $key => $row){ ?>
                                                             <option value="<?= $row['kecamatan_id']?>"><?= $row['kecamatan_name']?></option>
@@ -73,7 +92,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </form>
                             </div>
                         </form>
                         <div class="card-footer">
