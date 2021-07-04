@@ -44,6 +44,7 @@
                             <div class="card-body">
                                 <form class="form form-vertical">
                                 <input type="hidden" name="id" value="<?php echo $admin['id']; ?>">
+                                <input type="hidden" name="role" value="<?php echo $admin['role']; ?>">
                                     <div class="form-body">
                                         <div class="row">
                                             <div class="col-12">

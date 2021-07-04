@@ -365,7 +365,18 @@ class Admin extends BaseController
             'password' => $this->request->getPost('password'),
         );
         // dd($data);
-        if($data){
+        $validation =  \Config\Services::validation();
+        if($validation->run($data, 'user') == FALSE){
+            session()->setFlashdata('inputs', $this->request->getPost());
+            session()->setFlashdata('errors', $validation->getErrors());
+
+            if($this->request->getPost('role') == 'Kurir'){
+                return redirect()->to(base_url('/admin/kurir/edit/'.$id));
+            } else{
+                return redirect()->to(base_url('/admin/settings/edit/'.$id));
+            }
+            
+        } else {
             $simpan = $this->user_model->updateUser($data, $id);
             // dd($simpan);
             if($simpan){
@@ -387,7 +398,18 @@ class Admin extends BaseController
             'role' => $this->request->getPost('role'),
         );
         // dd($data);
-        if($data){
+        $validation =  \Config\Services::validation();
+        if($validation->run($data, 'user') == FALSE){
+            session()->setFlashdata('inputs', $this->request->getPost());
+            session()->setFlashdata('errors', $validation->getErrors());
+
+            if($this->request->getPost('role') == 'Kurir'){
+                return redirect()->to(base_url('admin/kurir/create/'));
+            } else{
+                return redirect()->to(base_url('admin/create'));
+            }
+            
+        } else{
             $simpan = $this->user_model->insertUser($data);
             // dd($simpan);
             if($simpan){
@@ -461,7 +483,14 @@ class Admin extends BaseController
             'setting_status' => $this->request->getPost('setting_status'),
         );
         // dd($data);
-        if($data){
+        $validation =  \Config\Services::validation();
+        if($validation->run($data, 'setting') == FALSE){
+            session()->setFlashdata('inputs', $this->request->getPost());
+            session()->setFlashdata('errors', $validation->getErrors());
+
+            return redirect()->to(base_url('admin/setting'));
+            
+        } else {
             $simpan = $this->setting_model->updateSetting($data, $id);
             // dd($simpan);
             if($simpan){

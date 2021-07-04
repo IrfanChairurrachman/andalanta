@@ -124,5 +124,41 @@ class Validation
 			'required'  => 'Status wajib diisi.'
 		],
 	];
+
+	public $user = [
+		'name'    => 'required',
+		'username'    => 'required',
+		'password'  => 'required',
+	];
+
+	public $user_errors = [
+		'name'  => [
+			'required'  => 'Nama wajib diisi.'
+		],
+		'username' => [
+			'required'  => 'Username wajib diisi.'
+		],
+		'password'  => [
+			'required'  => 'Password wajib diisi.'
+		],
+	];
+
+	public $setting = [
+		'setting_name'    => 'required',
+		'setting_contact' => 'required',
+		'setting_link'  => 'required',
+	];
+
+	public $setting_errors = [
+		'setting_name'  => [
+			'required'  => 'Nama wajib diisi.'
+		],
+		'setting_contact' => [
+			'required'  => 'Kontak wajib diisi.'
+		],
+		'setting_link'  => [
+			'required'  => 'Link Kontak wajib diisi.'
+		],
+	];
 	
 }
