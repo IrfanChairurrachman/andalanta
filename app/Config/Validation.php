@@ -91,6 +91,7 @@ class Validation
 		'barang_harga'  => 'required',
 		'barang_ongkir'  => 'required',
 		'kecamatan_id'    => 'required',
+		'barang_status'    => 'required',
 	];
 
 	public $barang_errors = [
@@ -108,6 +109,9 @@ class Validation
 		],
 		'kecamatan_id'  => [
 			'required'  => 'Kecamatan wajib diisi.'
+		],
+		'barang_status'  => [
+			'required'  => 'Status barang wajib ditentukan.'
 		],
 	];
 

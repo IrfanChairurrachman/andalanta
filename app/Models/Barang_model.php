@@ -9,16 +9,18 @@ class Barang_model extends Model
     {
         if($id === false){
             return $this->table('barang')
-                        ->join('pesanan', 'pesanan.pesanan_id = barang.pesanan_id')
+                        ->join('pesanan', 'barang.pesanan_id = pesanan.pesanan_id')
                         ->join('kecamatan', 'kecamatan.kecamatan_id = barang.kecamatan_id')
                         ->orderBy('barang.created_at', 'DESC')
                         ->get()
                         ->getResultArray();
         } else {
             return $this->table('barang')
+                        ->select('pesanan.pesanan_resi,barang.barang_id,pesanan.pesanan_id,barang.barang_kode,
+                        barang.barang_name,barang.barang_harga,barang.barang_ongkir,barang.barang_status,
+                        barang.barang_keterangan,barang.kurir_id,barang.kecamatan_id,kecamatan.kecamatan_name')
                         ->join('pesanan', 'pesanan.pesanan_id = barang.pesanan_id')
                         ->join('kecamatan', 'kecamatan.kecamatan_id = barang.kecamatan_id')
-                        ->join('users', 'users.id = barang.kurir_id')
                         ->where('barang.barang_id', $id)
                         ->get()
                         ->getRowArray();

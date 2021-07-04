@@ -146,7 +146,12 @@ class Admin extends BaseController
         );
         
         // dd($data);
-        if($data){
+        $validation =  \Config\Services::validation();
+        if($validation->run($data, 'pesanan') == FALSE){
+            session()->setFlashdata('inputs', $this->request->getPost());
+            session()->setFlashdata('errors', $validation->getErrors());
+            return redirect()->to(base_url('admin/pesanan/create'));
+        } else {
             $simpan = $this->pesanan_model->updatePesanan($data, $id);
             if($simpan){
                 session()->setFlashdata('success', 'Pesanan Terupdate');
@@ -155,6 +160,7 @@ class Admin extends BaseController
                 session()->setFlashdata('errors', 'Tidak Terproses bung');
             }
         }
+
     }
 
     public function barang()
@@ -169,7 +175,17 @@ class Admin extends BaseController
     {  
         $data['barang'] = $this->barang_model->getBarang($id);
         $data['title'] = "Barang Detail";
-        // dd($data);
+        if(is_null($data['barang']['kurir_id'])){
+            $data['barang']['name'] = "";
+        } else{
+            $data['barang'] = $this->barang_model
+            ->join('pesanan', 'barang.pesanan_id = pesanan.pesanan_id')
+            ->join('kecamatan', 'kecamatan.kecamatan_id = barang.kecamatan_id')
+            ->join('users', 'users.id = barang.kurir_id')
+            ->get()
+            ->getRowArray();
+        }
+        // dd($data['barang']);
         echo view('admin/b_show', $data);
     }
 
@@ -190,11 +206,20 @@ class Admin extends BaseController
         $data = array(
             'barang_kode' => $this->request->getPost('barang_kode'),
             'barang_name' => $this->request->getPost('barang_name'),
+            'barang_harga' => $this->request->getPost('barang_harga'),
+            'barang_ongkir' => $this->request->getPost('barang_ongkir'),
             'kecamatan_id' => $this->request->getPost('kecamatan_id'),
             'barang_status' => $this->request->getPost('barang_status'),
         );
         // dd($data);
-        if($data){
+        $validation =  \Config\Services::validation();
+        if($validation->run($data, 'barang') == FALSE){
+            session()->setFlashdata('inputs', $this->request->getPost());
+            session()->setFlashdata('errors', $validation->getErrors());
+            
+            return redirect()->to(base_url('/admin/barang/edit/'.$id));
+            
+        } else{
             $simpan = $this->barang_model->updateBarang($data, $id);
             // dd($simpan);
             $pesanan = $this->barang_model->where('pesanan_id', $pesanan_id)

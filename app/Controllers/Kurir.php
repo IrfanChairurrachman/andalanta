@@ -113,7 +113,12 @@ class Kurir extends BaseController
         if($validation->run($data, 'barang') == FALSE){
             session()->setFlashdata('inputs', $this->request->getPost());
             session()->setFlashdata('errors', $validation->getErrors());
-            return redirect()->to(base_url('kurir/pesanan/proses')."/".$pesanan_id);
+
+            if($role == 'Kurir'){
+                return redirect()->to(base_url('/kurir/pesanan/proses/'.$pesanan_id));
+            } else{
+                return redirect()->to(base_url('/admin/pesanan/'.$pesanan_id));
+            }
         } else{
             $simpan = $this->barang_model->insertBarang($data);
             if($simpan){
