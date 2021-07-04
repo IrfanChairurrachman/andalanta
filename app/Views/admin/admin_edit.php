@@ -50,19 +50,19 @@
                                             <div class="col-12">
                                                 <div class="form-group">
                                                 <label for="">Name</label>
-                                                <input type="text" value="<?php echo $admin['name']; ?>" class="form-control" name="name" placeholder="Masukkan Nama Barang">
+                                                <input type="text" value="<?php echo $admin['name']; ?>" class="form-control" name="name" placeholder="Masukkan Nama Admin">
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
                                                 <label for="">Username</label>
-                                                <input type="text" value="<?php echo $admin['username']; ?>" class="form-control" name="username" placeholder="Masukkan Nama Barang">
+                                                <input type="text" value="<?php echo $admin['username']; ?>" class="form-control" name="username" placeholder="Masukkan Username">
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
                                                 <label for="">Password</label>
-                                                <input type="text" value="<?php echo $admin['password']; ?>" class="form-control" name="password" placeholder="Masukkan Nama Barang">
+                                                <input type="text" value="<?php echo $admin['password']; ?>" class="form-control" name="password" placeholder="Masukkan Password">
                                                 </div>
                                             </div>
                                             <div class="col-12 d-flex justify-content-end">

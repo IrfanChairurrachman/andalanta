@@ -50,25 +50,25 @@
                                             <div class="col-12">
                                                 <div class="form-group">
                                                 <label for="">Kode</label>
-                                                <input type="text" value="<?php echo $kurir['kode']; ?>" class="form-control" name="kode" placeholder="Masukkan Nama Barang">
+                                                <input type="text" value="<?php echo $kurir['kode']; ?>" class="form-control" name="kode" placeholder="Masukkan Kode Kurir">
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
                                                 <label for="">Name</label>
-                                                <input type="text" value="<?php echo $kurir['name']; ?>" class="form-control" name="name" placeholder="Masukkan Nama Barang">
+                                                <input type="text" value="<?php echo $kurir['name']; ?>" class="form-control" name="name" placeholder="Masukkan Nama">
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
                                                 <label for="">Username</label>
-                                                <input type="text" value="<?php echo $kurir['username']; ?>" class="form-control" name="username" placeholder="Masukkan Nama Barang">
+                                                <input type="text" value="<?php echo $kurir['username']; ?>" class="form-control" name="username" placeholder="Masukkan Username">
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
                                                 <label for="">Password</label>
-                                                <input type="text" value="<?php echo $kurir['password']; ?>" class="form-control" name="password" placeholder="Masukkan Nama Barang">
+                                                <input type="text" value="<?php echo $kurir['password']; ?>" class="form-control" name="password" placeholder="Masukkan Password">
                                                 </div>
                                             </div>
                                             <div class="col-12 d-flex justify-content-end">
