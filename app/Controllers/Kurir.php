@@ -32,16 +32,18 @@ class Kurir extends BaseController
         $data['kurir'] = $this->user_model->getUser($id);
 		$data['jemput'] = $this->pesanan_model
                                 ->join('kecamatan', 'kecamatan.kecamatan_id = pesanan.kecamatan_id')
-                                ->where('pesanan_status', 'Jemput')
-                                ->where('DATE(created_at)', $myTime)->findAll();
+                                ->where('pesanan_status', 'Jemput')->findAll();
         $data['antar'] = $this->pesanan_model
                                 ->join('kecamatan', 'kecamatan.kecamatan_id = pesanan.kecamatan_id')
-                                ->where('pesanan_status !=', 'Jemput')
-                                ->where('DATE(created_at)', $myTime)
+                                ->where('pesanan_status', 'On Process')
+                                ->orGroupStart()
+                                    ->where('pesanan_status', 'Sukses')
+                                    ->where('DATE(created_at)', $myTime)
+                                ->groupEnd()
                                 ->where('kurir_id', $id)->findAll();
         
-        
         $data['title'] = 'Dashboard';
+
         // dd($data);
 
 		return view('kurir/new_index', $data);
