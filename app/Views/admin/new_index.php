@@ -13,29 +13,12 @@
                         <div class="card-body px-3 py-4-5">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <div class="stats-icon blue">
-                                        <i class="iconly-boldProfile"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Kurir</h6>
-                                    <h6 class="font-extrabold mb-0"><?= $kurir ?></h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-lg-4 col-md-6">
-                    <div class="card">
-                        <div class="card-body px-3 py-4-5">
-                            <div class="row">
-                                <div class="col-md-4">
                                     <div class="stats-icon green">
                                         <i class="iconly-boldAdd-User"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Pesanan</h6>
+                                    <h6 class="text-muted font-semibold">Pesanan Sukses</h6>
                                     <h6 class="font-extrabold mb-0"><?= $pesanan ?></h6>
                                 </div>
                             </div>
@@ -52,8 +35,25 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Barang</h6>
+                                    <h6 class="text-muted font-semibold">Barang Sukses</h6>
                                     <h6 class="font-extrabold mb-0"><?= $barang ?></h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-4 col-md-6">
+                    <div class="card">
+                        <div class="card-body px-3 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="stats-icon blue">
+                                        <i class="iconly-boldProfile"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h6 class="text-muted font-semibold">Kurir</h6>
+                                    <h6 class="font-extrabold mb-0"><?= $kurir ?></h6>
                                 </div>
                             </div>
                         </div>
@@ -212,8 +212,22 @@ var areaChart = new Chart(chart, {
           'rgba(54, 162, 253, 0.2)',
           'rgba(54, 162, 253, 0.2)',
           'rgba(54, 162, 253, 0.2)',
+          'rgba(54, 162, 253, 0.2)',
+          'rgba(54, 162, 253, 0.2)',
+          'rgba(54, 162, 253, 0.2)',
+          'rgba(54, 162, 253, 0.2)',
+          'rgba(54, 162, 253, 0.2)',
+          'rgba(54, 162, 253, 0.2)',
+          'rgba(54, 162, 253, 0.2)',
         ],
         borderColor: [
+          'rgba(54, 162, 253, 1)',
+          'rgba(54, 162, 253, 1)',
+          'rgba(54, 162, 253, 1)',
+          'rgba(54, 162, 253, 1)',
+          'rgba(54, 162, 253, 1)',
+          'rgba(54, 162, 253, 1)',
+          'rgba(54, 162, 253, 1)',
           'rgba(54, 162, 253, 1)',
           'rgba(54, 162, 253, 1)',
           'rgba(54, 162, 253, 1)',
@@ -245,12 +259,8 @@ var areaChart = new Chart(chart, {
           'rgba(255, 99, 132, 0.2)',
           'rgba(255, 99, 132, 0.2)',
           'rgba(255, 99, 132, 0.2)',
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(255, 99, 132, 0.2)',
         ],
         borderColor: [
-          'rgba(255, 99, 132, 1)',
           'rgba(255, 99, 132, 1)',
           'rgba(255, 99, 132, 1)',
           'rgba(255, 99, 132, 1)',
