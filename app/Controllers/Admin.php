@@ -49,6 +49,17 @@ class Admin extends BaseController
         $data['kurir'] = $this->user_model->where('role', 'Kurir')->findAll();
         $data['date'] = Time::today('Asia/Makassar')->toLocalizedString('d/MMM/yyyy');
 
+        if(is_null($data['pesanan']['kurir_id'])){
+            $data['pesanan']['name'] = "belum dijemput";
+        } else{
+            $data['pesanan'] = $this->pesanan_model
+            ->join('kecamatan', 'kecamatan.kecamatan_id = pesanan.kecamatan_id')
+            ->join('users', 'users.id = pesanan.kurir_id')
+            ->where('pesanan_id', $id)
+            ->get()
+            ->getRowArray();
+        }
+
         $data['title'] = "Pesanan Detail";
         // dd($data);
         echo view('admin/p_show', $data);
@@ -176,12 +187,13 @@ class Admin extends BaseController
         $data['barang'] = $this->barang_model->getBarang($id);
         $data['title'] = "Barang Detail";
         if(is_null($data['barang']['kurir_id'])){
-            $data['barang']['name'] = "";
+            $data['barang']['name'] = "belum diantar";
         } else{
             $data['barang'] = $this->barang_model
             ->join('pesanan', 'barang.pesanan_id = pesanan.pesanan_id')
             ->join('kecamatan', 'kecamatan.kecamatan_id = barang.kecamatan_id')
             ->join('users', 'users.id = barang.kurir_id')
+            ->where('barang_id', $id)
             ->get()
             ->getRowArray();
         }
@@ -320,7 +332,20 @@ class Admin extends BaseController
     {
         $data['kurir'] = $this->user_model->getUser($id);
         $data['title'] = "Kurir Show";
-        // dd($data['barang']);
+        $data['pesanan'] = $this->pesanan_model->where('kurir_id', $id)->findAll();
+        $data['barang'] = $this->barang_model->where('kurir_id', $id)->findAll();
+
+        $data['barang_total'] = $this->barang_model->where('kurir_id', $id)->countAllResults();
+        $data['pesanan_total'] = $this->pesanan_model->where('kurir_id', $id)->countAllResults();
+        foreach($data['pesanan'] as $key => $row){
+            $data['pesanan'][$key]['total'] = 0;
+            // echo $data['pesanan'][$key]['total'];
+            $barang = $this->barang_model->where('pesanan_id', $row['pesanan_id'])->findAll();
+            foreach($barang as $k => $r){
+                $data['pesanan'][$key]['total'] += $r['barang_harga'];
+            }
+        }
+        // dd($data);
         echo view('admin/kurir_show', $data);
     }
 

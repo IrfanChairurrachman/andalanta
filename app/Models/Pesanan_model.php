@@ -44,5 +44,16 @@ class Pesanan_model extends Model
         }
         return $hasil;
     }
+    public function getKecamatan()
+    {
+        $query = $this->db->query("SELECT kecamatan.kecamatan_name as kecamatan, COUNT(pesanan.pesanan_id) as total FROM pesanan RIGHT JOIN kecamatan ON pesanan.kecamatan_id=kecamatan.kecamatan_id GROUP BY kecamatan.kecamatan_name ORDER BY kecamatan.kecamatan_name");
+        $hasil = [];
+        if(!empty($query)){
+            foreach($query->getResultArray() as $data) {
+                $hasil[] = $data;
+            }
+        }
+        return $hasil;
+    }
 }
 ?>

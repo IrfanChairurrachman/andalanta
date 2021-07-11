@@ -50,6 +50,8 @@ class Home extends BaseController
         }
         $data['grafik_pesanan'] = $this->pesanan_model->getGrafik();
         $data['grafik_barang'] = $this->barang_model->getGrafik();
+        $data['grafik_barang_kecamatan'] = $this->barang_model->getKecamatan();
+        $data['grafik_pesanan_kecamatan'] = $this->pesanan_model->getKecamatan();
         $data['kurir'] = $this->user_model->where('role', 'Kurir')->countAllResults();
         $data['pesanan'] = $this->pesanan_model->where('pesanan_status', 'Sukses')->countAllResults();
         $data['barang'] = $this->barang_model->where('barang_status', 'Sukses')->countAllResults();

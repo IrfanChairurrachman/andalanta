@@ -64,7 +64,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Grafik</h4>
+                            <h4>Grafik per Bulan</h4>
                         </div>
                         <div class="card-body">
                             <canvas id="grafik"></canvas>
@@ -81,6 +81,34 @@
                                     foreach($grafik_pesanan as $data){
                                         $ptotal[] = $data['total'];
                                         $pmonth[] = $data['month'];
+                                    }
+                                }
+                            ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Grafik per Kecamatan</h4>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="grafik1"></canvas>
+                            <?php 
+                                if(isset($grafik_barang_kecamatan)){
+                                    foreach($grafik_barang_kecamatan as $data){
+                                        $bktotal[] = $data['total'];
+                                        $bkkecamatan[] = $data['kecamatan'];
+                                    }
+                                }
+                            ?>
+                            <?php 
+                                if(isset($grafik_pesanan_kecamatan)){
+                                    foreach($grafik_pesanan_kecamatan as $data){
+                                        $pktotal[] = $data['total'];
+                                        $pkkecamatan[] = $data['kecamatan'];
                                     }
                                 }
                             ?>
@@ -123,7 +151,7 @@ var areaChart2 = new Chart(chart2, {
     labels: <?php echo json_encode($bmonth); ?>,
     datasets: [
       {
-        label: "Grafik Pesanan",
+        label: "Pesanan",
         data: <?php echo json_encode($ptotal); ?>,
         backgroundColor: [
           'rgba(54, 162, 253, 0.2)',
@@ -138,7 +166,7 @@ var areaChart2 = new Chart(chart2, {
         borderWidth: 1
       },
       {
-        label: "Grafik Barang",
+        label: "Barang",
         data: <?php echo json_encode($btotal); ?>,
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
@@ -146,6 +174,97 @@ var areaChart2 = new Chart(chart2, {
           'rgba(255, 99, 132, 0.2)',
         ],
         borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(255, 99, 132, 1)',
+        ],
+        borderWidth: 1
+      }
+    ]
+  },
+  options: {
+    scales: {
+        yAxes: [{
+            ticks: {
+                beginAtZero: true
+            }
+        }]
+    }
+  }
+});
+
+var chart = document.getElementById("grafik1").getContext('2d');
+var areaChart = new Chart(chart, {
+  type: 'bar',
+  data: {
+    labels: <?php echo json_encode($pkkecamatan); ?>,
+    datasets: [
+        {
+        label: "Pesanan",
+        data: <?php echo json_encode($pktotal); ?>,
+        backgroundColor: [
+          'rgba(54, 162, 253, 0.2)',
+          'rgba(54, 162, 253, 0.2)',
+          'rgba(54, 162, 253, 0.2)',
+          'rgba(54, 162, 253, 0.2)',
+          'rgba(54, 162, 253, 0.2)',
+          'rgba(54, 162, 253, 0.2)',
+          'rgba(54, 162, 253, 0.2)',
+          'rgba(54, 162, 253, 0.2)',
+          'rgba(54, 162, 253, 0.2)',
+        ],
+        borderColor: [
+          'rgba(54, 162, 253, 1)',
+          'rgba(54, 162, 253, 1)',
+          'rgba(54, 162, 253, 1)',
+          'rgba(54, 162, 253, 1)',
+          'rgba(54, 162, 253, 1)',
+          'rgba(54, 162, 253, 1)',
+          'rgba(54, 162, 253, 1)',
+          'rgba(54, 162, 253, 1)',
+          'rgba(54, 162, 253, 1)',
+        ],
+        borderWidth: 1
+      },
+      {
+        label: "Barang",
+        data: <?php echo json_encode($bktotal); ?>,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(255, 99, 132, 1)',
           'rgba(255, 99, 132, 1)',
           'rgba(255, 99, 132, 1)',
           'rgba(255, 99, 132, 1)',

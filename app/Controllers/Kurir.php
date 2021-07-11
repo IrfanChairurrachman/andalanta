@@ -102,15 +102,21 @@ class Kurir extends BaseController
 
         $pesanan_id = $this->request->getPost('pesanan_id');
         $barang_kode = $this->request->getPost('barang_kode') . $this->request->getPost('kode');
+        
+        $ongkir = str_replace('.', '',$this->request->getPost('barang_ongkir'));
+        $harga = str_replace('.', '',$this->request->getPost('barang_harga'));
+
         $data = array(
             'pesanan_id' => $this->request->getPost('pesanan_id'),
             'barang_kode' => $barang_kode,
             'barang_name' => $this->request->getPost('barang_name'),
-            'barang_harga' => $this->request->getPost('barang_harga'),
+            'barang_harga' => $harga,
             'barang_status' => 'Terjemput',
-            'barang_ongkir' => $this->request->getPost('barang_ongkir'),
+            'barang_ongkir' => $ongkir,
             'kecamatan_id' => $this->request->getPost('kecamatan_id'),
         );
+
+        // dd($data);
 
         $validation =  \Config\Services::validation();
         if($validation->run($data, 'barang') == FALSE){
