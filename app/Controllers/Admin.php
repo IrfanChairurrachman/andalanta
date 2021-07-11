@@ -176,7 +176,8 @@ class Admin extends BaseController
 
     public function barang()
     {
-        $data['barang'] = $this->barang_model->getBarang();
+        $data['barang'] = $this->barang_model->join('users', 'barang.kurir_id=users.id', 'left')
+                                        ->orderBy('barang.created_at', 'DESC')->get()->getResultArray();
         $data['title'] = "Barang";
         // dd($data['barang']);
         echo view('admin/barang', $data);

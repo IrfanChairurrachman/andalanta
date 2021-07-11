@@ -18,7 +18,7 @@ class Barang_model extends Model
             return $this->table('barang')
                         ->select('pesanan.pesanan_resi,barang.barang_id,pesanan.pesanan_id,barang.barang_kode,
                         barang.barang_name,barang.barang_harga,barang.barang_ongkir,barang.barang_status,
-                        barang.barang_keterangan,barang.kurir_id,barang.kecamatan_id,kecamatan.kecamatan_name')
+                        barang.barang_keterangan,barang.kurir_id,barang.kecamatan_id,kecamatan.kecamatan_name,barang.created_at')
                         ->join('pesanan', 'pesanan.pesanan_id = barang.pesanan_id')
                         ->join('kecamatan', 'kecamatan.kecamatan_id = barang.kecamatan_id')
                         ->where('barang.barang_id', $id)

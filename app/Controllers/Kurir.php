@@ -32,7 +32,8 @@ class Kurir extends BaseController
         $data['kurir'] = $this->user_model->getUser($id);
 		$data['jemput'] = $this->pesanan_model
                                 ->join('kecamatan', 'kecamatan.kecamatan_id = pesanan.kecamatan_id')
-                                ->where('pesanan_status', 'Jemput')->findAll();
+                                ->where('pesanan_status', 'Jemput')
+                                ->findAll();
         $data['antar'] = $this->pesanan_model
                                 ->join('kecamatan', 'kecamatan.kecamatan_id = pesanan.kecamatan_id')
                                 ->where('pesanan_status', 'On Process')
@@ -151,9 +152,13 @@ class Kurir extends BaseController
         $myTime = Time::today('Asia/Makassar');
 
         $data['barang'] = $this->barang_model
+                                ->select('pesanan.pesanan_resi,barang.barang_id,pesanan.pesanan_id,barang.barang_kode,
+                                barang.barang_name,barang.barang_harga,barang.barang_ongkir,barang.barang_status,
+                                barang.barang_keterangan,barang.kurir_id,barang.kecamatan_id,kecamatan.kecamatan_name,barang.created_at')
                                 ->join('pesanan', 'pesanan.pesanan_id = barang.pesanan_id')
                                 ->join('kecamatan', 'kecamatan.kecamatan_id = barang.kecamatan_id')
-                                ->where('barang_status', 'Terjemput')->findAll();
+                                ->where('barang_status', 'Terjemput')
+                                ->orderBy('barang.created_at', 'ASC')->findAll();
         // $data['antar'] = $this->barang_model
         //                         ->join('pesanan', 'pesanan.pesanan_id = barang.pesanan_id')
         //                         ->join('kecamatan', 'kecamatan.kecamatan_id = barang.kecamatan_id')
@@ -161,8 +166,12 @@ class Kurir extends BaseController
         //                         ->where('barang.kurir_id', $id)->findAll();
         
         $data['antar'] = $this->barang_model
+                        ->select('pesanan.pesanan_resi,barang.barang_id,pesanan.pesanan_id,barang.barang_kode,
+                        barang.barang_name,barang.barang_harga,barang.barang_ongkir,barang.barang_status,
+                        barang.barang_keterangan,barang.kurir_id,barang.kecamatan_id,kecamatan.kecamatan_name,barang.created_at')
                         ->join('pesanan', 'pesanan.pesanan_id = barang.pesanan_id')
                         ->join('kecamatan', 'kecamatan.kecamatan_id = barang.kecamatan_id')
+                        ->where('barang.kurir_id', $id)
                         ->groupStart()
                             ->where('barang_status !=', 'Antar')
                             ->where('barang_status !=', 'Terjemput')
@@ -174,7 +183,7 @@ class Kurir extends BaseController
                                 ->where('barang_status !=', 'Terjemput')
                             ->groupEnd()
                         ->groupEnd()
-                        ->where('barang.kurir_id', $id)
+                        ->orderBy('barang.created_at', 'ASC')
                         ->findAll();
         // dd($data['barang']);
         $data['title'] = 'Barang';
