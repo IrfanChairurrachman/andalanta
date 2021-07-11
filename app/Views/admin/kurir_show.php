@@ -19,7 +19,86 @@
             </div>
         </div>
     </div>
-
+    <?php $total_harga=0;foreach($pesanan as $key => $row){
+        $total_harga += $row['total'];
+    } ?>
+    <?php $total_ongkir=0;foreach($barang as $key => $row){
+        $total_ongkir += $row['barang_ongkir'];
+    } ?>
+    <section class="row">
+        <div class="col-12 col-lg-12">
+            <div class="row">
+                <div class="col-6 col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body px-3 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="stats-icon blue">
+                                        <i class="iconly-boldProfile"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h6 class="text-muted font-semibold">Total Penjemputan</h6>
+                                    <h6 class="font-extrabold mb-0"><?= $pesanan_total ?></h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body px-3 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="stats-icon green">
+                                        <i class="iconly-boldAdd-User"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h6 class="text-muted font-semibold">Total Pengantaran</h6>
+                                    <h6 class="font-extrabold mb-0"><?= $barang_total ?></h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body px-3 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="stats-icon red">
+                                        <i class="iconly-boldBookmark"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h6 class="text-muted font-semibold">Ongkir Pengantaran</h6>
+                                    <h6 class="font-extrabold mb-0"><?= "Rp.".number_format($total_ongkir) ?></h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body px-3 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="stats-icon red">
+                                        <i class="iconly-boldBookmark"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h6 class="text-muted font-semibold">Total Harga Barang Penjemputan</h6>
+                                    <h6 class="font-extrabold mb-0"><?= "Rp.".number_format($total_harga) ?></h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <section class="section">
         <div class="row" id="basic-table">
             <div class="col-12 col-md-12">
@@ -48,6 +127,85 @@
             </div>
         </div>
     </section>
+    <section class="section">
+        <div class="row" id="basic-table">
+            <div class="col-12 col-md-6">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <!-- Table with outer spacing -->
+                            <table class="table table-striped" id="table1">
+                                <thead>
+                                    <tr>
+                                        <th>Kode</th>
+                                        <th>Harga Barang</th>
+                                        <th>Ongkir</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($barang as $key => $row){ ?>
+                                        <tr>
+                                            <td><?= $row['barang_kode']?></td>
+                                            <td><?= "Rp.".number_format($row['barang_harga'])?></td>
+                                            <td><?= "Rp.".number_format($row['barang_ongkir'])?></td>
+                                            <td>
+                                                <div class="btn-group">
+                                                <?php if($row['barang_status'] == "Sukses"){?>
+                                                    <button type="submit" class="btn btn-sm btn-success" ><?= $row['barang_status']?></button>
+                                                <?php } ?>
+                                                <?php if($row['barang_status'] == "Antar"){?>
+                                                    <button type="submit" class="btn btn-sm btn-info" ><?= $row['barang_status']?></button>
+                                                <?php } ?>
+                                                <?php if($row['barang_status'] == "Tunda"){?>
+                                                    <button type="submit" class="btn btn-sm btn-warning" ><?= $row['barang_status']?></button>
+                                                <?php } ?>
+                                                <?php if($row['barang_status'] == "Cancel"){?>
+                                                    <button type="submit" class="btn btn-sm btn-danger" ><?= $row['barang_status']?></button>
+                                                <?php } ?>
+                                                <?php if($row['barang_status'] == "Terjemput"){?>
+                                                    <button type="submit" class="btn btn-sm btn-info" ><?= $row['barang_status']?></button>
+                                                <?php } ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <!-- Table with outer spacing -->
+                            <!-- Table with outer spacing -->
+                            <table class="table table-striped" id="table">
+                                <thead>
+                                    <tr>
+                                        <th>Resi</th>
+                                        <th>Pesanan</th>
+                                        <th>Total harga</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($pesanan as $key => $row){ ?>
+                                        <tr>
+                                            <td><?= $row['pesanan_resi']?></td>
+                                            <td><?= $row['pesanan_name']?></td>
+                                            <td><?= $row['total']?></td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 <?= $this->endSection() ?>
 
@@ -61,5 +219,8 @@
     // Simple Datatable
     let table1 = document.querySelector('#table1');
     let dataTable = new simpleDatatables.DataTable(table1);
+
+    let table = document.querySelector('#table');
+    let dataTable2 = new simpleDatatables.DataTable(table);
 </script>
 <?= $this->endSection() ?>

@@ -45,6 +45,8 @@
                                     <dd><?php echo $pesanan['pesanan_sosmed'];?></dd>
                                     <dt>Kecamatan</dt>
                                     <dd><?php echo $pesanan['kecamatan_name'];?></dd>
+                                    <dt>Kurir Penjemput</dt>
+                                    <dd><?php echo $pesanan['name'];?></dd>
                                 </dl>
                             </div>
                         </div>
@@ -69,17 +71,19 @@
                             <tr>
                                 <th>Kode</th>
                                 <th>Nama</th>
+                                <th>Harga</th>
                                 <th>Ongkir</th>
                                 <th>Kecamatan</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach($barang as $key => $row){ ?>
+                            <?php $tbarang=0;$tongkir=0;foreach($barang as $key => $row){ ?>
                                 <tr>
                                     <td><?= $row['barang_kode']?></td>
                                     <td><?= $row['barang_name']?></td>
-                                    <td><?= $row['barang_ongkir']?></td>
+                                    <td><?= "Rp.".number_format($row['barang_harga'])?></td>
+                                    <td><?= "Rp.".number_format($row['barang_ongkir'])?></td>
                                     <td><?= $row['kecamatan_name']?></td>
                                     <td>
                                         <div class="btn-group">
@@ -101,7 +105,16 @@
                                         </div>
                                     </td>
                                 </tr>
+                            <?php $tbarang += $row['barang_harga']; $tongkir += $row['barang_ongkir']; ?>
                             <?php } ?>
+                            <tr>
+                                <td><b>Total</b></td>
+                                <td></td>
+                                <td><?= "Rp.".number_format($tbarang) ?></td>
+                                <td><?= "Rp.".number_format($tongkir) ?></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -157,13 +170,13 @@
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label for="">Harga Barang</label>
-                                                    <input type="text" class="form-control" name="barang_harga" placeholder="Masukkan Harga Barang">
+                                                    <input type="text" id="rupiah" class="form-control" name="barang_harga" data-a-sign="" data-a-dec="," data-a-sep="." placeholder="Masukkan Harga Barang">
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label for="">Ongkir</label>
-                                                    <input type="text" class="form-control" name="barang_ongkir" placeholder="Masukkan Ongkir Barang">
+                                                    <input type="text" id="rupiah2" class="form-control" name="barang_ongkir" data-a-sign="" data-a-dec="," data-a-sep="." placeholder="Masukkan Ongkir Barang">
                                                 </div>
                                             </div>
                                             <div class="col-12">
@@ -203,8 +216,56 @@
 <?= $this->section('javascript') ?>
 <script src="<?= base_url('assets/vendors/simple-datatables/simple-datatables.js')?>"></script>
 <script>
-    // Simple Datatable
-    let table1 = document.querySelector('#table1');
-    let dataTable = new simpleDatatables.DataTable(table1);
+    var rupiah = document.getElementById('rupiah');
+    rupiah.addEventListener('keyup', function(e){
+        // tambahkan 'Rp.' pada saat form di ketik
+        // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+        rupiah.value = formatRupiah(this.value);
+    });
+
+    /* Fungsi formatRupiah */
+    function formatRupiah(angka){
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+        split   		= number_string.split(','),
+        sisa     		= split[0].length % 3,
+        rupiah     		= split[0].substr(0, sisa),
+        ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+        // tambahkan titik jika yang di input sudah menjadi angka ribuan
+        if(ribuan){
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+        }
+
+        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+        return rupiah;
+    }
+    
+    var rupiah2 = document.getElementById('rupiah2');
+    rupiah2.addEventListener('keyup', function(e){
+        // tambahkan 'Rp.' pada saat form di ketik
+        // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+        rupiah2.value = formatRupiah(this.value);
+    });
+
+    /* Fungsi formatRupiah */
+    function formatRupiah(angka){
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+        split   		= number_string.split(','),
+        sisa     		= split[0].length % 3,
+        rupiah     		= split[0].substr(0, sisa),
+        ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+        // tambahkan titik jika yang di input sudah menjadi angka ribuan
+        if(ribuan){
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+        }
+
+        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+        return rupiah;
+    }
 </script>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <?= $this->endSection() ?>

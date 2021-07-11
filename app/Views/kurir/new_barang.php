@@ -36,17 +36,19 @@
                             <th>Kode</th>
                             <th>Kecamatan</th>
                             <th>Nama</th>
+                            <th>Harga</th>
                             <th>Ongkir</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach($barang as $key => $row){ ?>
+                    <?php $total=0;foreach($barang as $key => $row){ ?>
                         <tr>
                             <td><?= $row['barang_kode']?></td>
                             <td><?= $row['kecamatan_name']?></td>
                             <td><?= $row['barang_name']?></td>
-                            <td><?= $row['barang_ongkir']?></td>
+                            <td><?= "Rp.".number_format($row['barang_harga'])?></td>
+                            <td><?= "Rp.".number_format($row['barang_ongkir'])?></td>
                             <td>
                                 <div class="btn-group">
                                     <form action="<?php echo base_url('kurir/barang/update'); ?>" method="POST" class="form" onclick="return confirm('Apakah Anda yakin ingin mengantar barang ini');">
@@ -77,18 +79,20 @@
                                 <th>Kode</th>
                                 <th>Kecamatan</th>
                                 <th>Nama</th>
+                                <th>Harga</th>
                                 <th>Ongkir</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach($antar as $key => $row){ ?>
+                            <?php $tbarang=0;$tongkir=0;foreach($antar as $key => $row){ ?>
                                 <tr>
                                     <td><?= $row['barang_kode']?></td>
                                     <td><?= $row['kecamatan_name']?></td>
                                     <td><?= $row['barang_name']?></td>
-                                    <td><?= $row['barang_ongkir']?></td>
+                                    <td><?= "Rp.".number_format($row['barang_harga'])?></td>
+                                    <td><?= "Rp.".number_format($row['barang_ongkir'])?></td>
                                     <td>
                                         <div class="btn-group">
                                         <?php if($row['barang_status'] == "Sukses"){?>
@@ -113,7 +117,17 @@
                                         </div>
                                     </td>
                                 </tr>
+                            <?php $tbarang += $row['barang_harga']; $tongkir += $row['barang_ongkir']; ?>
                             <?php } ?>
+                            <tr>
+                                <td><b>Total</b></td>
+                                <td></td>
+                                <td></td>
+                                <td><?= "Rp.".number_format($tbarang) ?></td>
+                                <td><?= "Rp.".number_format($tongkir) ?></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

@@ -48,9 +48,9 @@
                                     <dt>Nama</dt>
                                     <dd><?php echo $barang['barang_name'];?></dd>
                                     <dt>Harga</dt>
-                                    <dd><?php echo $barang['barang_harga'];?></dd>
+                                    <dd><?php echo "Rp.".number_format($barang['barang_harga']);?></dd>
                                     <dt>Ongkir</dt>
-                                    <dd><?php echo $barang['barang_ongkir'];?></dd>       
+                                    <dd><?php echo "Rp.".number_format($barang['barang_ongkir']);?></dd>
                                     <dt>Kecamatan</dt>
                                     <dd><?php echo $barang['kecamatan_name'];?></dd>
                                 </dl>

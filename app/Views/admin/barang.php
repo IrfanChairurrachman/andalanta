@@ -41,7 +41,7 @@
                         <tr>
                             <th>Kode</th>
                             <th>Toko</th>
-                            <th>Kontak</th>
+                            <th>Harga Barang</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -51,7 +51,7 @@
                             <tr>
                                 <td><?= $row['barang_kode']?></td>
                                 <td><?= $row['barang_name']?></td>
-                                <td><?= $row['barang_harga']?></td>
+                                <td><?= "Rp.".number_format($row['barang_harga'])?></td>
                                 <td>
                                     <div class="btn-group">
                                     <?php if($row['barang_status'] == "Sukses"){?>
