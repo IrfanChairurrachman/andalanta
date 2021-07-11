@@ -40,7 +40,7 @@
                     <thead>
                         <tr>
                             <th>Kode</th>
-                            <th>Toko</th>
+                            <th>Nama</th>
                             <th>Harga Barang</th>
                             <th>Status</th>
                             <th>Action</th>

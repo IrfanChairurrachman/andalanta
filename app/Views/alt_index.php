@@ -80,7 +80,7 @@
                                 if(!empty($data)){ ?>
                                 <div class="alert alert-info">
                                     <h5>Hi <?= $data['pesanan']['pesanan_name'] ?></h5>
-                                    <h6>Status Pesananmu: <?= $data['pesanan']['pesanan_status'] ?></h6>
+                                    <h6>Status Pesananta': <?= $data['pesanan']['pesanan_status'] ?></h6>
                                     <?php if(!empty($data['barang'])){ ?>
                                     <p>Rincian Barang:</p>
                                     <ul>
