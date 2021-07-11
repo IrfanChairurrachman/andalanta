@@ -36,11 +36,12 @@ class Kurir extends BaseController
         $data['antar'] = $this->pesanan_model
                                 ->join('kecamatan', 'kecamatan.kecamatan_id = pesanan.kecamatan_id')
                                 ->where('pesanan_status', 'On Process')
+                                ->where('kurir_id', $id)
                                 ->orGroupStart()
                                     ->where('pesanan_status', 'Sukses')
                                     ->where('DATE(created_at)', $myTime)
                                 ->groupEnd()
-                                ->where('kurir_id', $id)->findAll();
+                                ->findAll();
         
         $data['title'] = 'Dashboard';
 
