@@ -26,6 +26,12 @@
                 <div class="card">
                     <div class="card-content">
                         <div class="card-body">
+                            <?php
+                                if(!empty(session()->getFlashdata('success'))){ ?>
+                                <div class="alert alert-success">
+                                    <?php echo session()->getFlashdata('success');?>
+                                </div>     
+                            <?php } ?>
                             <!-- Table with outer spacing -->
                             <div class="table-responsive">
                                 <dl class="dl-horizontal">
@@ -69,6 +75,7 @@
                     <table class="table table-striped" id="table1">
                         <thead>
                             <tr>
+                                <th>Tgl</th>
                                 <th>Kode</th>
                                 <th>Nama</th>
                                 <th>Harga</th>
@@ -80,6 +87,7 @@
                         <tbody>
                             <?php $tbarang=0;$tongkir=0;foreach($barang as $key => $row){ ?>
                                 <tr>
+                                    <td><?= date('j F Y', strtotime($row['created_at']))?></td>
                                     <td><?= $row['barang_kode']?></td>
                                     <td><?= $row['barang_name']?></td>
                                     <td><?= "Rp.".number_format($row['barang_harga'])?></td>
@@ -109,6 +117,7 @@
                             <?php } ?>
                             <tr>
                                 <td><b>Total</b></td>
+                                <td></td>
                                 <td></td>
                                 <td><?= "Rp.".number_format($tbarang) ?></td>
                                 <td><?= "Rp.".number_format($tongkir) ?></td>
@@ -153,10 +162,9 @@
                                                     <select name="barang_kode" id="" class="form-control">
                                                         <option value="">Pilih Kurir</option>
                                                         <?php foreach($kurir as $key => $row){ ?>
-                                                            <option value="<?= $row['kode']?>-<?php echo $date;?>-"><?= $row['kode']?></option>
+                                                            <option value="<?= $row['kode']?>-"><?= $row['kode']?></option>
                                                         <?php } ?>
                                                     </select>
-                                                    <span class="input-group-text" id="basic-addon1">-<?php echo $date;?>-</span>
                                                     <input type="number" class="form-control" name="kode" placeholder="Nomor Kode"
                                                         aria-label="Username" aria-describedby="basic-addon1">
                                                 </div>
@@ -216,6 +224,9 @@
 <?= $this->section('javascript') ?>
 <script src="<?= base_url('assets/vendors/simple-datatables/simple-datatables.js')?>"></script>
 <script>
+    let table1 = document.querySelector('#table1');
+    let dataTable = new simpleDatatables.DataTable(table1);
+
     var rupiah = document.getElementById('rupiah');
     rupiah.addEventListener('keyup', function(e){
         // tambahkan 'Rp.' pada saat form di ketik

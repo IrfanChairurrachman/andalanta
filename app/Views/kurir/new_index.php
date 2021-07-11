@@ -27,6 +27,7 @@
                 <table class="table table-striped" id="table1">
                     <thead>
                         <tr>
+                            <th>Tanggal</th>
                             <th>Resi</th>
                             <th>Kecamatan</th>
                             <th>Toko</th>
@@ -37,6 +38,7 @@
                     <tbody>
                         <?php foreach($jemput as $key => $row){ ?>
                             <tr>
+                                <td><?= date('j F Y', strtotime($row['created_at']))?></td>
                                 <td><?= $row['pesanan_resi']?></td>
                                 <td><?= $row['kecamatan_name']?></td>
                                 <td><?= $row['pesanan_toko']?></td>
@@ -71,6 +73,7 @@
                     <table class="table table-striped" id="table2">
                         <thead>
                             <tr>
+                                <th>Tanggal</th>
                                 <th>Resi</th>
                                 <th>Kecamatan</th>
                                 <th>Toko</th>
@@ -81,6 +84,7 @@
                         <tbody>
                             <?php foreach($antar as $key => $row){ ?>
                                 <tr>
+                                    <td><?= date('j F Y', strtotime($row['created_at']))?></td>
                                     <td><?= $row['pesanan_resi']?></td>
                                     <td><?= $row['kecamatan_name']?></td>
                                     <td><?= $row['pesanan_toko']?></td>

@@ -39,9 +39,11 @@
                 <table class="table table-striped" id="table1">
                     <thead>
                         <tr>
+                            <th>Tanggal</th>
                             <th>Kode</th>
                             <th>Nama</th>
                             <th>Harga Barang</th>
+                            <th>Kurir Pengantar</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -49,9 +51,11 @@
                     <tbody>
                         <?php foreach($barang as $key => $row){ ?>
                             <tr>
+                                <td><?= date('j F Y', strtotime($row['created_at']))?></td>
                                 <td><?= $row['barang_kode']?></td>
                                 <td><?= $row['barang_name']?></td>
                                 <td><?= "Rp.".number_format($row['barang_harga'])?></td>
+                                <td><?= $row['name']?></td>
                                 <td>
                                     <div class="btn-group">
                                     <?php if($row['barang_status'] == "Sukses"){?>

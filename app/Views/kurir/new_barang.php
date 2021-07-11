@@ -33,6 +33,7 @@
                 <table class="table table-striped" id="table1">
                     <thead>
                         <tr>
+                            <th>Tanggal</th>
                             <th>Kode</th>
                             <th>Kecamatan</th>
                             <th>Nama</th>
@@ -44,6 +45,7 @@
                     <tbody>
                     <?php $total=0;foreach($barang as $key => $row){ ?>
                         <tr>
+                            <td><?= date('j F Y', strtotime($row['created_at']))?></td>
                             <td><?= $row['barang_kode']?></td>
                             <td><?= $row['kecamatan_name']?></td>
                             <td><?= $row['barang_name']?></td>
@@ -76,6 +78,7 @@
                     <table class="table table-striped" id="table2">
                         <thead>
                             <tr>
+                                <th>Tanggal</th>
                                 <th>Kode</th>
                                 <th>Kecamatan</th>
                                 <th>Nama</th>
@@ -88,6 +91,7 @@
                         <tbody>
                             <?php $tbarang=0;$tongkir=0;foreach($antar as $key => $row){ ?>
                                 <tr>
+                                    <td><?= date('j F Y', strtotime($row['created_at']))?></td>
                                     <td><?= $row['barang_kode']?></td>
                                     <td><?= $row['kecamatan_name']?></td>
                                     <td><?= $row['barang_name']?></td>
@@ -121,6 +125,7 @@
                             <?php } ?>
                             <tr>
                                 <td><b>Total</b></td>
+                                <td></td>
                                 <td></td>
                                 <td></td>
                                 <td><?= "Rp.".number_format($tbarang) ?></td>

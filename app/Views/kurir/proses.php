@@ -71,6 +71,7 @@
                     <table class="table table-striped" id="table1">
                         <thead>
                             <tr>
+                                <th>Tanggal</th>
                                 <th>Kode</th>
                                 <th>Nama</th>
                                 <th>Harga</th>
@@ -81,6 +82,7 @@
                         <tbody>
                             <?php $tbarang=0;$tongkir=0;foreach($barang as $key => $row){ ?>
                                 <tr>
+                                    <td><?= date('j F Y', strtotime($row['created_at']))?></td>
                                     <td><?= $row['barang_kode']?></td>
                                     <td><?= $row['barang_name']?></td>
                                     <td><?= "Rp.".number_format($row['barang_harga'])?></td>
@@ -91,6 +93,7 @@
                             <?php } ?>
                             <tr>
                                 <td><b>Total</b></td>
+                                <td></td>
                                 <td></td>
                                 <td><?= "Rp.".number_format($tbarang) ?></td>
                                 <td><?= "Rp.".number_format($tongkir) ?></td>
@@ -126,13 +129,13 @@
                         <form class="form form-vertical" method="POST" action="<?php echo base_url('kurir/barang/store'); ?>">
                             <div class="card-body">
                                 <form class="form form-vertical">
-                                <input type="hidden" name="barang_kode" value="<?php echo $kurir['kode'];?>-<?php echo $date;?>-">
+                                <input type="hidden" name="barang_kode" value="<?php echo $kurir['kode'];?>-">
                                 <input type="hidden" name="pesanan_id" value="<?php echo $pesanan['pesanan_id'];?>">
                                     <div class="form-body">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1"><?php echo $kurir['kode'];?>-<?php echo $date;?>-</span>
+                                                    <span class="input-group-text" id="basic-addon1"><?php echo $kurir['kode'];?>-</span>
                                                     <input type="number" class="form-control" name="kode" placeholder="Nomor Kode"
                                                         aria-label="Username" aria-describedby="basic-addon1">
                                                 </div>
