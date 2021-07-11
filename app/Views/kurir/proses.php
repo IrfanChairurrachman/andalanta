@@ -146,13 +146,13 @@
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label for="">Harga Barang</label>
-                                                    <input type="number" id="rupiah" class="form-control" name="barang_harga" placeholder="Masukkan Harga Barang">
+                                                    <input type="text" id="rupiah" class="form-control" name="barang_harga" placeholder="Masukkan Harga Barang">
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label for="">Ongkir</label>
-                                                    <input type="number" id="rupiah2" class="form-control" name="barang_ongkir" placeholder="Masukkan Ongkir Barang">
+                                                    <input type="text" id="rupiah2" class="form-control" name="barang_ongkir" placeholder="Masukkan Ongkir Barang">
                                                 </div>
                                             </div>
                                             <div class="col-12">

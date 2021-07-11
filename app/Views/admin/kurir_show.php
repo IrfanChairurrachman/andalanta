@@ -195,7 +195,7 @@
                                         <tr>
                                             <td><?= $row['pesanan_resi']?></td>
                                             <td><?= $row['pesanan_name']?></td>
-                                            <td><?= $row['total']?></td>
+                                            <td><?= "Rp.".number_format($row['total'])?></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
