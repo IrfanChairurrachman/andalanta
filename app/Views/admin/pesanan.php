@@ -34,7 +34,13 @@
             <div class="card-header">
                 Daftar Pesanan Masuk
                 <a href="<?php echo base_url('admin/pesanan/create'); ?>" class="btn btn-primary float-lg-end">Tambah</a>
-                <a href="<?php echo base_url('admin/pesanan/export'); ?>" class="btn btn-dark float-lg-end">Export</a>
+                <form method="POST" action="<?php echo base_url('admin/pesanan/export'); ?>">
+                    <label for="start">Start:</label>
+                    <input type="date" name="start">
+                    <label for="end">End:</label>
+                    <input type="date" name="end">
+                    <button type="submit" class="btn btn-dark">Export</button>
+                </form>
             </div>
             <div class="card-body">
                 <table class="table table-striped" id="table1">

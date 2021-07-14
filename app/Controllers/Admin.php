@@ -84,10 +84,20 @@ class Admin extends BaseController
 
     public function export_pesanan()
     {  
-        // ambil data transaction dari database
+
+        $start = $this->request->getPost('start');
+        $end = $this->request->getPost('end');
+
+        // $sql = "SELECT * FROM pesanan WHERE pesanan.created_at BETWEEN ? AND ? JOIN kecamatan ON kecamatan.kecamatan_id=pesanan.kecamatan_id JOIN users ON users.id=pesanan.kurir_id ORDER BY MONTH(pesanan.created_at) DESC";
+        // $pesanan = $this->pesanan_model->query($sql, [$start, $end])->getResultArray();
+
+        // dd($pesanan);
+        // // ambil data transaction dari database
         $pesanan = $this->pesanan_model
                         ->join('kecamatan', 'kecamatan.kecamatan_id = pesanan.kecamatan_id')
                         ->join('users', 'users.id = pesanan.kurir_id')
+                        ->where('pesanan.created_at >=', $start)
+                        ->where('pesanan.created_at <=', $end)
                         ->orderBy('pesanan.created_at', 'DESC')
                         ->get()
                         ->getResultArray();
@@ -108,7 +118,8 @@ class Admin extends BaseController
                     ->setCellValue('H1', 'Sosmed')
                     ->setCellValue('I1', 'Nama Penjemput')
                     ->setCellValue('J1', 'Kode Kurir')
-                    ->setCellValue('K1', 'Waktu');
+                    ->setCellValue('K1', 'Waktu')
+                    ->setCellValue('L1', 'Status');
         // define kolom dan nomor
         $kolom = 2;
         $nomor = 1;
@@ -126,7 +137,8 @@ class Admin extends BaseController
                         ->setCellValue('H' . $kolom, $data['pesanan_sosmed'])
                         ->setCellValue('I' . $kolom, $data['name'])
                         ->setCellValue('J' . $kolom, $data['kode'])
-                        ->setCellValue('K' . $kolom, date('j F Y', strtotime($data['created_at'])));
+                        ->setCellValue('K' . $kolom, date('j F Y', strtotime($data['created_at'])))
+                        ->setCellValue('L' . $kolom, $data['pesanan_status']);
     
             $kolom++;
             $nomor++;
@@ -259,11 +271,19 @@ class Admin extends BaseController
     }
 
     public function export_barang()
-    {  
+    {
+        $start = $this->request->getPost('start');
+        $end = $this->request->getPost('end');  
         // ambil data transaction dari database
         $barang = $this->barang_model
+                        ->select('pesanan.pesanan_resi,barang.barang_id,pesanan.pesanan_id,barang.barang_kode,
+                        barang.barang_name,barang.barang_harga,barang.barang_ongkir,barang.barang_status,
+                        barang.barang_keterangan,users.name,users.kode,barang.kecamatan_id,kecamatan.kecamatan_name,barang.created_at')
+                        ->join('pesanan', 'pesanan.pesanan_id = barang.pesanan_id')
                         ->join('kecamatan', 'kecamatan.kecamatan_id = barang.kecamatan_id')
                         ->join('users', 'users.id = barang.kurir_id')
+                        ->where('barang.created_at >=', $start)
+                        ->where('barang.created_at <=', $end)
                         ->orderBy('barang.created_at', 'DESC')
                         ->get()
                         ->getResultArray();
@@ -275,39 +295,49 @@ class Admin extends BaseController
         // Buat custom header pada file excel
         $spreadsheet->setActiveSheetIndex(0)
                     ->setCellValue('A1', 'No')
-                    ->setCellValue('B1', 'Kode')
-                    ->setCellValue('C1', 'Nama')
-                    ->setCellValue('D1', 'Harga')
-                    ->setCellValue('E1', 'Ongkir')
-                    ->setCellValue('F1', 'Kecamatan')
-                    ->setCellValue('G1', 'Status')
-                    ->setCellValue('H1', 'Keterangan')
-                    ->setCellValue('I1', 'Nama Pengantar')
-                    ->setCellValue('J1', 'Kode Kurir')
-                    ->setCellValue('K1', 'Waktu');
+                    ->setCellValue('B1', 'Resi')
+                    ->setCellValue('C1', 'Kode')
+                    ->setCellValue('D1', 'Nama')
+                    ->setCellValue('E1', 'Harga')
+                    ->setCellValue('F1', 'Ongkir')
+                    ->setCellValue('G1', 'Kecamatan')
+                    ->setCellValue('H1', 'Status')
+                    ->setCellValue('I1', 'Keterangan')
+                    ->setCellValue('J1', 'Nama Pengantar')
+                    ->setCellValue('K1', 'Kode Kurir')
+                    ->setCellValue('L1', 'Waktu');
         // define kolom dan nomor
         $kolom = 2;
         $nomor = 1;
         // tambahkan data transaction ke dalam file excel
+        $otot = 0;
+        $htot = 0;
         foreach($barang as $data) {
 
             $spreadsheet->setActiveSheetIndex(0)
                         ->setCellValue('A' . $kolom, $nomor)
-                        ->setCellValue('B' . $kolom, $data['barang_kode'])
-                        ->setCellValue('C' . $kolom, $data['barang_name'])
-                        ->setCellValue('D' . $kolom, "Rp. ".number_format($data['barang_harga']))
-                        ->setCellValue('E' . $kolom, "Rp. ".number_format($data['barang_ongkir']))
-                        ->setCellValue('F' . $kolom, $data['kecamatan_name'])
-                        ->setCellValue('G' . $kolom, $data['barang_status'])
-                        ->setCellValue('H' . $kolom, $data['barang_keterangan'])
-                        ->setCellValue('I' . $kolom, $data['name'])
-                        ->setCellValue('J' . $kolom, $data['kode'])
-                        ->setCellValue('K' . $kolom, date('j F Y', strtotime($data['created_at'])));
+                        ->setCellValue('B' . $kolom, $data['pesanan_resi'])
+                        ->setCellValue('C' . $kolom, $data['barang_kode'])
+                        ->setCellValue('D' . $kolom, $data['barang_name'])
+                        ->setCellValue('E' . $kolom, "Rp. ".number_format($data['barang_harga']))
+                        ->setCellValue('F' . $kolom, "Rp. ".number_format($data['barang_ongkir']))
+                        ->setCellValue('G' . $kolom, $data['kecamatan_name'])
+                        ->setCellValue('H' . $kolom, $data['barang_status'])
+                        ->setCellValue('I' . $kolom, $data['barang_keterangan'])
+                        ->setCellValue('J' . $kolom, $data['name'])
+                        ->setCellValue('K' . $kolom, $data['kode'])
+                        ->setCellValue('L' . $kolom, date('j F Y', strtotime($data['created_at'])));
     
             $kolom++;
             $nomor++;
+            $otot += $data['barang_ongkir'];
+            $htot += $data['barang_harga'];
     
         }
+        $spreadsheet->setActiveSheetIndex(0)
+                        ->setCellValue('A' . $kolom, 'Total')
+                        ->setCellValue('E' . $kolom, "Rp. ".number_format($htot))
+                        ->setCellValue('F' . $kolom, "Rp. ".number_format($otot));
         // download spreadsheet dalam bentuk excel .xlsx
         $writer = new Xlsx($spreadsheet);
     
