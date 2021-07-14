@@ -33,27 +33,46 @@ class Pesanan_model extends Model
     {
         return $this->db->table($this->table)->delete(['pesanan_id' => $id]);
     }
-    public function getGrafik()
+    public function getGrafik($bstart = false, $bend = false)
     {
-        $query = $this->db->query("SELECT MONTHNAME(created_at) as month, COUNT(pesanan_id) as total FROM pesanan GROUP BY MONTHNAME(created_at) ORDER BY MONTH(created_at)");
-        $hasil = [];
-        if(!empty($query)){
-            foreach($query->getResultArray() as $data) {
-                $hasil[] = $data;
-            }
+        // $query = $this->table('pesanan')
+        //                 ->join('kecamatan', 'kecamatan.kecamatan_id = pesanan.kecamatan_id')
+        //                 ->orderBy('pesanan.created_at', 'DESC')
+        //                 ->get()
+        //                 ->getResultArray();
+        if($bstart === false){
+            $sql = "SELECT MONTHNAME(created_at) as month, COUNT(pesanan_id) as total FROM pesanan GROUP BY MONTHNAME(created_at) ORDER BY MONTH(created_at)";
+            $query = $this->db->query($sql)->getResultArray();
+            return $query;
+        } else{
+            $sql = "SELECT MONTHNAME(created_at) as month, COUNT(pesanan_id) as total FROM pesanan WHERE created_at BETWEEN ? AND ? GROUP BY MONTHNAME(created_at) ORDER BY MONTH(created_at)";
+            $query = $this->db->query($sql, [$bstart, $bend])->getResultArray();
+            // $hasil = [];
+            // if(!empty($query)){
+            //     foreach($query->getResultArray() as $data) {
+            //         $hasil[] = $data;
+            //     }
+            // }
+            // return $hasil;
+            return $query;
         }
-        return $hasil;
     }
-    public function getKecamatan()
+    public function getKecamatan($start = false, $end = false)
     {
-        $query = $this->db->query("SELECT kecamatan.kecamatan_name as kecamatan, COUNT(pesanan.pesanan_id) as total FROM pesanan RIGHT JOIN kecamatan ON pesanan.kecamatan_id=kecamatan.kecamatan_id GROUP BY kecamatan.kecamatan_name ORDER BY kecamatan.kecamatan_name");
-        $hasil = [];
-        if(!empty($query)){
-            foreach($query->getResultArray() as $data) {
-                $hasil[] = $data;
+        if($start === false){
+            $query = $this->db->query("SELECT kecamatan.kecamatan_name as kecamatan, COUNT(pesanan.pesanan_id) as total FROM pesanan RIGHT JOIN kecamatan ON pesanan.kecamatan_id=kecamatan.kecamatan_id GROUP BY kecamatan.kecamatan_name ORDER BY kecamatan.kecamatan_name");
+            $hasil = [];
+            if(!empty($query)){
+                foreach($query->getResultArray() as $data) {
+                    $hasil[] = $data;
+                }
             }
+            return $hasil;
+        } else{
+            $sql = "SELECT kecamatan.kecamatan_name as kecamatan, COUNT(pesanan.pesanan_id) as total FROM pesanan RIGHT JOIN kecamatan ON pesanan.kecamatan_id=kecamatan.kecamatan_id AND pesanan.created_at BETWEEN ? AND ? GROUP BY kecamatan.kecamatan_name ORDER BY kecamatan.kecamatan_name";
+            $query = $this->db->query($sql, [$start, $end])->getResultArray();
+            return $query;
         }
-        return $hasil;
     }
 }
 ?>

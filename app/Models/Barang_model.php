@@ -38,28 +38,40 @@ class Barang_model extends Model
     {
         return $this->db->table($this->table)->delete(['barang_id' => $id]);
     }
-    public function getGrafik()
+    public function getGrafik($bstart = false, $bend = false)
     {
-        $query = $this->db->query("SELECT MONTHNAME(created_at) as month, COUNT(barang_id) as total FROM barang GROUP BY MONTHNAME(created_at) ORDER BY MONTH(created_at)");
-        $hasil = [];
-        if(!empty($query)){
-            foreach($query->getResultArray() as $data) {
-                $hasil[] = $data;
+        if($bstart === false){
+            $query = $this->db->query("SELECT MONTHNAME(created_at) as month, COUNT(barang_id) as total FROM barang GROUP BY MONTHNAME(created_at) ORDER BY MONTH(created_at)");
+            $hasil = [];
+            if(!empty($query)){
+                foreach($query->getResultArray() as $data) {
+                    $hasil[] = $data;
+                }
             }
+            return $hasil;
+        } else{
+            $sql = "SELECT MONTHNAME(created_at) as month, COUNT(barang_id) as total FROM barang WHERE created_at BETWEEN ? AND ? GROUP BY MONTHNAME(created_at) ORDER BY MONTH(created_at)";
+            $query = $this->db->query($sql, [$bstart, $bend])->getResultArray();
+            return $query;
         }
-        return $hasil;
     }
 
-    public function getKecamatan()
+    public function getKecamatan($start = false, $end = false)
     {
-        $query = $this->db->query("SELECT kecamatan.kecamatan_name as kecamatan, COUNT(barang.barang_id) as total FROM barang RIGHT JOIN kecamatan ON barang.kecamatan_id=kecamatan.kecamatan_id GROUP BY kecamatan.kecamatan_name ORDER BY kecamatan.kecamatan_name");
-        $hasil = [];
-        if(!empty($query)){
-            foreach($query->getResultArray() as $data) {
-                $hasil[] = $data;
+        if($start === false){
+            $query = $this->db->query("SELECT kecamatan.kecamatan_name as kecamatan, COUNT(barang.barang_id) as total FROM barang RIGHT JOIN kecamatan ON barang.kecamatan_id=kecamatan.kecamatan_id GROUP BY kecamatan.kecamatan_name ORDER BY kecamatan.kecamatan_name");
+            $hasil = [];
+            if(!empty($query)){
+                foreach($query->getResultArray() as $data) {
+                    $hasil[] = $data;
+                }
             }
+            return $hasil;
+        } else{
+            $sql = "SELECT kecamatan.kecamatan_name as kecamatan, COUNT(barang.barang_id) as total FROM barang RIGHT JOIN kecamatan ON barang.kecamatan_id=kecamatan.kecamatan_id AND barang.created_at BETWEEN ? AND ? GROUP BY kecamatan.kecamatan_name ORDER BY kecamatan.kecamatan_name";
+            $query = $this->db->query($sql, [$start, $end])->getResultArray();
+            return $query;
         }
-        return $hasil;
     }
 }
 ?>

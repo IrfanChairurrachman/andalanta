@@ -64,12 +64,19 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Grafik per Bulan</h4>
+                            <h4>Grafik per Bulan </h4>
+                            <form method="POST" action="<?php echo base_url('admin'); ?>">
+                                <label for="start">Start:</label>
+                                <input type="date" name="bstart" value="<?php echo empty($bstart) ? '' : $bstart ?>">
+                                <label for="end">End:</label>
+                                <input type="date" name="bend" value="<?php echo empty($bend) ? '' : $bend ?>">
+                                <button type="submit" class="btn btn-dark">Pilih</button>
+                            </form>
                         </div>
                         <div class="card-body">
                             <canvas id="grafik"></canvas>
                             <?php 
-                                if(isset($grafik_barang)){
+                                if(!empty($grafik_barang)){
                                     foreach($grafik_barang as $data){
                                         $btotal[] = $data['total'];
                                         $bmonth[] = $data['month'];
@@ -77,7 +84,7 @@
                                 }
                             ?>
                             <?php 
-                                if(isset($grafik_pesanan)){
+                                if(!empty($grafik_pesanan)){
                                     foreach($grafik_pesanan as $data){
                                         $ptotal[] = $data['total'];
                                         $pmonth[] = $data['month'];
@@ -93,11 +100,18 @@
                     <div class="card">
                         <div class="card-header">
                             <h4>Grafik per Kecamatan</h4>
+                            <form method="POST" action="<?php echo base_url('admin'); ?>">
+                                <label for="start">Start:</label>
+                                <input type="date" name="start" value="<?php echo empty($start) ? '' : $start ?>">
+                                <label for="end">End:</label>
+                                <input type="date" name="end" value="<?php echo empty($end) ? '' : $end ?>">
+                                <button type="submit" class="btn btn-dark">Pilih</button>
+                            </form>
                         </div>
                         <div class="card-body">
                             <canvas id="grafik1"></canvas>
                             <?php 
-                                if(isset($grafik_barang_kecamatan)){
+                                if(!empty($grafik_barang_kecamatan)){
                                     foreach($grafik_barang_kecamatan as $data){
                                         $bktotal[] = $data['total'];
                                         $bkkecamatan[] = $data['kecamatan'];
@@ -105,7 +119,7 @@
                                 }
                             ?>
                             <?php 
-                                if(isset($grafik_pesanan_kecamatan)){
+                                if(!empty($grafik_pesanan_kecamatan)){
                                     foreach($grafik_pesanan_kecamatan as $data){
                                         $pktotal[] = $data['total'];
                                         $pkkecamatan[] = $data['kecamatan'];
@@ -142,7 +156,7 @@
 <script src="<?= base_url('assets/vendors/chartjs/Chart.min.js')?>"></script>
 <script src="<?= base_url('assets/js/pages/ui-chartjs.js')?>"></script>
 
-<?php if(isset($grafik_barang)){?>
+<?php if(!empty($grafik_barang)){?>
 <script>
 var chart2 = document.getElementById("grafik").getContext('2d');
 var areaChart2 = new Chart(chart2, {
@@ -192,7 +206,11 @@ var areaChart2 = new Chart(chart2, {
     }
   }
 });
+</script>
+<?php } ?>
 
+<?php if(!empty($grafik_barang_kecamatan)){?>
+<script>
 var chart = document.getElementById("grafik1").getContext('2d');
 var areaChart = new Chart(chart, {
   type: 'bar',

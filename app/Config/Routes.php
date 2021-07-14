@@ -43,6 +43,7 @@ $routes->get('/logout', 'Login::logout', ['filter' => 'ceklogin']);
 
 // ADMIN ROUTE
 $routes->get('admin', 'Home::admin', ['filter' => 'ceklogin']);
+$routes->post('admin', 'Home::adminpost', ['filter' => 'ceklogin']);
 $routes->get('admin/pesanan', 'Admin::pesanan', ['filter' => 'ceklogin']);
 $routes->get('admin/pesanan/create', 'Admin::create_pesanan', ['filter' => 'ceklogin']);
 $routes->get('admin/pesanan/(:num)', 'Admin::show/$1', ['filter' => 'ceklogin']);
