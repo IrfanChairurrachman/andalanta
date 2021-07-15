@@ -125,7 +125,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Grafik per Kecamatan</h4>
+                            <h4>Grafik Pesanan per Kecamatan</h4>
                         </div>
                         <div class="card-body">
                             <canvas id="grafik1"></canvas>
@@ -145,7 +145,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Grafik per Kecamatan</h4>
+                            <h4>Grafik Barang per Kecamatan</h4>
                         </div>
                         <div class="card-body">
                             <canvas id="grafik2"></canvas>
