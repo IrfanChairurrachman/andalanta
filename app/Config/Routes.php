@@ -45,6 +45,7 @@ $routes->get('/logout', 'Login::logout', ['filter' => 'ceklogin']);
 $routes->get('admin', 'Home::admin', ['filter' => 'ceklogin']);
 $routes->post('admin', 'Home::adminpost', ['filter' => 'ceklogin']);
 $routes->get('admin/pesanan', 'Admin::pesanan', ['filter' => 'ceklogin']);
+$routes->post('admin/pesanan', 'Admin::pesananpost', ['filter' => 'ceklogin']);
 $routes->get('admin/pesanan/create', 'Admin::create_pesanan', ['filter' => 'ceklogin']);
 $routes->get('admin/pesanan/(:num)', 'Admin::show/$1', ['filter' => 'ceklogin']);
 $routes->get('admin/pesanan/edit/(:num)', 'Admin::edit_pesanan/$1', ['filter' => 'ceklogin']);
@@ -53,6 +54,7 @@ $routes->get('admin/pesanan/delete/(:num)', 'Admin::delete_pesanan/$1', ['filter
 $routes->post('admin/pesanan/export', 'Admin::export_pesanan', ['filter' => 'ceklogin']);
 
 $routes->get('admin/barang', 'Admin::barang', ['filter' => 'ceklogin']);
+$routes->post('admin/barang', 'Admin::barangpost', ['filter' => 'ceklogin']);
 $routes->get('admin/barang/create', 'Admin::create_barang', ['filter' => 'ceklogin']);
 $routes->get('admin/barang/(:num)', 'Admin::show_barang/$1', ['filter' => 'ceklogin']);
 $routes->get('admin/barang/edit/(:num)', 'Admin::edit_barang/$1', ['filter' => 'ceklogin']);

@@ -51,11 +51,15 @@ class Home extends BaseController
         }
         $data['grafik_pesanan'] = $this->pesanan_model->getGrafik();
         $data['grafik_barang'] = $this->barang_model->getGrafik();
-        $data['grafik_barang_kecamatan'] = $this->barang_model->getKecamatan();
+
+        $data['grafik_barang_masuk'] = $this->barang_model->getKecamatan2();
+        $data['grafik_barang_keluar'] = $this->barang_model->getKecamatan();
         $data['grafik_pesanan_kecamatan'] = $this->pesanan_model->getKecamatan();
-        $data['kurir'] = $this->user_model->where('role', 'Kurir')->countAllResults();
-        $data['pesanan'] = $this->pesanan_model->where('pesanan_status', 'Sukses')->countAllResults();
-        $data['barang'] = $this->barang_model->where('barang_status', 'Sukses')->countAllResults();
+
+        $data['pesanan'] = $this->pesanan_model->where('pesanan_status !=', 'Sukses')->countAllResults();
+        $data['barang'] = $this->barang_model->where('barang_status !=', 'Sukses')->countAllResults();
+        $data['barang_masuk'] = $this->barang_model->where('barang_status', 'Terjemput')->countAllResults();
+        $data['barang_keluar'] = $this->barang_model->where('barang_status !=', 'Terjemput')->countAllResults();
 
         $id = $_SESSION['id'];
 
@@ -81,21 +85,20 @@ class Home extends BaseController
         $data['start'] = $this->request->getPost('start');
         $data['end'] = $this->request->getPost('end');
         
-        $data['bstart'] = $this->request->getPost('bstart');
-        $data['bend'] = $this->request->getPost('bend');
-        
         empty($data['start']) ? $start = '2021-01-01' : $start = $data['start'];
         empty($data['end']) ? $end = Time::today('Asia/Makassar')->toLocalizedString('yyyy-MM-dd') : $end = $data['end'];
-        empty($data['bstart']) ? $bstart = '2021-01-01' : $bstart = $data['bstart'];
-        empty($data['bend']) ? $bend = Time::today('Asia/Makassar')->toLocalizedString('yyyy-MM-dd') : $bend = $data['bend'];
 
-        $data['grafik_pesanan'] = $this->pesanan_model->getGrafik($bstart, $bend);
-        $data['grafik_barang'] = $this->barang_model->getGrafik($bstart, $bend);
-        $data['grafik_barang_kecamatan'] = $this->barang_model->getKecamatan($start, $end);
+        $data['grafik_pesanan'] = $this->pesanan_model->getGrafik($start, $end);
+        $data['grafik_barang'] = $this->barang_model->getGrafik($start, $end);
+
+        $data['grafik_barang_masuk'] = $this->barang_model->getKecamatan2($start, $end);
+        $data['grafik_barang_keluar'] = $this->barang_model->getKecamatan($start, $end);
         $data['grafik_pesanan_kecamatan'] = $this->pesanan_model->getKecamatan($start, $end);
-        $data['kurir'] = $this->user_model->where('role', 'Kurir')->countAllResults();
-        $data['pesanan'] = $this->pesanan_model->where('pesanan_status', 'Sukses')->countAllResults();
-        $data['barang'] = $this->barang_model->where('barang_status', 'Sukses')->countAllResults();
+        
+        $data['pesanan'] = $this->pesanan_model->where('pesanan_status !=', 'Sukses')->countAllResults();
+        $data['barang'] = $this->barang_model->where('barang_status !=', 'Sukses')->countAllResults();
+        $data['barang_masuk'] = $this->barang_model->where('barang_status', 'Terjemput')->countAllResults();
+        $data['barang_keluar'] = $this->barang_model->where('barang_status !=', 'Terjemput')->countAllResults();
 
         $id = $_SESSION['id'];
 
@@ -103,12 +106,6 @@ class Home extends BaseController
 
         $data['title'] = 'Dashboard';
         
-        // if(!empty($bstart)){
-        //     echo "ADA";
-        // } else{
-        //     echo "TIDAK ADA";
-        // }
-        // dd($bstart);
 		return view('admin/new_index', $data);
 	}
 

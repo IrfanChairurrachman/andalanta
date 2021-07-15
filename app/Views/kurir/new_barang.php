@@ -71,11 +71,11 @@
     </section>
     <section>
             <div class="card">
-                <div class="card-header">
+                <div class="card-header bg-light">
                     Barang yang Saya Antar
                 </div>
-                <div class="card-body">
-                    <table class="table table-striped" id="table2">
+                <div class="card-body bg-light">
+                    <table class="table table-striped table-light" id="table2">
                         <thead>
                             <tr>
                                 <th>Tanggal</th>
@@ -123,17 +123,17 @@
                                 </tr>
                             <?php $tbarang += $row['barang_harga']; $tongkir += $row['barang_ongkir']; ?>
                             <?php } ?>
+                        </tbody>
                             <tr>
                                 <td><b>Total</b></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td><?= "Rp.".number_format($tbarang) ?></td>
-                                <td><?= "Rp.".number_format($tongkir) ?></td>
+                                <td><b><?= "Rp.".number_format($tbarang) ?></b></td>
+                                <td><b><?= "Rp.".number_format($tongkir) ?></b></td>
                                 <td></td>
                                 <td></td>
                             </tr>
-                        </tbody>
                     </table>
                 </div>
             </div>

@@ -34,8 +34,33 @@ class Admin extends BaseController
 
 	public function pesanan()
 	{
-		$data['jemput'] = $this->pesanan_model->getPesanan();
+        $data['jemput'] = $this->pesanan_model
+                                ->join('kecamatan', 'kecamatan.kecamatan_id = pesanan.kecamatan_id')
+                                ->join('users', 'pesanan.kurir_id=users.id', 'left')
+                                ->orderBy('pesanan.created_at', 'DESC')->get()->getResultArray();
+		// $data['jemput'] = $this->pesanan_model->getPesanan();
         $data['title'] = "Pesanan";
+        // dd($data['jemput']);
+		return view('admin/pesanan', $data);
+	}
+
+    public function pesananpost()
+	{
+        $data['start'] = $this->request->getPost('start');
+        $data['end'] = $this->request->getPost('end');
+
+        empty($data['start']) ? $start = '2021-01-01' : $start = $data['start'];
+        empty($data['end']) ? $end = Time::today('Asia/Makassar')->toLocalizedString('yyyy-MM-dd') : $end = $data['end'];
+
+        $data['jemput'] = $this->pesanan_model
+                                ->join('kecamatan', 'kecamatan.kecamatan_id = pesanan.kecamatan_id')
+                                ->join('users', 'pesanan.kurir_id=users.id', 'left')
+                                ->where('pesanan.created_at >=', $start)
+                                ->where('pesanan.created_at <=', $end)
+                                ->orderBy('pesanan.created_at', 'DESC')->get()->getResultArray();
+		// $data['jemput'] = $this->pesanan_model->getPesanan();
+        $data['title'] = "Pesanan";
+        // dd($data['jemput']);
 		return view('admin/pesanan', $data);
 	}
 
@@ -88,6 +113,9 @@ class Admin extends BaseController
         $start = $this->request->getPost('start');
         $end = $this->request->getPost('end');
 
+        empty($start) ? $start = '2021-01-01' : $start = $start;
+        empty($end) ? $end = Time::today('Asia/Makassar')->toLocalizedString('yyyy-MM-dd') : $end = $end;
+
         // $sql = "SELECT * FROM pesanan WHERE pesanan.created_at BETWEEN ? AND ? JOIN kecamatan ON kecamatan.kecamatan_id=pesanan.kecamatan_id JOIN users ON users.id=pesanan.kurir_id ORDER BY MONTH(pesanan.created_at) DESC";
         // $pesanan = $this->pesanan_model->query($sql, [$start, $end])->getResultArray();
 
@@ -95,7 +123,7 @@ class Admin extends BaseController
         // // ambil data transaction dari database
         $pesanan = $this->pesanan_model
                         ->join('kecamatan', 'kecamatan.kecamatan_id = pesanan.kecamatan_id')
-                        ->join('users', 'users.id = pesanan.kurir_id')
+                        ->join('users', 'users.id = pesanan.kurir_id', 'left')
                         ->where('pesanan.created_at >=', $start)
                         ->where('pesanan.created_at <=', $end)
                         ->orderBy('pesanan.created_at', 'DESC')
@@ -195,6 +223,24 @@ class Admin extends BaseController
         echo view('admin/barang', $data);
     }
 
+    public function barangpost()
+    {
+        $data['start'] = $this->request->getPost('start');
+        $data['end'] = $this->request->getPost('end');
+
+        empty($data['start']) ? $start = '2021-01-01' : $start = $data['start'];
+        empty($data['end']) ? $end = Time::today('Asia/Makassar')->toLocalizedString('yyyy-MM-dd') : $end = $data['end'];
+
+        $data['barang'] = $this->barang_model->join('users', 'barang.kurir_id=users.id', 'left')
+                                            ->where('barang.created_at >=', $start)
+                                            ->where('barang.created_at <=', $end)
+                                            ->orderBy('barang.created_at', 'DESC')
+                                            ->get()->getResultArray();
+        $data['title'] = "Barang";
+        // dd($data['barang']);
+        echo view('admin/barang', $data);
+    }
+
     public function show_barang($id)
     {  
         $data['barang'] = $this->barang_model->getBarang($id);
@@ -273,7 +319,10 @@ class Admin extends BaseController
     public function export_barang()
     {
         $start = $this->request->getPost('start');
-        $end = $this->request->getPost('end');  
+        $end = $this->request->getPost('end');
+        
+        empty($start) ? $start = '2021-01-01' : $start = $start;
+        empty($end) ? $end = Time::today('Asia/Makassar')->toLocalizedString('yyyy-MM-dd') : $end = $end;
         // ambil data transaction dari database
         $barang = $this->barang_model
                         ->select('pesanan.pesanan_resi,barang.barang_id,pesanan.pesanan_id,barang.barang_kode,
@@ -281,7 +330,7 @@ class Admin extends BaseController
                         barang.barang_keterangan,users.name,users.kode,barang.kecamatan_id,kecamatan.kecamatan_name,barang.created_at')
                         ->join('pesanan', 'pesanan.pesanan_id = barang.pesanan_id')
                         ->join('kecamatan', 'kecamatan.kecamatan_id = barang.kecamatan_id')
-                        ->join('users', 'users.id = barang.kurir_id')
+                        ->join('users', 'users.id = barang.kurir_id', 'left')
                         ->where('barang.created_at >=', $start)
                         ->where('barang.created_at <=', $end)
                         ->orderBy('barang.created_at', 'DESC')

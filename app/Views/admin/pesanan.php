@@ -32,7 +32,7 @@
                 </div>
             <?php } ?>
             <div class="card-header">
-                Daftar Pesanan Masuk
+                <b>Export:</b>
                 <a href="<?php echo base_url('admin/pesanan/create'); ?>" class="btn btn-primary float-lg-end">Tambah</a>
                 <form method="POST" action="<?php echo base_url('admin/pesanan/export'); ?>">
                     <label for="start">Start:</label>
@@ -40,6 +40,15 @@
                     <label for="end">End:</label>
                     <input type="date" name="end">
                     <button type="submit" class="btn btn-dark">Export</button>
+                </form>
+                <br>
+                <b>Daftar Pesanan Masuk:</b>
+                <form method="POST" action="<?php echo base_url('admin/pesanan'); ?>">
+                    <label for="start">Start:</label>
+                    <input type="date" name="start" value="<?php echo empty($start) ? '' : $start ?>">
+                    <label for="end">End:</label>
+                    <input type="date" name="end" value="<?php echo empty($end) ? '' : $end ?>">
+                    <button type="submit" class="btn btn-success">Pilih</button>
                 </form>
             </div>
             <div class="card-body">
@@ -51,6 +60,7 @@
                             <th>Kecamatan</th>
                             <th>Toko</th>
                             <th>Kontak</th>
+                            <th>Kurir Penjemput</th>
                             <th>Status</th>
                             <th>Aksi</th>
                         </tr>
@@ -63,6 +73,7 @@
                                 <td><?= $row['kecamatan_name']?></td>
                                 <td><?= $row['pesanan_toko']?></td>
                                 <td><?= $row['pesanan_kontak']?></td>
+                                <td><?= $row['name']?></td>
                                 <td>
                                     <div class="btn-group">
                                     <?php if($row['pesanan_status'] == "Sukses"){?>

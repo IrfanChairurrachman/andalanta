@@ -32,13 +32,22 @@
                 </div>
             <?php } ?>
             <div class="card-header">
-                Barang
+                <b>Export:</b>
                 <form method="POST" action="<?php echo base_url('admin/barang/export'); ?>">
                     <label for="start">Start:</label>
                     <input type="date" name="start">
                     <label for="end">End:</label>
                     <input type="date" name="end">
                     <button type="submit" class="btn btn-dark">Export</button>
+                </form>
+                <br>
+                <b>Daftar Barang:</b>
+                <form method="POST" action="<?php echo base_url('admin/barang'); ?>">
+                    <label for="start">Start:</label>
+                    <input type="date" name="start" value="<?php echo empty($start) ? '' : $start ?>">
+                    <label for="end">End:</label>
+                    <input type="date" name="end" value="<?php echo empty($end) ? '' : $end ?>">
+                    <button type="submit" class="btn btn-success">Pilih</button>
                 </form>
             </div>
             <div class="card-body">
@@ -49,18 +58,20 @@
                             <th>Kode</th>
                             <th>Nama</th>
                             <th>Harga Barang</th>
+                            <th>Ongkir</th>
                             <th>Kurir Pengantar</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach($barang as $key => $row){ ?>
+                        <?php $tbarang=0;$tongkir=0;foreach($barang as $key => $row){ ?>
                             <tr>
                                 <td><?= date('j F Y', strtotime($row['created_at']))?></td>
                                 <td><?= $row['barang_kode']?></td>
                                 <td><?= $row['barang_name']?></td>
                                 <td><?= "Rp.".number_format($row['barang_harga'])?></td>
+                                <td><?= "Rp.".number_format($row['barang_ongkir'])?></td>
                                 <td><?= $row['name']?></td>
                                 <td>
                                     <div class="btn-group">
@@ -95,8 +106,19 @@
                                     </div>
                                 </td>
                             </tr>
+                            <?php $tbarang += $row['barang_harga']; $tongkir += $row['barang_ongkir']; ?>
                         <?php } ?>
                     </tbody>
+                        <tr>
+                            <td><b>Total</b></td>
+                            <td></td>
+                            <td></td>
+                            <td><b><?= "Rp.".number_format($tbarang) ?></b></td>
+                            <td><b><?= "Rp.".number_format($tongkir) ?></b></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
                 </table>
             </div>
         </div>

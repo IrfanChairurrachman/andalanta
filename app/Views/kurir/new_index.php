@@ -21,7 +21,7 @@
     <section class="section">
         <div class="card">
             <div class="card-header">
-                Pesanan Masuk
+                <b>Pesanan Masuk</b>
             </div>
             <div class="card-body">
                 <table class="table table-striped" id="table1">
@@ -66,11 +66,11 @@
     </section>
     <section>
             <div class="card">
-                <div class="card-header">
-                    Pesanan Saya
+                <div class="card-header bg-light">
+                    <b>Pesanan Saya</b>
                 </div>
-                <div class="card-body">
-                    <table class="table table-striped" id="table2">
+                <div class="card-body bg-light">
+                    <table class="table table-striped table-light" id="table2">
                         <thead>
                             <tr>
                                 <th>Tanggal</th>
