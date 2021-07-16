@@ -56,10 +56,13 @@ class Home extends BaseController
         $data['grafik_barang_keluar'] = $this->barang_model->getKecamatan();
         $data['grafik_pesanan_kecamatan'] = $this->pesanan_model->getKecamatan();
 
+        $myTime = Time::today('Asia/Makassar')->toLocalizedString('yyyy-MM-dd');
+
         $data['pesanan'] = $this->pesanan_model->where('pesanan_status !=', 'Sukses')->countAllResults();
         $data['barang'] = $this->barang_model->where('barang_status !=', 'Sukses')->countAllResults();
-        $data['barang_masuk'] = $this->barang_model->where('barang_status', 'Terjemput')->countAllResults();
-        $data['barang_keluar'] = $this->barang_model->where('barang_status !=', 'Terjemput')->countAllResults();
+        $data['barang_masuk'] = $this->barang_model->where('created_at >=', $myTime)->countAllResults();
+        $data['barang_keluar'] = $this->barang_model->where('barang_status !=', 'Terjemput')
+                                                    ->where('created_at >=', $myTime)->countAllResults();
 
         $id = $_SESSION['id'];
 
@@ -70,6 +73,7 @@ class Home extends BaseController
         $data['bend'] = '';
         $data['start'] = '';
         $data['end'] = '';
+
         // dd($data);
 		return view('admin/new_index', $data);
 	}
@@ -94,19 +98,24 @@ class Home extends BaseController
         $data['grafik_barang_masuk'] = $this->barang_model->getKecamatan2($start, $end);
         $data['grafik_barang_keluar'] = $this->barang_model->getKecamatan($start, $end);
         $data['grafik_pesanan_kecamatan'] = $this->pesanan_model->getKecamatan($start, $end);
+
+        $myTime = Time::today('Asia/Makassar')->toLocalizedString('yyyy-MM-dd');;
         
         $data['pesanan'] = $this->pesanan_model->where('pesanan_status !=', 'Sukses')->countAllResults();
         $data['barang'] = $this->barang_model->where('barang_status !=', 'Sukses')->countAllResults();
-        $data['barang_masuk'] = $this->barang_model->where('barang_status', 'Terjemput')->countAllResults();
-        $data['barang_keluar'] = $this->barang_model->where('barang_status !=', 'Terjemput')->countAllResults();
+        $data['barang_masuk'] = $this->barang_model->where('created_at >=', $myTime)->countAllResults();
+        $data['barang_keluar'] = $this->barang_model->where('barang_status !=', 'Terjemput')
+                                                    ->where('created_at >=', $myTime)->countAllResults();
 
         $id = $_SESSION['id'];
 
         $data['user'] = $this->user_model->where('id', $id)->get()->getRowArray();
 
         $data['title'] = 'Dashboard';
+
+        dd($data);
         
-		return view('admin/new_index', $data);
+		// return view('admin/new_index', $data);
 	}
 
 	public function store()

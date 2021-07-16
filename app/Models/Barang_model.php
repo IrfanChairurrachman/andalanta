@@ -77,7 +77,7 @@ class Barang_model extends Model
     public function getKecamatan2($start = false, $end = false)
     {
         if($start === false){
-            $query = $this->db->query("SELECT kecamatan.kecamatan_name as kecamatan, COUNT(barang.barang_id) as total FROM barang RIGHT JOIN kecamatan ON barang.kecamatan_id=kecamatan.kecamatan_id AND barang.barang_status = 'Terjemput' GROUP BY kecamatan.kecamatan_name ORDER BY kecamatan.kecamatan_name");
+            $query = $this->db->query("SELECT kecamatan.kecamatan_name as kecamatan, COUNT(barang.barang_id) as total FROM barang RIGHT JOIN kecamatan ON barang.kecamatan_id=kecamatan.kecamatan_id GROUP BY kecamatan.kecamatan_name ORDER BY kecamatan.kecamatan_name");
             $hasil = [];
             if(!empty($query)){
                 foreach($query->getResultArray() as $data) {
@@ -86,7 +86,7 @@ class Barang_model extends Model
             }
             return $hasil;
         } else{
-            $sql = "SELECT kecamatan.kecamatan_name as kecamatan, COUNT(barang.barang_id) as total FROM barang RIGHT JOIN kecamatan ON barang.kecamatan_id=kecamatan.kecamatan_id AND barang.barang_status = 'Terjemput' AND barang.created_at BETWEEN ? AND ? GROUP BY kecamatan.kecamatan_name ORDER BY kecamatan.kecamatan_name";
+            $sql = "SELECT kecamatan.kecamatan_name as kecamatan, COUNT(barang.barang_id) as total FROM barang RIGHT JOIN kecamatan ON barang.kecamatan_id=kecamatan.kecamatan_id AND barang.created_at BETWEEN ? AND ? GROUP BY kecamatan.kecamatan_name ORDER BY kecamatan.kecamatan_name";
             $query = $this->db->query($sql, [$start, $end])->getResultArray();
             return $query;
         }
