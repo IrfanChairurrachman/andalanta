@@ -41,6 +41,7 @@ class Kurir extends BaseController
                                 ->orGroupStart()
                                     ->where('pesanan_status', 'Sukses')
                                     ->where('DATE(created_at)', $myTime)
+                                    ->where('kurir_id', $id)
                                 ->groupEnd()
                                 ->findAll();
         

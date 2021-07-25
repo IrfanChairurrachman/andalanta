@@ -203,6 +203,7 @@ var areaChart2 = new Chart(chart2, {
   data: {
     labels: <?php echo json_encode($bmonth); ?>,
     datasets: [
+    <?php if(!empty($ptotal)){?>
       {
         label: "Pesanan",
         data: <?php echo json_encode($ptotal); ?>,
@@ -236,6 +237,8 @@ var areaChart2 = new Chart(chart2, {
         ],
         borderWidth: 1
       },
+      <?php } ?>
+      <?php if(!empty($btotal)){?>
       {
         label: "Barang",
         data: <?php echo json_encode($btotal); ?>,
@@ -268,7 +271,8 @@ var areaChart2 = new Chart(chart2, {
           'rgba(255, 99, 132, 1)',
         ],
         borderWidth: 1
-      }
+      },
+      <?php } ?>
     ]
   },
   options: {
@@ -356,6 +360,7 @@ var areaChart1 = new Chart(chart1, {
   data: {
     labels: <?php echo json_encode($bkkecamatan); ?>,
     datasets: [
+        <?php if(!empty($bmtotal)){?>
         {
         label: "Barang Masuk",
         data: <?php echo json_encode($bmtotal); ?>,
@@ -397,6 +402,8 @@ var areaChart1 = new Chart(chart1, {
         ],
         borderWidth: 1
       },
+      <?php } ?>
+      <?php if(!empty($bktotal)){?>
       {
         label: "Barang Keluar",
         data: <?php echo json_encode($bktotal); ?>,
@@ -437,7 +444,8 @@ var areaChart1 = new Chart(chart1, {
           'rgba(255, 99, 132, 1)',
         ],
         borderWidth: 1
-      }
+      },
+      <?php } ?>
     ]
   },
   options: {

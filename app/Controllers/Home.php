@@ -113,9 +113,9 @@ class Home extends BaseController
 
         $data['title'] = 'Dashboard';
 
-        dd($data);
+        // dd($data);
         
-		// return view('admin/new_index', $data);
+		return view('admin/new_index', $data);
 	}
 
 	public function store()
