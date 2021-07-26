@@ -103,7 +103,18 @@
         <div class="row" id="basic-table">
             <div class="col-12 col-md-12">
                 <div class="card">
+                    <b>Pilih Waktu</b>
+                    <form method="POST" action="<?php echo base_url('admin/kurir/'.$kurir['id']); ?>">
+                        <label for="start">Start:</label>
+                        <input type="date" name="start" value="<?php echo empty($start) ? '' : $start ?>">
+                        <label for="end">End:</label>
+                        <input type="date" name="end" value="<?php echo empty($end) ? '' : $end ?>">
+                        <button type="submit" class="btn btn-dark">Pilih</button>
+                    </form>
                     <div class="card-content">
+                        <div class="card-header">
+                            <h5>Informasi Kurir</h5>
+                        </div>          
                         <div class="card-body">
                             <!-- Table with outer spacing -->
                             <div class="table-responsive">
@@ -144,7 +155,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($barang as $key => $row){ ?>
+                                    <?php $tbarang=0;$tongkir=0;foreach($barang as $key => $row){ ?>
                                         <tr>
                                             <td><?= $row['barang_kode']?></td>
                                             <td><?= "Rp.".number_format($row['barang_harga'])?></td>
@@ -169,8 +180,15 @@
                                                 </div>
                                             </td>
                                         </tr>
+                                        <?php $tbarang += $row['barang_harga']; $tongkir += $row['barang_ongkir']; ?>
                                     <?php } ?>
                                 </tbody>
+                                <tr>
+                                    <td><b>Total</b></td>
+                                    <td><b><?= "Rp.".number_format($tbarang) ?></b></td>
+                                    <td><b><?= "Rp.".number_format($tongkir) ?></b></td>
+                                    <td></td>
+                                </tr>
                             </table>
                         </div>
                     </div>
@@ -199,6 +217,11 @@
                                         </tr>
                                     <?php } ?>
                                 </tbody>
+                                <tr>
+                                    <td><b>Total</b></td>
+                                    <td></td>
+                                    <td><b><?= "Rp.".number_format($total_harga) ?></b></td>
+                                </tr>
                             </table>
                         </div>
                     </div>

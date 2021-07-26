@@ -64,6 +64,7 @@ $routes->post('admin/barang/export', 'Admin::export_barang', ['filter' => 'ceklo
 
 $routes->get('admin/settings', 'Admin::settings', ['filter' => 'ceklogin']);
 $routes->get('admin/kurir/(:num)', 'Admin::show_kurir/$1', ['filter' => 'ceklogin']);
+$routes->post('admin/kurir/(:num)', 'Admin::show_kurir_post/$1', ['filter' => 'ceklogin']);
 $routes->get('admin/kurir/create', 'Admin::create_kurir', ['filter' => 'ceklogin']);
 $routes->post('admin/store', 'Admin::store_user', ['filter' => 'ceklogin']);
 $routes->get('admin/kurir/edit/(:num)', 'Admin::edit_kurir/$1', ['filter' => 'ceklogin']);
