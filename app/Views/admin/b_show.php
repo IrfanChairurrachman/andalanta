@@ -35,6 +35,10 @@
                                     <dd><?php echo $barang['barang_kode'];?></dd>
                                     <dt>Nama</dt>
                                     <dd><?php echo $barang['barang_name'];?></dd>
+                                    <dt>Toko Pemesan</dt>
+                                    <dd><?php echo $barang['pesanan_toko'];?></dd>
+                                    <dt>Kontak Pemesan</dt>
+                                    <dd><?php echo $barang['pesanan_kontak'];?></dd>
                                     <dt>Harga</dt>
                                     <dd><?php echo "Rp.".number_format($barang['barang_harga']);?></dd>
                                     <dt>Ongkir</dt>

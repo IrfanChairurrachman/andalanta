@@ -281,6 +281,7 @@ class Admin extends BaseController
             'barang_ongkir' => $this->request->getPost('barang_ongkir'),
             'kecamatan_id' => $this->request->getPost('kecamatan_id'),
             'barang_status' => $this->request->getPost('barang_status'),
+            'barang_keterangan' => $this->request->getPost('barang_keterangan')
         );
         // dd($data);
         $validation =  \Config\Services::validation();
@@ -412,11 +413,50 @@ class Admin extends BaseController
     {
         $data['kurir'] = $this->user_model->getUser($id);
         $data['title'] = "Kurir Show";
+        
         $data['pesanan'] = $this->pesanan_model->where('kurir_id', $id)->findAll();
         $data['barang'] = $this->barang_model->where('kurir_id', $id)->findAll();
 
         $data['barang_total'] = $this->barang_model->where('kurir_id', $id)->countAllResults();
         $data['pesanan_total'] = $this->pesanan_model->where('kurir_id', $id)->countAllResults();
+
+        foreach($data['pesanan'] as $key => $row){
+            $data['pesanan'][$key]['total'] = 0;
+            // echo $data['pesanan'][$key]['total'];
+            $barang = $this->barang_model->where('pesanan_id', $row['pesanan_id'])->findAll();
+            foreach($barang as $k => $r){
+                $data['pesanan'][$key]['total'] += $r['barang_harga'];
+            }
+        }
+        // dd($data);
+        echo view('admin/kurir_show', $data);
+    }
+
+    public function show_kurir_post($id)
+    {
+        $data['start'] = $this->request->getPost('start');
+        $data['end'] = $this->request->getPost('end');
+        
+        empty($data['start']) ? $start = '2021-01-01' : $start = $data['start'];
+        empty($data['end']) ? $end = Time::today('Asia/Makassar')->toLocalizedString('yyyy-MM-dd') : $end = $data['end'];
+
+        $data['kurir'] = $this->user_model->getUser($id);
+        $data['title'] = "Kurir Show";
+
+        $data['pesanan'] = $this->pesanan_model->where('kurir_id', $id)
+                                            ->where('pesanan.created_at >=', $start)
+                                            ->where('pesanan.created_at <=', $end)->findAll();
+        $data['barang'] = $this->barang_model->where('kurir_id', $id)
+                                            ->where('barang.created_at >=', $start)
+                                            ->where('barang.created_at <=', $end)->findAll();
+
+        $data['barang_total'] = $this->barang_model->where('kurir_id', $id)
+                                                ->where('barang.created_at >=', $start)
+                                                ->where('barang.created_at <=', $end)->countAllResults();
+        $data['pesanan_total'] = $this->pesanan_model->where('kurir_id', $id)
+                                                ->where('pesanan.created_at >=', $start)
+                                                ->where('pesanan.created_at <=', $end)->countAllResults();
+        
         foreach($data['pesanan'] as $key => $row){
             $data['pesanan'][$key]['total'] = 0;
             // echo $data['pesanan'][$key]['total'];
