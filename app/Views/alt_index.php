@@ -86,7 +86,7 @@
                                     <ul>
                                         <?php foreach ($data['barang'] as $row) : ?>
                                             <li><b>[<?= $row['barang_status'] ?>]</b> <?= $row['barang_name'] ?></li>
-                                            <?php if($row['barang_status'] == 'Tunda'){ ?>
+                                            <?php if(!empty($row['barang_keterangan'])){ ?>
                                                 <p>Keterangan: <?= $row['barang_keterangan'] ?></p>
                                             <?php } ?>
                                         <?php endforeach ?>

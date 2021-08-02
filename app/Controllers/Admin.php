@@ -273,6 +273,8 @@ class Admin extends BaseController
     {
         $id = $this->request->getPost('barang_id');
         $pesanan_id = $this->request->getPost('pesanan_id');
+        $status = $this->request->getPost('barang_status');
+        $myTime = Time::today('Asia/Makassar');
     
         $data = array(
             'barang_kode' => $this->request->getPost('barang_kode'),
@@ -283,6 +285,11 @@ class Admin extends BaseController
             'barang_status' => $this->request->getPost('barang_status'),
             'barang_keterangan' => $this->request->getPost('barang_keterangan')
         );
+
+        if($status == 'Sukses'){
+            $data += ['created_at' => $myTime];
+        }
+
         // dd($data);
         $validation =  \Config\Services::validation();
         if($validation->run($data, 'barang') == FALSE){

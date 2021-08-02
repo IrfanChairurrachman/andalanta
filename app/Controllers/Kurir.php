@@ -204,12 +204,18 @@ class Kurir extends BaseController
         $kurir = $_SESSION['id'];
         $id = $this->request->getPost('barang_id');
         $pesanan_id = $this->request->getPost('pesanan_id');
-    
+        $status = $this->request->getPost('barang_status');
+        $myTime = Time::today('Asia/Makassar');
+        
         $data = array(
             'barang_status' => $this->request->getPost('barang_status'),
             'barang_keterangan' => $this->request->getPost('barang_keterangan'),
             'kurir_id' => $kurir,
         );
+
+        if($status == 'Sukses'){
+            $data += ['created_at' => $myTime];
+        }
 
         $validation =  \Config\Services::validation();
         if($validation->run($data, 'barang_update') == FALSE){
