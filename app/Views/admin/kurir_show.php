@@ -19,8 +19,9 @@
             </div>
         </div>
     </div>
-    <?php $total_harga=0;foreach($pesanan as $key => $row){
+    <?php $total_harga=0;$ongkir_pesanan=0;foreach($pesanan as $key => $row){
         $total_harga += $row['total'];
+        $ongkir_pesanan += $row['ongkir'];
     } ?>
     <?php $total_ongkir=0;foreach($barang as $key => $row){
         $total_ongkir += $row['barang_ongkir'];
@@ -205,7 +206,8 @@
                                     <tr>
                                         <th>Resi</th>
                                         <th>Pesanan</th>
-                                        <th>Total harga</th>
+                                        <th>Total Harga</th>
+                                        <th>Ongkir</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -214,6 +216,7 @@
                                             <td><?= $row['pesanan_resi']?></td>
                                             <td><?= $row['pesanan_name']?></td>
                                             <td><?= "Rp.".number_format($row['total'])?></td>
+                                            <td><?= "Rp.".number_format($row['ongkir'])?></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
@@ -221,6 +224,7 @@
                                     <td><b>Total</b></td>
                                     <td></td>
                                     <td><b><?= "Rp.".number_format($total_harga) ?></b></td>
+                                    <td><b><?= "Rp.".number_format($ongkir_pesanan) ?></b></td>
                                 </tr>
                             </table>
                         </div>

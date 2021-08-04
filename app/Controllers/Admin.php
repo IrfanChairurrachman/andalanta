@@ -216,8 +216,13 @@ class Admin extends BaseController
 
     public function barang()
     {
-        $data['barang'] = $this->barang_model->join('users', 'barang.kurir_id=users.id', 'left')
-                                        ->orderBy('barang.created_at', 'DESC')->get()->getResultArray();
+        $data['barang'] = $this->barang_model
+                                ->select('barang.barang_id,pesanan.pesanan_id,barang.barang_kode,
+                                barang.barang_name,barang.barang_harga,barang.barang_ongkir,barang.barang_status,
+                                barang.kurir_id,barang.created_at,pesanan.pesanan_toko,users.name')
+                                ->join('pesanan', 'pesanan.pesanan_id = barang.pesanan_id')
+                                ->join('users', 'barang.kurir_id=users.id', 'left')
+                                ->orderBy('barang.created_at', 'DESC')->get()->getResultArray();
         $data['title'] = "Barang";
         // dd($data['barang']);
         echo view('admin/barang', $data);
@@ -429,10 +434,14 @@ class Admin extends BaseController
 
         foreach($data['pesanan'] as $key => $row){
             $data['pesanan'][$key]['total'] = 0;
+            $data['pesanan'][$key]['ongkir'] = 0;
             // echo $data['pesanan'][$key]['total'];
             $barang = $this->barang_model->where('pesanan_id', $row['pesanan_id'])->findAll();
             foreach($barang as $k => $r){
                 $data['pesanan'][$key]['total'] += $r['barang_harga'];
+                if($r['barang_status'] == 'Sukses'){
+                    $data['pesanan'][$key]['ongkir'] += $r['barang_ongkir'];
+                }
             }
         }
         // dd($data);
@@ -466,10 +475,14 @@ class Admin extends BaseController
         
         foreach($data['pesanan'] as $key => $row){
             $data['pesanan'][$key]['total'] = 0;
+            $data['pesanan'][$key]['ongkir'] = 0;
             // echo $data['pesanan'][$key]['total'];
             $barang = $this->barang_model->where('pesanan_id', $row['pesanan_id'])->findAll();
             foreach($barang as $k => $r){
                 $data['pesanan'][$key]['total'] += $r['barang_harga'];
+                if($r['barang_status'] == 'Sukses'){
+                    $data['pesanan'][$key]['ongkir'] += $r['barang_ongkir'];
+                }
             }
         }
         // dd($data);

@@ -57,6 +57,7 @@
                             <th>Tanggal</th>
                             <th>Kode</th>
                             <th>Nama</th>
+                            <th>Toko</th>
                             <th>Harga Barang</th>
                             <th>Ongkir</th>
                             <th>Kurir Pengantar</th>
@@ -70,6 +71,7 @@
                                 <td><?= date('j F Y', strtotime($row['created_at']))?></td>
                                 <td><?= $row['barang_kode']?></td>
                                 <td><?= $row['barang_name']?></td>
+                                <td><?= $row['pesanan_toko']?></td>
                                 <td><?= "Rp.".number_format($row['barang_harga'])?></td>
                                 <td><?= "Rp.".number_format($row['barang_ongkir'])?></td>
                                 <td><?= $row['name']?></td>
