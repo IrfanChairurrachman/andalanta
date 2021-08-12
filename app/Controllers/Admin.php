@@ -236,7 +236,11 @@ class Admin extends BaseController
         empty($data['start']) ? $start = '2021-01-01' : $start = $data['start'];
         empty($data['end']) ? $end = Time::today('Asia/Makassar')->toLocalizedString('yyyy-MM-dd') : $end = $data['end'];
 
-        $data['barang'] = $this->barang_model->join('users', 'barang.kurir_id=users.id', 'left')
+        $data['barang'] = $this->barang_model->select('barang.barang_id,pesanan.pesanan_id,barang.barang_kode,
+                                            barang.barang_name,barang.barang_harga,barang.barang_ongkir,barang.barang_status,
+                                            barang.kurir_id,barang.created_at,pesanan.pesanan_toko,users.name')
+                                            ->join('pesanan', 'pesanan.pesanan_id = barang.pesanan_id')
+                                            ->join('users', 'barang.kurir_id=users.id', 'left')
                                             ->where('barang.created_at >=', $start)
                                             ->where('barang.created_at <=', $end)
                                             ->orderBy('barang.created_at', 'DESC')
@@ -279,7 +283,8 @@ class Admin extends BaseController
         $id = $this->request->getPost('barang_id');
         $pesanan_id = $this->request->getPost('pesanan_id');
         $status = $this->request->getPost('barang_status');
-        $myTime = Time::today('Asia/Makassar');
+        // $myTime = Time::today('Asia/Makassar');
+        $myTime = Time::now('Asia/Makassar', 'id_ID');
     
         $data = array(
             'barang_kode' => $this->request->getPost('barang_kode'),

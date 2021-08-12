@@ -205,7 +205,9 @@ class Kurir extends BaseController
         $id = $this->request->getPost('barang_id');
         $pesanan_id = $this->request->getPost('pesanan_id');
         $status = $this->request->getPost('barang_status');
-        $myTime = Time::today('Asia/Makassar');
+
+        // $myTime = Time::today('Asia/Makassar');
+        $myTime = Time::now('Asia/Makassar', 'id_ID');
         
         $data = array(
             'barang_status' => $this->request->getPost('barang_status'),
